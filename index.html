@@ -546,7 +546,15 @@ async function pollScales(){
     setSyncStatus('live');
   }catch(e){
     setSyncStatus('offline');
-  }finally{_isSyncing=false;}
+  }
+  // sempre libera, mesmo com erro
+  _isSyncing=false;
+}
+
+// poll imediato ao entrar (não espera 5s)
+function pollNow(){
+  _isSyncing=false;
+  pollScales();
 }
 
 async function fullSync(){
@@ -557,9 +565,8 @@ async function fullSync(){
 
 function startSync(){
   stopSync();
-  // confirmações: polling a cada 5s
+  pollNow(); // dispara imediatamente ao entrar
   _syncInterval=setInterval(pollScales,5000);
-  // sync completo (eventos/membros): a cada 30s
   _fullSyncInterval=setInterval(fullSync,30000);
 }
 function stopSync(){
@@ -1009,7 +1016,12 @@ function renderDashboard(){
     mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
     const evIds=Object.keys(byEv);
     const firstEv=allEvents.find(e=>e.id===evIds[0]);
-    if(!firstEv){memberAlert.style.display='none';return;}
+    if(!firstEv){
+      // eventos ainda não carregaram — tenta novamente em 1s
+      memberAlert.style.display='none';
+      setTimeout(renderDashboard,1000);
+      return;
+    }
     memberAlert.style.display='block';
     const{day,mon,week}=dateLabel(firstEv.date);
     const total=evIds.length;
@@ -1019,7 +1031,9 @@ function renderDashboard(){
     memberAlertBtns.innerHTML=byEv[evIds[0]].map(s=>`
       <button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button>
       <button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>
-    `).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos →</button>`:'');
+    `).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
+    // se não achou o evento (dados ainda carregando), tenta de novo em 1s
+    if(!firstEv)setTimeout(renderDashboard,1000);
   }
 }
 
@@ -1188,8 +1202,8 @@ async function confirmScale(id,status){
   // 3) Persiste no banco em background
   try{
     await sb('scales','PATCH',{status},`?id=eq.${id}`);
-    // após salvar, atualiza o hash para evitar re-render desnecessário no próximo poll
-    _lastScalesHash=hashScales(allScales);
+    // força poll imediato para todos verem a mudança
+    pollNow();
   }catch(e){
     // Reverte se falhou
     if(sc){sc.status='pending';renderScaleOutput();renderMyScales();renderDashboard();}
