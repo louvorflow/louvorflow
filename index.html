@@ -402,6 +402,20 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <button class="btn-gen" onclick="generateScale()">⚡ GERAR</button>
           </div>
         </div>
+
+        <!-- card de confirmação para membro -->
+        <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
+          <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
+          <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+
+        <!-- painel de confirmações para admin -->
+        <div id="admin-confirm-panel" style="display:none" class="card">
+          <h3>📊 Confirmações da Escala</h3>
+          <div id="admin-confirm-summary"></div>
+        </div>
+
         <div class="card">
           <h3>📅 Próximos Eventos</h3>
           <div id="dash-events-preview"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
@@ -545,7 +559,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   <div class="modal">
     <h3>📅 Novo Evento</h3>
     <div class="form-group"><label>Nome</label><input type="text" id="new-ev-name" placeholder="Culto Dominical"></div>
-    <div class="form-group"><label>Data</label><input type="date" id="new-ev-date"></div>
+    <div class="form-group"><label>Data</label><input type="date" id="new-ev-date" min=""></div>
     <div class="form-group"><label>Horário</label><input type="time" id="new-ev-time" value="09:00"></div>
     <div class="form-group"><label>Tipo</label>
       <select id="new-ev-type"><option>Culto</option><option>Ensaio</option><option>Vigília</option><option>Conferência</option></select>
@@ -986,7 +1000,7 @@ async function loadScales(){
       if(seen.has(key))return false;
       seen.add(key);return true;
     });
-    renderScaleOutput();renderMyScales();
+    renderScaleOutput();renderMyScales();renderDashboard();
     document.getElementById('dash-scale-count').textContent=allScales.length;
   }catch(e){console.error(e);}
 }
@@ -1014,6 +1028,71 @@ function renderEventsList(){
     </div>`;
   }).join('');
 }
+function renderDashboard(){
+  // seta data mínima do campo de evento
+  document.getElementById('new-ev-date').min=fmt(new Date());
+
+  const isAdmin=currentUser.is_admin;
+  // painel admin: resumo de confirmações
+  const adminPanel=document.getElementById('admin-confirm-panel');
+  const adminSummary=document.getElementById('admin-confirm-summary');
+  // alerta membro
+  const memberAlert=document.getElementById('member-scale-alert');
+  const memberAlertText=document.getElementById('member-scale-alert-text');
+  const memberAlertBtns=document.getElementById('member-scale-alert-btns');
+
+  if(!allScales.length){
+    adminPanel.style.display='none';
+    memberAlert.style.display='none';
+    return;
+  }
+
+  if(isAdmin){
+    // conta confirmações gerais
+    const total=allScales.length;
+    const confirmed=allScales.filter(s=>s.status==='confirmed').length;
+    const refused=allScales.filter(s=>s.status==='refused').length;
+    const pending=total-confirmed-refused;
+    const pct=total?Math.round(confirmed/total*100):0;
+    adminPanel.style.display='block';
+    adminSummary.innerHTML=`
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+        <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div>
+          <div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div>
+        </div>
+        <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div>
+          <div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div>
+        </div>
+        <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div>
+          <div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Recusados</div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden">
+        <div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div>
+      </div>
+      <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
+    memberAlert.style.display='none';
+  } else {
+    adminPanel.style.display='none';
+    // pega próxima escala do membro
+    const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
+    if(!mine.length){memberAlert.style.display='none';return;}
+    const nextEv=allEvents.find(e=>e.id===mine[0].event_id);
+    if(!nextEv){memberAlert.style.display='none';return;}
+    const{day,mon,week}=dateLabel(nextEv.date);
+    const roles=mine.map(s=>s.role).join(', ');
+    memberAlert.style.display='block';
+    memberAlertText.textContent=`${nextEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${roles}`;
+    memberAlertBtns.innerHTML=mine.map(s=>`
+      <button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button>
+      <button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>
+    `).join('');
+  }
+}
+
 function renderDashEvents(){
   const el=document.getElementById('dash-events-preview');if(!el)return;
   const up=allEvents.filter(e=>e.date>=fmt(new Date())).slice(0,3);
@@ -1140,7 +1219,7 @@ const usageCnt={};
 function pickMember(role,usedToday){
   const pool=membersForRole(role).filter(m=>!usedToday.includes(m.name));
   const src=pool.length?pool:membersForRole(role);
-  if(!src.length)return{name:'A definir',roles:[]};
+  if(!src.length)return{name:'⚠️ Sem membro',roles:[]};
   src.sort((a,b)=>(usageCnt[a.name]||0)-(usageCnt[b.name]||0));
   usageCnt[src[0].name]=(usageCnt[src[0].name]||0)+1;
   return src[0];
