@@ -74,13 +74,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .hero-ev-label{font-size:10px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .hero-ev-name{font-size:18px;font-weight:800;margin-bottom:2px}
 .hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:14px}
-.countdown-row{display:flex;gap:8px;margin-bottom:14px}
-.cd-block{background:rgba(255,255,255,.18);border-radius:10px;padding:8px 10px;text-align:center;min-width:52px;flex:1}
-.cd-num{font-size:20px;font-weight:800;line-height:1}
-.cd-lbl{font-size:9px;font-weight:600;opacity:.75;text-transform:uppercase;margin-top:2px}
-.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;height:6px;overflow:hidden}
-.progress-bar-fill{height:100%;background:#fff;border-radius:20px;transition:width .8s ease}
-.progress-bar-label{display:flex;justify-content:space-between;font-size:10px;opacity:.7;margin-top:5px}
 .no-event-card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:2px dashed var(--border);margin-bottom:6px}
 .no-event-card p{color:var(--gray);font-size:13px;margin-bottom:10px}
 
@@ -109,17 +102,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .wec-name{font-size:13px;font-weight:700}
 .wec-sub{font-size:11px;color:var(--gray);margin-top:2px}
 .wec-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue);white-space:nowrap}
-
-/* Equipe resumo */
-.team-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:6px}
-.team-sum-card{background:#fff;border-radius:12px;padding:13px;box-shadow:0 2px 6px rgba(0,0,0,.04)}
-.tsc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.tsc-title{font-size:11px;font-weight:700;color:var(--gray)}
-.tsc-icon{font-size:18px}
-.tsc-val{font-size:20px;font-weight:800;color:var(--dark)}
-.tsc-sub{font-size:10px;color:var(--gray);margin-top:2px}
-.health-bar{height:6px;border-radius:20px;background:var(--border);overflow:hidden;margin-top:6px}
-.health-bar-fill{height:100%;border-radius:20px;transition:width .8s ease}
 
 /* Alerta membro */
 .member-alert-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;color:#fff;margin-bottom:6px}
@@ -264,7 +246,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   main{padding:14px 12px}
   .scale-filter-bar input[type=date]{min-width:100px}
   .header-left h4{max-width:130px}
-  .team-summary-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:400px){
   .stats-grid{grid-template-columns:1fr 1fr}
@@ -275,7 +256,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   .ministry-type-picker{flex-direction:column}
   .scale-filter-bar{flex-direction:column;align-items:stretch}
   .scale-filter-bar input[type=date]{min-width:unset}
-  .team-summary-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -409,7 +389,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
         <!-- SEÇÃO: AGORA -->
         <div class="dash-section-label">🔴 Agora</div>
 
-        <!-- Hero: próximo evento + countdown -->
+        <!-- Hero: próximo evento (sem countdown) -->
         <div id="dash-hero-event"></div>
 
         <!-- Stats com contexto -->
@@ -440,10 +420,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
         <!-- SEÇÃO: ESTA SEMANA -->
         <div class="dash-section-label">📅 Esta semana</div>
         <div id="dash-week-events" class="week-cards"></div>
-
-        <!-- SEÇÃO: EQUIPE -->
-        <div class="dash-section-label">👥 Equipe</div>
-        <div class="team-summary-grid" id="dash-team-summary"></div>
 
         <!-- Gerador de escala (admin) -->
         <div id="admin-gen-dash" class="gen-box" style="display:none">
@@ -631,7 +607,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
 
-let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false,_cdInterval=null;
+let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false;
 function hashScales(s){return s.map(x=>x.id+'|'+x.status+'|'+x.member_name).join(',');}
 
 async function pollScales(){
@@ -653,7 +629,7 @@ async function pollScales(){
 function pollNow(){_isSyncing=false;pollScales();}
 async function fullSync(){if(!currentUser)return;await Promise.all([loadEvents(),loadMembers()]);await pollScales();}
 function startSync(){stopSync();pollNow();_syncInterval=setInterval(pollScales,5000);_fullSyncInterval=setInterval(fullSync,30000);}
-function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}if(_cdInterval){clearInterval(_cdInterval);_cdInterval=null;}}
+function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}}
 
 function saveSession(u,m){localStorage.setItem('lf_session',JSON.stringify({user:u,ministry:m}));}
 function clearSession(){localStorage.removeItem('lf_session');}
@@ -893,32 +869,13 @@ function updateScaleTrend(){
   if(bar)bar.style.width=`${pct}%`;
 }
 
-// ── COUNTDOWN ──────────────────────────────────────────────────
+// ── DASHBOARD PRINCIPAL ────────────────────────────────────────
 function getNextEvent(){
   const today=fmt(new Date());return allEvents.find(e=>e.date>=today)||null;
 }
 function getDaysUntil(dateStr){
   const now=new Date();now.setHours(0,0,0,0);const ev=new Date(dateStr+'T12:00:00');return Math.round((ev-now)/(1000*60*60*24));}
-function startCountdown(dateStr,timeStr){
-  if(_cdInterval)clearInterval(_cdInterval);
-  function tick(){
-    const el=document.getElementById('cd-days'),eh=document.getElementById('cd-hours'),em=document.getElementById('cd-mins'),es=document.getElementById('cd-secs');
-    if(!el)return clearInterval(_cdInterval);
-    const now=new Date(),target=new Date(`${dateStr}T${timeStr||'00:00'}:00`);
-    const diff=Math.max(0,target-now);
-    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
-    if(el)el.textContent=String(d).padStart(2,'0');
-    if(eh)eh.textContent=String(h).padStart(2,'0');
-    if(em)em.textContent=String(m).padStart(2,'0');
-    if(es)es.textContent=String(s).padStart(2,'0');
-    // barra de progresso
-    const bar=document.getElementById('cd-progress-fill');
-    if(bar){const totalDays=getDaysUntil(dateStr)+1;const pct=Math.max(0,Math.min(100,100-(diff/86400000/totalDays*100)));bar.style.width=pct+'%';}
-  }
-  tick();_cdInterval=setInterval(tick,1000);
-}
 
-// ── DASHBOARD PRINCIPAL ────────────────────────────────────────
 function renderDashboard(){
   document.getElementById('new-ev-date').min=fmt(new Date());
   // Saudação dinâmica
@@ -928,7 +885,6 @@ function renderDashboard(){
 
   renderHeroEvent();
   renderWeekEvents();
-  renderTeamSummary();
 
   // Alerta membro
   const memberAlert=document.getElementById('member-scale-alert');
@@ -956,7 +912,6 @@ function renderHeroEvent(){
   }
   const{day,mon,week}=dateLabel(next.date),days=getDaysUntil(next.date);
   const urgency=days===0?'🔴 Hoje!':days===1?'🟡 Amanhã':days<=7?`🟢 Em ${days} dias`:`Em ${days} dias`;
-  // escalados no evento
   const escalados=allScales.filter(s=>s.event_id===next.id);
   const confirmed=escalados.filter(s=>s.status==='confirmed').length;
   const pctConf=escalados.length?Math.round(confirmed/escalados.length*100):0;
@@ -966,17 +921,8 @@ function renderHeroEvent(){
       <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
       <div class="hero-ev-name">${next.name}</div>
       <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
-      <div class="countdown-row">
-        <div class="cd-block"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Dias</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Horas</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Min</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-secs">--</div><div class="cd-lbl">Seg</div></div>
-      </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="cd-progress-fill" style="width:0%"></div></div>
-      <div class="progress-bar-label"><span>Agora</span><span>${String(day).padStart(2,'0')}/${mon}</span></div>
       ${escalados.length?`<div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;opacity:.9">👥 ${escalados.length} escalados · ${pctConf}% confirmado</span><button onclick="navigate('scales')" style="background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">Ver →</button></div>`:''}
     </div>`;
-  startCountdown(next.date,next.time);
 }
 
 function renderWeekEvents(){
@@ -996,43 +942,6 @@ function renderWeekEvents(){
       ${badge}
     </div>`;
   }).join('');
-}
-
-function renderTeamSummary(){
-  const container=document.getElementById('dash-team-summary');if(!container)return;
-  const total=allMembers.length;
-  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
-  const pending=allScales.filter(s=>s.status==='pending').length;
-  const refused=allScales.filter(s=>s.status==='refused').length;
-  const pct=allScales.length?Math.round(confirmed/allScales.length*100):0;
-  const healthColor=pct>=70?'#22C55E':pct>=40?'#F59E0B':'#EF4444';
-  // funções cobertas
-  const allRoleNames=ROLES_DEFS.map(r=>`${r.icon} ${r.name}`);
-  const coveredRoles=allRoleNames.filter(r=>allMembers.some(m=>(m.roles||[]).includes(r)));
-  const missingRoles=allRoleNames.filter(r=>!allMembers.some(m=>(m.roles||[]).includes(r)));
-
-  container.innerHTML=`
-    <div class="team-sum-card">
-      <div class="tsc-top"><span class="tsc-title">Saúde da equipe</span><span class="tsc-icon">🌡️</span></div>
-      <div class="tsc-val" style="color:${healthColor}">${pct}%</div>
-      <div class="tsc-sub">${confirmed} conf · ${pending} pend · ${refused} rec</div>
-      <div class="health-bar"><div class="health-bar-fill" style="width:${pct}%;background:${healthColor}"></div></div>
-    </div>
-    <div class="team-sum-card">
-      <div class="tsc-top"><span class="tsc-title">Membros ativos</span><span class="tsc-icon">👥</span></div>
-      <div class="tsc-val">${total}</div>
-      <div class="tsc-sub">${allMembers.filter(m=>m.is_admin).length} admin · ${total-allMembers.filter(m=>m.is_admin).length} membros</div>
-    </div>
-    <div class="team-sum-card">
-      <div class="tsc-top"><span class="tsc-title">Funções cobertas</span><span class="tsc-icon">🎯</span></div>
-      <div class="tsc-val">${coveredRoles.length}<span style="font-size:13px;color:var(--gray);font-weight:600">/${allRoleNames.length}</span></div>
-      <div class="tsc-sub">${missingRoles.length?`⚠️ Falta: ${missingRoles.map(r=>r.split(' ').slice(1).join(' ')).join(', ')}`:'✅ Todas cobertas'}</div>
-    </div>
-    <div class="team-sum-card">
-      <div class="tsc-top"><span class="tsc-title">Total de eventos</span><span class="tsc-icon">📅</span></div>
-      <div class="tsc-val">${allEvents.length}</div>
-      <div class="tsc-sub">${allEvents.filter(e=>e.date>=fmt(new Date())).length} futuros · ${allEvents.filter(e=>e.date<fmt(new Date())).length} passados</div>
-    </div>`;
 }
 
 function dateLabel(s){const d=new Date(s+'T12:00:00');return{day:d.getDate(),mon:MONTHS[d.getMonth()].slice(0,3),week:WEEKS[d.getDay()]};}
