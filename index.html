@@ -462,8 +462,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="cal-header"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
           <div class="cal-grid" id="avail-grid"></div>
           <div class="avail-legend">
-            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível</div>
-            <div><div class="dot" style="background:#FEE2E2;border-color:var(--red)"></div>Indisponível</div>
+            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível (padrão)</div>
+            <div><div class="dot" style="background:#FEE2E2;border-color:var(--red)"></div>Indisponível (toque para marcar)</div>
           </div>
           <button class="btn-primary" style="margin-top:14px;width:auto;padding:10px 22px" onclick="saveAvailability()">Salvar</button>
         </div>
@@ -715,15 +715,21 @@ async function previewMinistry(code){
 }
 
 async function doLogin(){
-  const email=document.getElementById('login-email').value.trim();
+  const email=document.getElementById('login-email').value.trim().toLowerCase();
   const pass=document.getElementById('login-pass').value;
   if(!email||!pass){showToast('Preencha e-mail e senha','error');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
   setLoading('btn-login',true,'Entrar →');
   try{
     const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}`);
-    if(!rows.length){showToast('E-mail ou senha incorretos','error');return;}
+    if(!rows.length){
+      // distingue e-mail não encontrado de senha errada
+      const emailCheck=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);
+      if(!emailCheck.length)showToast('E-mail não cadastrado','error');
+      else showToast('Senha incorreta','error');
+      return;
+    }
     currentUser=rows[0];
-    // carregar ministério
     const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
     currentMinistry=mins[0]||null;
     await launchApp();
@@ -733,11 +739,13 @@ async function doLogin(){
 
 async function doRegisterCreate(){
   const name=document.getElementById('reg-name-c').value.trim();
-  const email=document.getElementById('reg-email-c').value.trim();
+  const email=document.getElementById('reg-email-c').value.trim().toLowerCase();
   const pass=document.getElementById('reg-pass-c').value;
   const ministryName=document.getElementById('reg-ministry-name').value.trim();
   const roles=[...document.querySelectorAll('#roles-picker-c .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!ministryName){showToast('Preencha todos os campos','error');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
+  if(pass.length<4){showToast('Senha precisa ter ao menos 4 caracteres','error');return;}
   setLoading('btn-register-c',true,'Criar conta →');
   try{
     // criar ministério com código único
@@ -764,11 +772,13 @@ async function doRegisterCreate(){
 
 async function doRegisterJoin(){
   const name=document.getElementById('reg-name-j').value.trim();
-  const email=document.getElementById('reg-email-j').value.trim();
+  const email=document.getElementById('reg-email-j').value.trim().toLowerCase();
   const pass=document.getElementById('reg-pass-j').value;
   const code=document.getElementById('reg-code-j').value.trim().toUpperCase();
   const roles=[...document.querySelectorAll('#roles-picker-j .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!code){showToast('Preencha todos os campos','error');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
+  if(pass.length<4){showToast('Senha precisa ter ao menos 4 caracteres','error');return;}
   setLoading('btn-register-j',true,'Entrar na equipe →');
   try{
     // verificar código
@@ -842,7 +852,7 @@ async function deleteSelfProfile(){
 
 function doLogout(){
   currentUser=null;currentMinistry=null;allEvents=[];allMembers=[];allScales=[];
-  if(window._scaleInterval)clearInterval(window._scaleInterval);
+  if(window._scaleInterval){clearInterval(window._scaleInterval);window._scaleInterval=null;}
   localStorage.removeItem('lastPage');
   document.getElementById('app').style.display='none';
   document.getElementById('auth-screen').style.display='flex';
@@ -1077,26 +1087,37 @@ function renderDashboard(){
     memberAlert.style.display='none';
   } else {
     adminPanel.style.display='none';
-    // pega próxima escala do membro
+    // pega TODAS as escalas pendentes do membro agrupadas por evento
     const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
     if(!mine.length){memberAlert.style.display='none';return;}
-    const nextEv=allEvents.find(e=>e.id===mine[0].event_id);
-    if(!nextEv){memberAlert.style.display='none';return;}
-    const{day,mon,week}=dateLabel(nextEv.date);
-    const roles=mine.map(s=>s.role).join(', ');
+    // agrupa por evento
+    const byEv={};
+    mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
+    const evIds=Object.keys(byEv);
     memberAlert.style.display='block';
-    memberAlertText.textContent=`${nextEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${roles}`;
-    memberAlertBtns.innerHTML=mine.map(s=>`
+    const firstEv=allEvents.find(e=>e.id===evIds[0]);
+    if(!firstEv){memberAlert.style.display='none';return;}
+    const{day,mon,week}=dateLabel(firstEv.date);
+    const total=evIds.length;
+    memberAlertText.textContent=total>1
+      ?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`
+      :`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
+    memberAlertBtns.innerHTML=byEv[evIds[0]].map(s=>`
       <button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button>
       <button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>
-    `).join('');
+    `).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos →</button>`:'');
   }
 }
 
 function renderDashEvents(){
   const el=document.getElementById('dash-events-preview');if(!el)return;
   const up=allEvents.filter(e=>e.date>=fmt(new Date())).slice(0,3);
-  if(!up.length){el.innerHTML='<p style="color:var(--gray);font-size:13px">Nenhum evento próximo.</p>';return;}
+  if(!up.length){
+    el.innerHTML=currentUser.is_admin
+      ?'<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado. <button onclick="showModal(\'add-event-modal\')" style="background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;font-size:13px">+ Criar primeiro evento →</button></p>'
+      :'<p style="color:var(--gray);font-size:13px">Nenhum evento próximo. Aguarde seu líder cadastrar eventos. 📅</p>';
+    return;
+  }
   el.innerHTML=`<div class="events-list">`+up.map(ev=>{
     const{day,mon,week}=dateLabel(ev.date);
     return`<div class="event-item ${typeClass(ev.type)}">
@@ -1106,6 +1127,7 @@ function renderDashEvents(){
   }).join('')+`</div>`;
 }
 async function removeEvent(id){
+  if(!confirm('🗑️ Apagar este evento? As escalas vinculadas também serão removidas.'))return;
   try{
     await sb('scales','DELETE',null,`?event_id=eq.${id}`);
     await sb('events','DELETE',null,`?id=eq.${id}`);
@@ -1140,7 +1162,7 @@ function renderMembersGrid(){
   g.innerHTML=allMembers.map(m=>{
     const isMe=m.id===currentUser.id;
     const targetIsAdmin=m.is_admin;
-    const canAct=isAnyAdmin&&!isMe;
+  const canAct=isAnyAdmin&&!isMe;
     const canPromoteDemote=isSuperAdmin&&canAct;
     let actions='';
     if(canAct){
@@ -1356,16 +1378,17 @@ function buildAvailGrid(){
   for(let d=1;d<=dim;d++){
     const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const cell=document.createElement('div');
+    // padrão: disponível (true), só marca indisponível se explicitamente false
     const st=availState[ds];
-    cell.className='day-cell'+(st===true?' avail':st===false?' unavail':'');
+    const isAvail=st===false?false:true; // padrão true
+    cell.className='day-cell'+(isAvail?' avail':' unavail');
     if(ds===todayStr)cell.classList.add('today');
     if(eventDays.has(ds))cell.classList.add('has-event');
     cell.textContent=d;
     cell.onclick=()=>{
-      const cur=availState[ds];
-      if(cur===undefined)availState[ds]=true;
-      else if(cur===true)availState[ds]=false;
-      else delete availState[ds];
+      // toggle: disponível ↔ indisponível
+      if(availState[ds]===false){delete availState[ds];}
+      else{availState[ds]=false;}
       buildAvailGrid();
     };
     grid.appendChild(cell);
@@ -1373,8 +1396,14 @@ function buildAvailGrid(){
 }
 async function saveAvailability(){
   try{
-    const rows=Object.entries(availState).map(([date,available])=>({member_email:currentUser.email,date,available,ministry_id:currentUser.ministry_id}));
-    if(!rows.length){showToast('Nenhum dia marcado','');return;}
+    const{y,m}=availMonth;
+    const dim=new Date(y,m+1,0).getDate();
+    // salva todos os dias do mês: disponível por padrão, exceto os marcados como false
+    const rows=[];
+    for(let d=1;d<=dim;d++){
+      const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      rows.push({member_email:currentUser.email,date:ds,available:availState[ds]!==false,ministry_id:currentUser.ministry_id});
+    }
     await fetch(`${SB_URL}/rest/v1/availability`,{
       method:'POST',
       headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'resolution=merge-duplicates,return=minimal'},
