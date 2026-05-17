@@ -393,6 +393,18 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="stat-card"><div class="sc-icon">👥</div><div class="sc-num" id="dash-member-count">—</div><div class="sc-label">Membros</div></div>
           <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="dash-scale-count">—</div><div class="sc-label">Escalas</div></div>
         </div>
+
+        <!-- card de confirmação para membro + painel admin — ficam no resumo -->
+        <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
+          <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
+          <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+        <div id="admin-confirm-panel" style="display:none" class="card">
+          <h3>📊 Confirmações da Escala</h3>
+          <div id="admin-confirm-summary"></div>
+        </div>
+
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -401,19 +413,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <span id="total-dash" style="font-size:12px;color:var(--gray)">Total: <strong>0</strong></span>
             <button class="btn-gen" onclick="generateScale()">⚡ GERAR</button>
           </div>
-        </div>
-
-        <!-- card de confirmação para membro -->
-        <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
-          <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
-          <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
-          <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-        </div>
-
-        <!-- painel de confirmações para admin -->
-        <div id="admin-confirm-panel" style="display:none" class="card">
-          <h3>📊 Confirmações da Escala</h3>
-          <div id="admin-confirm-summary"></div>
         </div>
 
         <div class="card">
