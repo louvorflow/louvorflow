@@ -130,11 +130,16 @@ tr:last-child td{border-bottom:none}
 .badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600}
 .badge.confirmed{background:#DCFCE7;color:#16A34A}
 .badge.pending{background:#FEF9C3;color:#B45309}
+.badge.refused{background:#FEE2E2;color:#B91C1C}
 .badge.available{background:#DCFCE7;color:#16A34A}
 .badge.admin{background:#EDE9FE;color:#7C3AED}
 .badge.event-culto{background:#E9EDFF;color:var(--blue)}
 .badge.event-ensaio{background:#F3E8FF;color:#7C3AED}
 .badge.event-vigilia{background:#FEF9C3;color:#B45309}
+.confirm-btns{display:flex;gap:4px;margin-top:4px}
+.btn-confirm{padding:4px 10px;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
+.btn-confirm.yes{background:#DCFCE7;color:#16A34A}
+.btn-confirm.no{background:#FEE2E2;color:#B91C1C}
 
 .members-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .member-card{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
@@ -776,6 +781,8 @@ async function joinMinistryFromProfile(){
     if(!mins.length){showToast('Código não encontrado','error');return;}
     const ministry=mins[0];
     if(ministry.id===currentMinistry?.id){showToast('Você já está neste ministério','error');return;}
+    // confirmação antes de sair
+    if(!confirm(`⚠️ Ao entrar em "${ministry.name}" você vai sair de "${currentMinistry?.name||'ministério atual'}". O líder atual não será notificado automaticamente. Deseja continuar?`))return;
     // atualizar ministry_id do membro
     await sb('members','PATCH',{ministry_id:ministry.id,is_admin:false},`?id=eq.${currentUser.id}`);
     currentUser.ministry_id=ministry.id;
@@ -802,7 +809,7 @@ async function doForgot(){
       res.innerHTML='<strong>❌ E-mail não encontrado.</strong> Verifique ou cadastre-se.';
     }else{
       res.style.display='block';res.style.background='var(--blue-light)';
-      res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br>Sua senha: <strong>${rows[0].password}</strong>`;
+      res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br>Sua senha: <strong>${'•'.repeat(rows[0].password.length)}</strong><br><small style="color:var(--gray)">Entre em contato com o administrador para redefinir sua senha.</small>`;
     }
   }catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-forgot',false,'Buscar senha →');}
@@ -866,6 +873,11 @@ function updateInviteDisplay(){
 async function launchApp(){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app').style.display='flex';
+  // sempre recarrega o ministério do banco para pegar nome atualizado
+  if(currentUser?.ministry_id){
+    const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
+    if(mins.length)currentMinistry=mins[0];
+  }
   updateUserUI();
   buildRqGrid();
   await Promise.all([loadEvents(),loadMembers(),loadAvailability()]);
@@ -913,6 +925,7 @@ async function saveMinistryName(){
     currentMinistry.name=v;
     document.getElementById('ministry-name').textContent=v;
     document.getElementById('profile-sub').textContent=`Líder · ${v}`;
+    updateInviteDisplay();
     showToast('✅ Nome do ministério atualizado!','success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
@@ -1137,6 +1150,10 @@ async function generateScale(){
   ROLES_DEFS.forEach(r=>{for(let i=0;i<(rqState[r.key]||0);i++)comp.push(`${r.icon} ${r.name}`);});
   if(!comp.length){showToast('Adicione pelo menos uma função','error');return;}
   if(!allEvents.length){showToast('Cadastre eventos primeiro','error');return;}
+  // aviso se já tem escalas geradas
+  if(allScales.length>0){
+    if(!confirm('⚠️ Já existem escalas geradas. Gerar novamente vai apagar todas as escalas atuais e as confirmações de presença. Deseja continuar?'))return;
+  }
   showToast('⚡ Gerando escalas...','');
   Object.keys(usageCnt).forEach(k=>delete usageCnt[k]);
   try{
@@ -1152,6 +1169,14 @@ async function generateScale(){
     await sb('scales','POST',inserts);
     await loadScales();navigate('scales');
     showToast('⚡ Escalas geradas!','success');
+  }catch(e){showToast('Erro: '+e.message,'error');}
+}
+
+async function confirmScale(id,status){
+  try{
+    await sb('scales','PATCH',{status},`?id=eq.${id}`);
+    await loadScales();
+    showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.', status==='confirmed'?'success':'');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
@@ -1176,11 +1201,16 @@ function renderScaleOutput(){
         </button>
       </div>
       <div class="table-wrap"><table><thead><tr><th>#</th><th>Função</th><th>Membro</th><th>Status</th></tr></thead>
-      <tbody>${rows.map((r,i)=>`<tr>
+      <tbody>${rows.map((r,i)=>{
+        const isMe=r.member_name===currentUser.name;
+        const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':'<span class="badge pending">⏳ Pendente</span>';
+        const confirmBtns=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';
+        return`<tr>
         <td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td>
-        <td>${r.role}</td><td><strong>${r.member_name}</strong></td>
-        <td><span class="badge pending">Pendente</span></td>
-      </tr>`).join('')}</tbody></table></div>
+        <td>${r.role}</td><td><strong>${r.member_name}</strong>${confirmBtns}</td>
+        <td>${statusBadge}</td>
+      </tr>`;
+      }).join('')}</tbody></table></div>
     </div>`;
   });
   out.innerHTML=html;
