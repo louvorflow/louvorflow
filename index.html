@@ -9,7 +9,6 @@
 :root{--blue:#4A74FF;--purple:#6A5CFF;--bg:#F5F7FB;--white:#fff;--dark:#1A1A1A;--gray:#6B7280;--border:#E7EAF3;--blue-light:#E9EDFF;--green:#22C55E;--red:#EF4444;--yellow:#F59E0B}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--dark);height:100vh;height:100dvh;overflow:hidden;-webkit-text-size-adjust:100%}
 @supports (-webkit-touch-callout: none){body{height:-webkit-fill-available}#app{height:-webkit-fill-available}}
-
 #auth-screen{display:flex;align-items:center;justify-content:center;height:100vh;height:100dvh;background:linear-gradient(135deg,#4A74FF,#6A5CFF);padding:16px;position:fixed;top:0;left:0;right:0;bottom:0}
 .auth-card{background:#fff;border-radius:20px;padding:32px 28px;width:100%;max-width:390px;box-shadow:0 20px 60px rgba(0,0,0,.15);max-height:95vh;overflow-y:auto}
 .auth-logo{text-align:center;margin-bottom:20px}
@@ -27,7 +26,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-primary{width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-primary:hover{background:#3a63f0}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
-.btn-secondary{width:100%;padding:10px;background:var(--bg);color:var(--dark);border:1.5px solid var(--border);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;transition:.2s}
 .btn-link{background:none;border:none;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;display:block;text-align:center;width:100%}
 .roles-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .rp-item{padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);font-size:11px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;user-select:none}
@@ -36,16 +34,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .mtp-item{flex:1;padding:12px 8px;border-radius:12px;border:2px solid var(--border);font-size:11px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;text-align:center;user-select:none}
 .mtp-item .mtp-icon{font-size:22px;display:block;margin-bottom:5px}
 .mtp-item.selected{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
-.invite-box{background:var(--blue-light);border-radius:12px;padding:14px;margin-bottom:13px;border:1.5px solid rgba(74,116,255,.2)}
-.invite-box p{font-size:11px;color:var(--gray);margin-bottom:8px}
-.invite-code-display{display:flex;align-items:center;gap:8px}
-.invite-code-display input{flex:1;font-size:13px;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid rgba(74,116,255,.3)}
-.btn-copy{padding:8px 12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
-.btn-whatsapp{width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
 .join-ministry-box{background:var(--blue-light);border-radius:12px;padding:14px;margin:14px 0;border:1.5px dashed rgba(74,116,255,.3)}
 .join-ministry-box h4{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px}
 .join-ministry-box p{font-size:11px;color:var(--gray);margin-bottom:10px}
-
 #app{display:none;height:100vh;height:100dvh;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0}
 header{height:58px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;z-index:100}
 .header-left{display:flex;align-items:center;gap:10px}
@@ -72,7 +63,6 @@ aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:1
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
-
 .greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
 .greeting h2{font-size:20px;font-weight:800}
 .greeting p{color:var(--gray);font-size:13px;margin-top:2px}
@@ -102,7 +92,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .sdh-day{font-size:13px;font-weight:800}
 .sdh-week{font-size:8px;font-weight:600;opacity:.85;text-transform:uppercase}
 .scale-day-event{font-size:13px;font-weight:700;color:var(--blue);flex:1}
-
 .scale-cards-list{display:flex;flex-direction:column;gap:6px;padding:10px}
 .scale-row-card{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:9px;padding:9px 11px;border:1.5px solid var(--border)}
 .scale-row-num{font-size:10px;font-weight:800;color:var(--gray);min-width:20px;text-align:center}
@@ -116,7 +105,6 @@ table{width:100%;border-collapse:collapse}
 th{text-align:left;font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;border-bottom:2px solid var(--border)}
 td{padding:10px;border-bottom:1px solid var(--border);font-size:12px}
 tr:last-child td{border-bottom:none}
-
 .scale-filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
 .scale-filter-bar input[type=text]{flex:1;min-width:140px;padding:9px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:#fff;transition:.2s}
 .scale-filter-bar input[type=text]:focus{border-color:var(--blue)}
@@ -126,13 +114,13 @@ tr:last-child td{border-bottom:none}
 .scale-filter-bar .btn-clear:hover{border-color:var(--blue);color:var(--blue)}
 .scale-filter-info{font-size:11px;color:var(--gray);margin-bottom:10px;padding:6px 10px;background:var(--blue-light);border-radius:8px;display:none}
 .scale-filter-info.visible{display:block}
-
 .badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600}
 .badge.confirmed{background:#DCFCE7;color:#16A34A}
 .badge.pending{background:#FEF9C3;color:#B45309}
 .badge.refused{background:#FEE2E2;color:#B91C1C}
 .badge.available{background:#DCFCE7;color:#16A34A}
 .badge.admin{background:#EDE9FE;color:#7C3AED}
+.badge.swapped{background:#FFF7ED;color:#C2410C}
 .confirm-btns{display:flex;gap:4px;margin-top:4px}
 .btn-confirm{padding:4px 10px;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
 .btn-confirm.yes{background:#DCFCE7;color:#16A34A}
@@ -204,18 +192,9 @@ tr:last-child td{border-bottom:none}
 .toast.success{background:#16A34A}
 .toast.error{background:var(--red)}
 footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px}
-
-/* ── auto-swap badge ── */
-.badge.swapped{background:#FFF7ED;color:#C2410C}
-
 .btn-edit-roles{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
 .btn-edit-roles:hover{background:var(--blue);color:#fff}
-
-.confirmed-banner{display:flex;align-items:center;gap:8px;background:#DCFCE7;border:1.5px solid #22C55E;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:12px;font-weight:600;color:#16A34A}
-
-/* ── log de troca automática ── */
 .autoswap-log{background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid #F97316;line-height:1.6}
-
 @media(max-width:768px){
   aside{position:fixed;left:-260px;top:58px;bottom:0;height:auto;z-index:250;width:240px;padding:16px 12px;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease}
   aside.open{left:0}
@@ -363,14 +342,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="stat-card"><div class="sc-icon">👥</div><div class="sc-num" id="dash-member-count">—</div><div class="sc-label">Membros</div></div>
           <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="dash-scale-count">—</div><div class="sc-label">Escalas</div></div>
         </div>
+        <!-- Alerta para membros (confirmações pendentes) -->
         <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
           <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-        </div>
-        <div id="admin-confirm-panel" style="display:none" class="card">
-          <h3>📊 Confirmações da Escala</h3>
-          <div id="admin-confirm-summary"></div>
         </div>
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
@@ -411,6 +387,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
         <div class="greeting-row">
           <div class="greeting"><h2>📋 Escalas</h2></div>
           <button class="btn-gen admin-only" style="display:none" onclick="navigate('dashboard')">⚡ Gerar</button>
+        </div>
+        <!-- ✅ PAINEL DE CONFIRMAÇÕES (só admin, só quando há escalas) -->
+        <div id="scales-confirm-panel" style="display:none" class="card">
+          <h3>📊 Confirmações da Escala</h3>
+          <div id="scales-confirm-summary"></div>
         </div>
         <div class="scale-filter-bar">
           <input type="text" id="filter-event-name" placeholder="🔍 Buscar evento..." oninput="applyScaleFilter()" />
@@ -478,7 +459,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <!-- CONFIG -->
       <div class="page" id="page-config">
         <div class="greeting"><h2>⚙️ Configurações</h2><p style="color:var(--gray);font-size:13px;margin-top:2px">Personalize o ministério.</p></div>
-        <div class="invite-card" style="margin-top:14px" id="invite-card-section">
+        <div class="invite-card" style="margin-top:14px">
           <h4>🔗 Link de Convite</h4>
           <p>Compartilhe com sua equipe para eles entrarem no ministério</p>
           <div class="invite-code-big" id="invite-code-display">...</div>
@@ -557,7 +538,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
 
-// ── SYNC ENGINE ───────────────────────────────────────────────
 let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false;
 function hashScales(scales){return scales.map(s=>s.id+'|'+s.status+'|'+s.member_name).join(',');}
 async function pollScales(){
@@ -570,11 +550,7 @@ async function pollScales(){
     const newHash=hashScales(fresh);
     if(newHash!==_lastScalesHash){
       _lastScalesHash=newHash;
-      // preserva flags de autoswap do estado local
-      fresh.forEach(s=>{
-        const prev=allScales.find(p=>p.id===s.id);
-        if(prev){s._autoSwapped=prev._autoSwapped;s._refusedBy=prev._refusedBy;}
-      });
+      fresh.forEach(s=>{const prev=allScales.find(p=>p.id===s.id);if(prev){s._autoSwapped=prev._autoSwapped;s._refusedBy=prev._refusedBy;}});
       allScales=fresh;
       renderScaleOutput();renderMyScales();renderDashboard();
       document.getElementById('dash-scale-count').textContent=allScales.length;
@@ -587,7 +563,6 @@ async function fullSync(){if(!currentUser)return;await Promise.all([loadEvents()
 function startSync(){stopSync();pollNow();_syncInterval=setInterval(pollScales,5000);_fullSyncInterval=setInterval(fullSync,30000);}
 function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}}
 
-// ── SESSÃO ────────────────────────────────────────────────────
 function saveSession(u,m){localStorage.setItem('lf_session',JSON.stringify({user:u,ministry:m}));}
 function clearSession(){localStorage.removeItem('lf_session');}
 async function tryAutoLogin(){
@@ -624,7 +599,6 @@ function initials(n){return(n||'?').split(' ').map(w=>w[0]).join('').toUpperCase
 function genCode(){const L='ABCDEFGHJKLMNPQRSTUVWXYZ',N='0123456789';return[...Array(4)].map(()=>L[Math.floor(Math.random()*L.length)]).join('')+[...Array(4)].map(()=>N[Math.floor(Math.random()*N.length)]).join('');}
 function getCodeFromURL(){return new URLSearchParams(window.location.search).get('code')||'';}
 
-// ── AUTH ──────────────────────────────────────────────────────
 let selectedMinistryType=null;
 function switchTab(t){
   ['login-form','register-form','forgot-form'].forEach(f=>document.getElementById(f).style.display='none');
@@ -749,14 +723,12 @@ function doLogout(){
 }
 function setLoading(id,on,label){const b=document.getElementById(id);if(!b)return;b.disabled=on;b.innerHTML=on?'<span class="spinner"></span> Aguarde...':label;}
 
-// ── INVITE ────────────────────────────────────────────────────
 function getInviteLink(){return`${window.location.href.split('?')[0]}?code=${currentMinistry?.invite_code||''}`;}
 function copyInviteLink(){const link=getInviteLink();if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>fallbackCopy(link));else fallbackCopy(link);}
 function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('✅ Link copiado!','success');}catch(e){showToast('Copie manualmente','error');}document.body.removeChild(ta);}
 function shareInviteWhatsApp(){const mn=currentMinistry?.name||'nosso ministério';const msg=`🎵 *LouvorFlow - ${mn}*\n\nOlá! Você foi convidado para entrar na nossa equipe de louvor.\n\nClique no link para se cadastrar:\n${getInviteLink()}\n\n_O código já vem preenchido automaticamente!_ ✅`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
 function updateInviteDisplay(){if(!currentMinistry)return;document.getElementById('invite-code-display').textContent=currentMinistry.invite_code||'---';document.getElementById('invite-link-display').value=getInviteLink();}
 
-// ── LAUNCH ────────────────────────────────────────────────────
 async function launchApp(){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app').style.display='flex';
@@ -790,18 +762,13 @@ function updateUserUI(){
   document.getElementById('join-another-box').style.display=isAdmin?'none':'block';
 }
 
-// ── CONFIG ────────────────────────────────────────────────────
 async function saveMinistryName(){const v=document.getElementById('cfg-ministry-name').value.trim();if(!v){showToast('Digite um nome','error');return;}try{await sb('ministries','PATCH',{name:v},`?id=eq.${currentMinistry.id}`);currentMinistry.name=v;document.getElementById('ministry-name').textContent=v;document.getElementById('profile-sub').textContent=`Líder · ${v}`;updateInviteDisplay();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyName(){const v=document.getElementById('cfg-my-name').value.trim();if(!v){showToast('Digite seu nome','error');return;}try{await sb('members','PATCH',{name:v},`?id=eq.${currentUser.id}`);currentUser.name=v;updateUserUI();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyPass(){const v=document.getElementById('cfg-my-pass').value;if(!v||v.length<4){showToast('Senha com ao menos 4 caracteres','error');return;}try{await sb('members','PATCH',{password:v},`?id=eq.${currentUser.id}`);currentUser.password=v;document.getElementById('cfg-my-pass').value='';showToast('✅ Senha atualizada!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 
-// ── EDITAR FUNÇÕES ────────────────────────────────────────────
 function openEditRolesModal(){
   const userRoles=currentUser.roles||[];
-  document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>{
-    const label=item.textContent.trim();
-    item.classList.toggle('selected',userRoles.includes(label));
-  });
+  document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>{item.classList.toggle('selected',userRoles.includes(item.textContent.trim()));});
   showModal('edit-roles-modal');
 }
 async function saveEditedRoles(){
@@ -810,18 +777,13 @@ async function saveEditedRoles(){
   setLoading('btn-save-roles',true,'Salvar funções →');
   try{
     await sb('members','PATCH',{roles:newRoles},`?id=eq.${currentUser.id}`);
-    currentUser.roles=newRoles;
-    updateUserUI();
-    closeModal('edit-roles-modal');
-    showToast('✅ Funções atualizadas!','success');
+    currentUser.roles=newRoles;updateUserUI();closeModal('edit-roles-modal');showToast('✅ Funções atualizadas!','success');
   }catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-save-roles',false,'Salvar funções →');}
 }
 
-// ── SIDEBAR ───────────────────────────────────────────────────
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebar-overlay').classList.toggle('open');}
 
-// ── DATA LOADERS ──────────────────────────────────────────────
 async function loadEvents(){
   if(!currentUser?.ministry_id)return;
   try{allEvents=await sb('events','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=date.asc`);renderEventsList();renderDashEvents();document.getElementById('dash-ev-count').textContent=allEvents.length;}catch(e){console.error(e);}
@@ -844,7 +806,6 @@ async function loadAvailability(){
   try{const rows=await sb('availability','GET',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}&ministry_id=eq.${currentUser.ministry_id}`);availState={};rows.forEach(r=>{availState[r.date]=r.available;});}catch(e){console.error(e);}
 }
 
-// ── EVENTS ────────────────────────────────────────────────────
 function dateLabel(s){const d=new Date(s+'T12:00:00');return{day:d.getDate(),mon:MONTHS[d.getMonth()].slice(0,3),week:WEEKS[d.getDay()]};}
 function typeClass(t){return t==='Ensaio'?'ensaio':t==='Vigília'?'vigilia':'';}
 function renderEventsList(){
@@ -856,59 +817,61 @@ function renderEventsList(){
     return`<div class="event-item ${typeClass(ev.type)}"><div class="event-date-box"><div class="day">${day}</div><div class="mon">${mon}</div></div><div class="event-info"><h4>${ev.name}</h4><p>${week} · ${ev.time} · ${ev.type}</p></div>${del}</div>`;
   }).join('');
 }
+
+// ── DASHBOARD: sem painel de confirmações ──────────────────────
 function renderDashboard(){
   document.getElementById('new-ev-date').min=fmt(new Date());
-  const isAdmin=currentUser.is_admin;
-  const adminPanel=document.getElementById('admin-confirm-panel');
   const memberAlert=document.getElementById('member-scale-alert');
   const memberAlertText=document.getElementById('member-scale-alert-text');
   const memberAlertBtns=document.getElementById('member-scale-alert-btns');
-  if(!allScales.length){adminPanel.style.display='none';memberAlert.style.display='none';return;}
-  if(isAdmin){
-    const total=allScales.length,confirmed=allScales.filter(s=>s.status==='confirmed').length,refused=allScales.filter(s=>s.status==='refused').length,pending=total-confirmed-refused,pct=total?Math.round(confirmed/total*100):0;
-
-    // ── Trocas automáticas: apenas informativo ──
-    const autoSwapped=allScales.filter(s=>s._autoSwapped&&s._refusedBy);
-    const noSubRefused=allScales.filter(s=>s.status==='refused'&&!s._autoSwapped);
-
-    const autoSwapLogs=autoSwapped.map(s=>{
-      const ev=allEvents.find(e=>e.id===s.event_id);
-      return`<div class="autoswap-log">🔄 <strong>Troca automática</strong>${ev?` em <em>${ev.name}</em>`:''}<br><span style="color:var(--gray)">${s._refusedBy} recusou → <strong style="color:var(--blue)">${s.member_name}</strong> assumiu <em>${s.role}</em></span></div>`;
-    }).join('');
-
-    const noSubAlerts=noSubRefused.map(s=>{
-      const ev=allEvents.find(e=>e.id===s.event_id);
-      return`<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)"><strong>⚠️ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · <em>${ev.name}</em>`:''}<br><span style="color:var(--red)">Nenhum substituto encontrado — substitua manualmente.</span></div>`;
-    }).join('');
-
-    const allAlerts=autoSwapLogs+noSubAlerts;
-
-    adminPanel.style.display='block';
-    document.getElementById('admin-confirm-summary').innerHTML=
-      (allAlerts?`<div style="margin-bottom:10px">${allAlerts}</div>`:'')+
-      `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-        <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
-        <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
-        <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div><div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Sem sub</div></div>
-      </div>
-      <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden"><div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div></div>
-      <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
-    memberAlert.style.display='none';
-  }else{
-    adminPanel.style.display='none';
-    const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
-    if(!mine.length){memberAlert.style.display='none';return;}
-    const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
-    const evIds=Object.keys(byEv);
-    const firstEv=allEvents.find(e=>e.id===evIds[0]);
-    if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
-    memberAlert.style.display='block';
-    const{day,mon,week}=dateLabel(firstEv.date);
-    const total=evIds.length;
-    memberAlertText.textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
-    memberAlertBtns.innerHTML=byEv[evIds[0]].map(s=>`<button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button><button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>`).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
-  }
+  if(currentUser.is_admin){memberAlert.style.display='none';return;}
+  if(!allScales.length){memberAlert.style.display='none';return;}
+  const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
+  if(!mine.length){memberAlert.style.display='none';return;}
+  const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
+  const evIds=Object.keys(byEv);
+  const firstEv=allEvents.find(e=>e.id===evIds[0]);
+  if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
+  memberAlert.style.display='block';
+  const{day,mon,week}=dateLabel(firstEv.date);
+  const total=evIds.length;
+  memberAlertText.textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
+  memberAlertBtns.innerHTML=byEv[evIds[0]].map(s=>`<button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button><button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>`).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
 }
+
+// ── ESCALAS: painel de confirmações (só admin) ─────────────────
+function renderScalesConfirmPanel(){
+  const panel=document.getElementById('scales-confirm-panel');
+  const summary=document.getElementById('scales-confirm-summary');
+  if(!currentUser.is_admin||!allScales.length){panel.style.display='none';return;}
+  const total=allScales.length;
+  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
+  const refused=allScales.filter(s=>s.status==='refused').length;
+  const pending=total-confirmed-refused;
+  const pct=total?Math.round(confirmed/total*100):0;
+  const autoSwapped=allScales.filter(s=>s._autoSwapped&&s._refusedBy);
+  const noSubRefused=allScales.filter(s=>s.status==='refused'&&!s._autoSwapped);
+  const autoSwapLogs=autoSwapped.map(s=>{
+    const ev=allEvents.find(e=>e.id===s.event_id);
+    return`<div class="autoswap-log">🔄 <strong>Troca automática</strong>${ev?` em <em>${ev.name}</em>`:''}<br><span style="color:var(--gray)">${s._refusedBy} recusou → <strong style="color:var(--blue)">${s.member_name}</strong> assumiu <em>${s.role}</em></span></div>`;
+  }).join('');
+  const noSubAlerts=noSubRefused.map(s=>{
+    const ev=allEvents.find(e=>e.id===s.event_id);
+    return`<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)"><strong>⚠️ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · <em>${ev.name}</em>`:''}<br><span style="color:var(--red)">Nenhum substituto encontrado — substitua manualmente.</span></div>`;
+  }).join('');
+  const allAlerts=autoSwapLogs+noSubAlerts;
+  panel.style.display='block';
+  summary.innerHTML=
+    (allAlerts?`<div style="margin-bottom:10px">${allAlerts}</div>`:'')+
+    `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+      <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
+      <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
+      <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div><div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Sem sub</div></div>
+    </div>
+    <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden"><div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div></div>
+    <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
+}
+
 function renderDashEvents(){
   const el=document.getElementById('dash-events-preview');if(!el)return;
   const up=allEvents.filter(e=>e.date>=fmt(new Date())).slice(0,3);
@@ -926,7 +889,6 @@ async function addEvent(){
   try{await sb('events','POST',{name,date,time:document.getElementById('new-ev-time').value||'09:00',type:document.getElementById('new-ev-type').value,ministry_id:currentUser.ministry_id});closeModal('add-event-modal');document.getElementById('new-ev-name').value='';await loadEvents();showToast('📅 Evento criado!','success');}catch(e){showToast('Erro: '+e.message,'error');}
 }
 
-// ── MEMBERS ───────────────────────────────────────────────────
 function isPrincipalAdmin(){if(!currentUser.is_admin)return false;const admins=allMembers.filter(m=>m.is_admin);if(!admins.length)return false;return currentUser.id===admins.reduce((a,b)=>a.id<b.id?a:b).id;}
 function renderMembersGrid(){
   const g=document.getElementById('members-grid');if(!g)return;
@@ -945,7 +907,6 @@ async function removeMember(id,name,email){
   try{await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(email)}&ministry_id=eq.${currentUser.ministry_id}`);await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(name)}&ministry_id=eq.${currentUser.ministry_id}`);await sb('members','DELETE',null,`?id=eq.${id}`);await loadMembers();await loadScales();showToast('🗑️ Removido!','');}catch(e){showToast('Erro','error');}
 }
 
-// ── SCALE GENERATOR ───────────────────────────────────────────
 function buildRqGrid(){
   const g=document.getElementById('rq-dash');if(!g)return;
   ROLES_DEFS.forEach(r=>rqState[r.key]=0);
@@ -969,12 +930,10 @@ async function generateScale(){
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
-// ── SUBSTITUTO ────────────────────────────────────────────────
 function findSubstitute(scale){
   const roleLabel=scale.role.replace(/^[\p{Emoji}\s]+/u,'').trim();
   const candidates=allMembers.filter(m=>{
     if(m.name===scale.member_name)return false;
-    // já está escalado no mesmo evento?
     const alreadyInEvent=allScales.some(s=>s.event_id===scale.event_id&&s.member_name===m.name&&s.id!==scale.id);
     if(alreadyInEvent)return false;
     return(m.roles||[]).some(r=>r.replace(/^[\p{Emoji}\s]+/u,'').trim()===roleLabel||(m.roles||[]).includes(scale.role));
@@ -985,44 +944,27 @@ function findSubstitute(scale){
   return candidates[0];
 }
 
-// ── ✅ CONFIRM / AUTO-SUBSTITUTE ─────────────────────────────
 async function confirmScale(id,status){
   const sc=allScales.find(s=>s.id===id);if(!sc)return;
   const prevStatus=sc.status;
   sc.status=status;
   renderScaleOutput();renderMyScales();renderDashboard();
-
   if(status==='confirmed'){
     showToast('✅ Presença confirmada!','success');
     try{await sb('scales','PATCH',{status:'confirmed'},`?id=eq.${id}`);}
     catch(e){sc.status=prevStatus;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao salvar. Tente novamente.','error');}
-    pollNow();
-    return;
+    pollNow();return;
   }
-
-  // ── RECUSA: substituição automática imediata ──
   const substitute=findSubstitute(sc);
   const refusedName=sc.member_name;
   const refusedRole=sc.role;
-
   try{
     if(substitute){
-      // Substitui diretamente na mesma linha, status volta para pending
-      await sb('scales','PATCH',{
-        member_name:substitute.name,
-        member_init:initials(substitute.name),
-        status:'pending',
-        refused_by:refusedName
-      },`?id=eq.${id}`);
-      sc.member_name=substitute.name;
-      sc.member_init=initials(substitute.name);
-      sc.status='pending';
-      sc._autoSwapped=true;
-      sc._refusedBy=refusedName;
+      await sb('scales','PATCH',{member_name:substitute.name,member_init:initials(substitute.name),status:'pending',refused_by:refusedName},`?id=eq.${id}`);
+      sc.member_name=substitute.name;sc.member_init=initials(substitute.name);sc.status='pending';sc._autoSwapped=true;sc._refusedBy=refusedName;
       renderScaleOutput();renderMyScales();renderDashboard();
       showToast(`🔄 ${substitute.name} assumiu a vaga de ${refusedRole}!`,'success');
     }else{
-      // Sem substituto — registra recusa e avisa admin
       await sb('scales','PATCH',{status:'refused'},`?id=eq.${id}`);
       showToast('❌ Recusado · Nenhum substituto disponível — admin notificado.','error');
     }
@@ -1034,34 +976,16 @@ async function confirmScale(id,status){
   pollNow();
 }
 
-// ── FILTRO DE ESCALAS ─────────────────────────────────────────
 let scaleFilter={name:'',from:'',to:''};
-function applyScaleFilter(){
-  scaleFilter.name=document.getElementById('filter-event-name').value.trim().toLowerCase();
-  scaleFilter.from=document.getElementById('filter-date-from').value;
-  scaleFilter.to=document.getElementById('filter-date-to').value;
-  renderScaleOutput();
-}
-function clearScaleFilter(){
-  document.getElementById('filter-event-name').value='';
-  document.getElementById('filter-date-from').value='';
-  document.getElementById('filter-date-to').value='';
-  scaleFilter={name:'',from:'',to:''};
-  renderScaleOutput();
-}
+function applyScaleFilter(){scaleFilter.name=document.getElementById('filter-event-name').value.trim().toLowerCase();scaleFilter.from=document.getElementById('filter-date-from').value;scaleFilter.to=document.getElementById('filter-date-to').value;renderScaleOutput();}
+function clearScaleFilter(){document.getElementById('filter-event-name').value='';document.getElementById('filter-date-from').value='';document.getElementById('filter-date-to').value='';scaleFilter={name:'',from:'',to:''};renderScaleOutput();}
 function getFilteredEventIds(){
-  const hasFilter=scaleFilter.name||scaleFilter.from||scaleFilter.to;
-  if(!hasFilter)return null;
-  return allEvents.filter(ev=>{
-    if(scaleFilter.name&&!ev.name.toLowerCase().includes(scaleFilter.name))return false;
-    if(scaleFilter.from&&ev.date<scaleFilter.from)return false;
-    if(scaleFilter.to&&ev.date>scaleFilter.to)return false;
-    return true;
-  }).map(ev=>ev.id);
+  const hasFilter=scaleFilter.name||scaleFilter.from||scaleFilter.to;if(!hasFilter)return null;
+  return allEvents.filter(ev=>{if(scaleFilter.name&&!ev.name.toLowerCase().includes(scaleFilter.name))return false;if(scaleFilter.from&&ev.date<scaleFilter.from)return false;if(scaleFilter.to&&ev.date>scaleFilter.to)return false;return true;}).map(ev=>ev.id);
 }
 
-// ── RENDER ESCALAS ────────────────────────────────────────────
 function renderScaleOutput(){
+  renderScalesConfirmPanel(); // ← atualiza painel de confirmações junto
   const out=document.getElementById('scale-output');if(!out)return;
   if(!allScales.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhuma escala gerada ainda.</p></div>';return;}
   const filteredIds=getFilteredEventIds();
@@ -1093,20 +1017,11 @@ function renderScaleOutput(){
       html+=`<div class="scale-cards-list">`;
       rows.forEach((r,i)=>{
         const isMe=r.member_name===currentUser.name;
-        // badge: mostra "trocado" se foi substituído automaticamente
         const wasSwapped=r._autoSwapped&&r._refusedBy;
-        const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped" title="Substituído automaticamente">🔄</span>':'<span class="badge pending">⏳</span>';
+        const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped">🔄</span>':'<span class="badge pending">⏳</span>';
         const subNote=wasSwapped?`<div style="font-size:9px;color:#C2410C;margin-top:2px">🔄 substituiu ${r._refusedBy}</div>`:'';
         const confirmBtns=isMe&&r.status==='pending'?`<div class="scale-row-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌</button></div>`:'';
-        html+=`<div class="scale-row-card">
-          <div class="scale-row-num">${String(i+1).padStart(2,'0')}</div>
-          <div style="flex:2;min-width:0">
-            <div class="scale-row-role">${r.role}</div>
-            <div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div>
-          </div>
-          <div class="scale-row-status">${statusBadge}</div>
-          ${confirmBtns}
-        </div>`;
+        html+=`<div class="scale-row-card"><div class="scale-row-num">${String(i+1).padStart(2,'0')}</div><div style="flex:2;min-width:0"><div class="scale-row-role">${r.role}</div><div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div></div><div class="scale-row-status">${statusBadge}</div>${confirmBtns}</div>`;
       });
       html+=`</div>`;
     }else{
@@ -1169,7 +1084,6 @@ function renderMyScales(){
   out.innerHTML=html;
 }
 
-// ── AVAILABILITY ──────────────────────────────────────────────
 function changeAvailMonth(d){availMonth.m+=d;if(availMonth.m>11){availMonth.m=0;availMonth.y++;}if(availMonth.m<0){availMonth.m=11;availMonth.y--;}buildAvailGrid();}
 function buildAvailGrid(){
   const{y,m}=availMonth;document.getElementById('avail-month-title').textContent=`${MONTHS[m]} ${y}`;
@@ -1194,7 +1108,6 @@ async function saveAvailability(){
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
-// ── UI ────────────────────────────────────────────────────────
 function navigate(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
@@ -1204,6 +1117,7 @@ function navigate(p){
   document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('open');
   localStorage.setItem('lastPage',p);
   if(p==='config')updateInviteDisplay();
+  if(p==='scales')renderScalesConfirmPanel();
 }
 function toggleDropdown(){document.getElementById('dropdown').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('.user-menu'))document.getElementById('dropdown').classList.remove('open');});
