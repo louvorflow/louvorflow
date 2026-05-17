@@ -8,12 +8,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--blue:#4A74FF;--purple:#6A5CFF;--bg:#F5F7FB;--white:#fff;--dark:#1A1A1A;--gray:#6B7280;--border:#E7EAF3;--blue-light:#E9EDFF;--green:#22C55E;--red:#EF4444;--yellow:#F59E0B}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--dark);height:100vh;height:100dvh;overflow:hidden;-webkit-text-size-adjust:100%}
-@supports (-webkit-touch-callout: none){
-  body{height:-webkit-fill-available}
-  #app{height:-webkit-fill-available}
-}
+@supports (-webkit-touch-callout: none){body{height:-webkit-fill-available}#app{height:-webkit-fill-available}}
 
-/* AUTH */
 #auth-screen{display:flex;align-items:center;justify-content:center;height:100vh;height:100dvh;background:linear-gradient(135deg,#4A74FF,#6A5CFF);padding:16px;position:fixed;top:0;left:0;right:0;bottom:0}
 .auth-card{background:#fff;border-radius:20px;padding:32px 28px;width:100%;max-width:390px;box-shadow:0 20px 60px rgba(0,0,0,.15);max-height:95vh;overflow-y:auto}
 .auth-logo{text-align:center;margin-bottom:20px}
@@ -36,27 +32,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .roles-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .rp-item{padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);font-size:11px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;user-select:none}
 .rp-item.selected{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
-
-/* ministry type selector */
 .ministry-type-picker{display:flex;gap:8px;margin-top:4px}
 .mtp-item{flex:1;padding:12px 8px;border-radius:12px;border:2px solid var(--border);font-size:11px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;text-align:center;user-select:none}
 .mtp-item .mtp-icon{font-size:22px;display:block;margin-bottom:5px}
 .mtp-item.selected{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
-
-/* invite box */
 .invite-box{background:var(--blue-light);border-radius:12px;padding:14px;margin-bottom:13px;border:1.5px solid rgba(74,116,255,.2)}
 .invite-box p{font-size:11px;color:var(--gray);margin-bottom:8px}
 .invite-code-display{display:flex;align-items:center;gap:8px}
 .invite-code-display input{flex:1;font-size:13px;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid rgba(74,116,255,.3)}
 .btn-copy{padding:8px 12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .btn-whatsapp{width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
-
-/* join ministry section */
 .join-ministry-box{background:var(--blue-light);border-radius:12px;padding:14px;margin:14px 0;border:1.5px dashed rgba(74,116,255,.3)}
 .join-ministry-box h4{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px}
 .join-ministry-box p{font-size:11px;color:var(--gray);margin-bottom:10px}
 
-/* APP */
+/* sync indicator */
+.sync-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block;margin-right:5px;animation:pulse 2s infinite}
+.sync-dot.syncing{background:var(--yellow);animation:spin .7s linear infinite}
+.sync-dot.offline{background:var(--red);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
 #app{display:none;height:100vh;height:100dvh;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0}
 header{height:58px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;z-index:100}
 .header-left{display:flex;align-items:center;gap:10px}
@@ -71,26 +66,19 @@ header{height:58px;background:#fff;border-bottom:1px solid var(--border);display
 .dropdown a{display:block;padding:11px 16px;font-size:14px;color:var(--dark);text-decoration:none;cursor:pointer;transition:.15s}
 .dropdown a:hover{background:var(--bg)}
 .dropdown a.danger{color:var(--red)}
-
 .main-area{display:flex;flex:1;overflow:hidden;min-height:0}
-
-/* SIDEBAR */
 aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:16px 12px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex-shrink:0;transition:left .3s ease;min-height:0}
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:var(--gray);transition:.2s;border:none;background:transparent;width:100%;text-align:left}
 .nav-item:hover{background:var(--blue-light);color:var(--blue)}
 .nav-item.active{background:var(--blue-light);color:var(--blue)}
 .nav-item .ni{font-size:16px;width:20px}
 .nav-section{font-size:10px;font-weight:700;color:#B0B8CC;text-transform:uppercase;letter-spacing:.8px;padding:10px 12px 4px}
-
-/* MOBILE SIDEBAR OVERLAY */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
 .sidebar-overlay.open{display:block}
-
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
 
-/* CARDS */
 .greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
 .greeting h2{font-size:20px;font-weight:800}
 .greeting p{color:var(--gray);font-size:13px;margin-top:2px}
@@ -101,7 +89,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .stat-card .sc-label{font-size:11px;color:var(--gray);margin-top:2px}
 .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
 .card h3{font-size:14px;font-weight:700;margin-bottom:12px}
-
 .gen-box{background:var(--blue-light);border-radius:14px;padding:18px;margin-bottom:14px}
 .gen-box h3{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:3px}
 .gen-box p{font-size:12px;color:var(--gray);margin-bottom:12px}
@@ -115,7 +102,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .gen-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .btn-gen{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
 .btn-gen:hover{background:#3a63f0}
-
 .scale-day-block{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
 .scale-day-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--blue-light);border-bottom:1.5px solid var(--border);flex-wrap:wrap}
 .scale-day-date{display:flex;flex-direction:column;align-items:center;min-width:44px;background:var(--blue);color:#fff;border-radius:8px;padding:4px 8px}
@@ -133,14 +119,10 @@ tr:last-child td{border-bottom:none}
 .badge.refused{background:#FEE2E2;color:#B91C1C}
 .badge.available{background:#DCFCE7;color:#16A34A}
 .badge.admin{background:#EDE9FE;color:#7C3AED}
-.badge.event-culto{background:#E9EDFF;color:var(--blue)}
-.badge.event-ensaio{background:#F3E8FF;color:#7C3AED}
-.badge.event-vigilia{background:#FEF9C3;color:#B45309}
 .confirm-btns{display:flex;gap:4px;margin-top:4px}
 .btn-confirm{padding:4px 10px;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
 .btn-confirm.yes{background:#DCFCE7;color:#16A34A}
 .btn-confirm.no{background:#FEE2E2;color:#B91C1C}
-
 .members-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .member-card{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .member-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;margin:0 auto 8px}
@@ -148,7 +130,6 @@ tr:last-child td{border-bottom:none}
 .member-card p{font-size:10px;color:var(--gray);margin-top:2px}
 .member-roles{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin:6px 0}
 .role-tag{background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:600;padding:2px 6px;border-radius:20px}
-
 .events-list{display:flex;flex-direction:column;gap:8px}
 .event-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--bg);border-radius:10px;border-left:4px solid var(--blue)}
 .event-date-box{text-align:center;min-width:36px}
@@ -160,7 +141,6 @@ tr:last-child td{border-bottom:none}
 .event-item.ensaio{border-left-color:var(--purple)}
 .event-item.vigilia{border-left-color:var(--yellow)}
 .event-item-actions{display:flex;gap:4px}
-
 .avail-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .avail-nav h3{font-size:15px;font-weight:700}
 .avail-nav button{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:5px 11px;cursor:pointer;font-size:14px;font-weight:700;color:var(--dark)}
@@ -177,20 +157,15 @@ tr:last-child td{border-bottom:none}
 .avail-legend{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
 .avail-legend div{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray)}
 .avail-legend .dot{width:11px;height:11px;border-radius:3px;border:1.5px solid}
-
 .profile-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
 .profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700;flex-shrink:0}
 .profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
-
-/* CONFIG */
 .config-section{margin-bottom:18px}
 .config-section h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
 .config-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .config-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:16px;outline:none;background:var(--bg)}
 .config-row input:focus{border-color:var(--blue);background:#fff}
 .btn-save{padding:9px 18px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
-
-/* INVITE CARD in config */
 .invite-card{background:linear-gradient(135deg,var(--blue),var(--purple));border-radius:14px;padding:18px;color:#fff;margin-bottom:14px}
 .invite-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
 .invite-card p{font-size:11px;opacity:.8;margin-bottom:12px}
@@ -199,8 +174,6 @@ tr:last-child td{border-bottom:none}
 .invite-link-row input{flex:1;padding:8px 10px;border-radius:8px;border:none;font-size:11px;color:var(--dark);background:#fff}
 .invite-link-row button{padding:8px 12px;background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .btn-wa-invite{width:100%;padding:10px;background:#25D366;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
-
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto}
@@ -210,17 +183,14 @@ tr:last-child td{border-bottom:none}
 .btn-cancel{flex:1;padding:11px;background:var(--bg);color:var(--dark);border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
 .btn-icon{width:28px;height:28px;border:none;border-radius:7px;cursor:pointer;font-size:12px;transition:.2s}
 .btn-del{background:#FEE2E2;color:var(--red)}
-
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 .toast{position:fixed;bottom:16px;right:16px;left:16px;background:var(--dark);color:#fff;padding:11px 16px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;transform:translateY(100px);opacity:0;transition:.3s;text-align:center}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:#16A34A}
 .toast.error{background:var(--red)}
+footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px}
 
-footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0}
-
-/* MOBILE */
 @media(max-width:768px){
   aside{position:fixed;left:-260px;top:58px;bottom:0;height:auto;z-index:250;width:240px;padding:16px 12px;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease}
   aside.open{left:0}
@@ -255,46 +225,30 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <button class="tab-btn active" onclick="switchTab('login')">Entrar</button>
       <button class="tab-btn" onclick="switchTab('register')">Cadastrar</button>
     </div>
-
-    <!-- LOGIN -->
     <div id="login-form">
       <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"></div>
       <div class="form-group"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••"></div>
       <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar →</button>
       <button class="btn-link" onclick="switchTab('forgot')">Esqueci minha senha</button>
     </div>
-
-    <!-- REGISTER -->
     <div id="register-form" style="display:none">
-      <!-- Step 1: escolher tipo -->
       <div id="reg-step-1">
         <p style="font-size:13px;color:var(--gray);margin-bottom:12px">O que você quer fazer?</p>
         <div class="ministry-type-picker">
-          <div class="mtp-item" id="mtp-create" onclick="selectMinistryType('create')">
-            <span class="mtp-icon">🏛️</span>
-            Criar meu ministério
-          </div>
-          <div class="mtp-item" id="mtp-join" onclick="selectMinistryType('join')">
-            <span class="mtp-icon">🔗</span>
-            Entrar em um ministério
-          </div>
+          <div class="mtp-item" id="mtp-create" onclick="selectMinistryType('create')"><span class="mtp-icon">🏛️</span>Criar meu ministério</div>
+          <div class="mtp-item" id="mtp-join" onclick="selectMinistryType('join')"><span class="mtp-icon">🔗</span>Entrar em um ministério</div>
         </div>
         <div id="reg-type-warning" style="display:none;margin-top:10px;background:#FEF9C3;border-radius:8px;padding:10px;font-size:11px;color:#B45309"></div>
         <button class="btn-primary" style="margin-top:14px" onclick="goRegStep2()">Continuar →</button>
       </div>
-
-      <!-- Step 2: formulário -->
       <div id="reg-step-2" style="display:none">
         <button onclick="goRegStep1()" style="background:none;border:none;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;display:flex;align-items:center;gap:4px">← Voltar</button>
-
-        <!-- criar ministério -->
         <div id="reg-create-fields">
           <div class="form-group"><label>Nome completo</label><input type="text" id="reg-name-c" placeholder="João Silva"></div>
           <div class="form-group"><label>E-mail</label><input type="email" id="reg-email-c" placeholder="seu@email.com"></div>
           <div class="form-group"><label>Senha</label><input type="password" id="reg-pass-c" placeholder="••••••••"></div>
           <div class="form-group"><label>Nome do ministério</label><input type="text" id="reg-ministry-name" placeholder="Ministério Graça Eterna"></div>
-          <div class="form-group">
-            <label>Minhas funções</label>
+          <div class="form-group"><label>Minhas funções</label>
             <div class="roles-picker" id="roles-picker-c">
               <div class="rp-item" onclick="toggleRolePick(this)">🎸 Violão</div>
               <div class="rp-item" onclick="toggleRolePick(this)">🎸 Guitarra</div>
@@ -307,19 +261,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           </div>
           <button class="btn-primary" id="btn-register-c" onclick="doRegisterCreate()">Criar ministério →</button>
         </div>
-
-        <!-- entrar em ministério -->
         <div id="reg-join-fields" style="display:none">
           <div class="form-group"><label>Nome completo</label><input type="text" id="reg-name-j" placeholder="João Silva"></div>
           <div class="form-group"><label>E-mail</label><input type="email" id="reg-email-j" placeholder="seu@email.com"></div>
           <div class="form-group"><label>Senha</label><input type="password" id="reg-pass-j" placeholder="••••••••"></div>
-          <div class="form-group">
-            <label>Código do ministério</label>
+          <div class="form-group"><label>Código do ministério</label>
             <input type="text" id="reg-code-j" placeholder="Ex: GRACA2025" style="text-transform:uppercase;letter-spacing:2px;font-weight:700">
           </div>
           <div id="ministry-preview" style="display:none;background:var(--blue-light);border-radius:10px;padding:10px;margin-bottom:10px;font-size:13px"></div>
-          <div class="form-group">
-            <label>Minhas funções</label>
+          <div class="form-group"><label>Minhas funções</label>
             <div class="roles-picker" id="roles-picker-j">
               <div class="rp-item" onclick="toggleRolePick(this)">🎸 Violão</div>
               <div class="rp-item" onclick="toggleRolePick(this)">🎸 Guitarra</div>
@@ -334,8 +284,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
         </div>
       </div>
     </div>
-
-    <!-- FORGOT -->
     <div id="forgot-form" style="display:none">
       <p style="font-size:13px;color:var(--gray);margin-bottom:14px">Digite seu e-mail e mostraremos sua senha cadastrada.</p>
       <div class="form-group"><label>E-mail</label><input type="email" id="forgot-email" placeholder="seu@email.com"></div>
@@ -365,9 +313,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       </div>
     </div>
   </header>
-
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
-
   <div class="main-area">
     <aside id="sidebar">
       <div class="nav-section">Menu</div>
@@ -380,7 +326,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <button class="nav-item" onclick="navigate('profile')"><span class="ni">👤</span> Meu Perfil</button>
       <button class="nav-item admin-only" id="nav-config" style="display:none" onclick="navigate('config')"><span class="ni">⚙️</span> Configurações</button>
     </aside>
-
     <main>
       <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
@@ -393,8 +338,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="stat-card"><div class="sc-icon">👥</div><div class="sc-num" id="dash-member-count">—</div><div class="sc-label">Membros</div></div>
           <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="dash-scale-count">—</div><div class="sc-label">Escalas</div></div>
         </div>
-
-        <!-- card de confirmação para membro + painel admin — ficam no resumo -->
         <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
@@ -404,7 +347,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <h3>📊 Confirmações da Escala</h3>
           <div id="admin-confirm-summary"></div>
         </div>
-
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -414,7 +356,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <button class="btn-gen" onclick="generateScale()">⚡ GERAR</button>
           </div>
         </div>
-
         <div class="card">
           <h3>📅 Próximos Eventos</h3>
           <div id="dash-events-preview"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
@@ -461,8 +402,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="cal-header"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
           <div class="cal-grid" id="avail-grid"></div>
           <div class="avail-legend">
-            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível (padrão)</div>
-            <div><div class="dot" style="background:#FEE2E2;border-color:var(--red)"></div>Indisponível (toque para marcar)</div>
+            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível</div>
+            <div><div class="dot" style="background:#FEE2E2;border-color:var(--red)"></div>Indisponível</div>
           </div>
           <button class="btn-primary" style="margin-top:14px;width:auto;padding:10px 22px" onclick="saveAvailability()">Salvar</button>
         </div>
@@ -487,8 +428,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div id="my-scales-output"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
         </div>
         <button class="btn-gen" style="background:var(--purple);margin-top:4px" onclick="navigate('availability')">📅 Disponibilidade</button>
-
-        <!-- entrar em outra equipe (membro não admin) -->
         <div id="join-another-box" class="join-ministry-box" style="display:none;margin-top:18px">
           <h4>🔗 Entrar em outro ministério</h4>
           <p>Tem o código de outro ministério? Cole aqui para entrar.</p>
@@ -497,18 +436,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           </div>
           <button onclick="joinMinistryFromProfile()" style="width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">Entrar na equipe →</button>
         </div>
-
         <div style="margin-top:24px;padding-top:18px;border-top:1.5px solid var(--border)">
           <p style="font-size:12px;color:var(--gray);margin-bottom:10px">⚠️ Ao apagar seu perfil, todos os seus dados serão removidos permanentemente.</p>
           <button onclick="deleteSelfProfile()" style="width:100%;padding:11px;background:#FEE2E2;color:var(--red);border:1.5px solid var(--red);border-radius:12px;font-size:13px;font-weight:700;cursor:pointer">🗑️ Apagar meu perfil</button>
         </div>
       </div>
 
-      <!-- CONFIG (admin) -->
+      <!-- CONFIG -->
       <div class="page" id="page-config">
         <div class="greeting"><h2>⚙️ Configurações</h2><p style="color:var(--gray);font-size:13px;margin-top:2px">Personalize o ministério.</p></div>
-
-        <!-- INVITE CARD -->
         <div class="invite-card" style="margin-top:14px" id="invite-card-section">
           <h4>🔗 Link de Convite</h4>
           <p>Compartilhe com sua equipe para eles entrarem no ministério</p>
@@ -522,35 +458,27 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             Compartilhar no WhatsApp
           </button>
         </div>
-
         <div class="card">
           <div class="config-section">
             <h4>Nome do Ministério</h4>
-            <div class="config-row">
-              <input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor">
-              <button class="btn-save" onclick="saveMinistryName()">Salvar</button>
-            </div>
+            <div class="config-row"><input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor"><button class="btn-save" onclick="saveMinistryName()">Salvar</button></div>
           </div>
           <div class="config-section">
             <h4>Meu Nome</h4>
-            <div class="config-row">
-              <input type="text" id="cfg-my-name" placeholder="Seu nome">
-              <button class="btn-save" onclick="saveMyName()">Salvar</button>
-            </div>
+            <div class="config-row"><input type="text" id="cfg-my-name" placeholder="Seu nome"><button class="btn-save" onclick="saveMyName()">Salvar</button></div>
           </div>
           <div class="config-section">
             <h4>Minha Senha</h4>
-            <div class="config-row">
-              <input type="password" id="cfg-my-pass" placeholder="Nova senha">
-              <button class="btn-save" onclick="saveMyPass()">Salvar</button>
-            </div>
+            <div class="config-row"><input type="password" id="cfg-my-pass" placeholder="Nova senha"><button class="btn-save" onclick="saveMyPass()">Salvar</button></div>
           </div>
         </div>
       </div>
-
     </main>
   </div>
-  <footer>LouvorFlow © 2025 · Gestão de Ministérios</footer>
+  <footer>
+    <span class="sync-dot" id="sync-dot"></span>
+    <span id="sync-label" style="font-size:11px;color:var(--gray)">LouvorFlow © 2025</span>
+  </footer>
 </div>
 
 <!-- MODALS -->
@@ -569,40 +497,108 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-const SB_URL = 'https://jkjfewvfevdblmcqjszg.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
+const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
+
+// ── SYNC ENGINE ───────────────────────────────────────────────
+// Faz polling leve a cada 5s — só busca escalas (confirmações mudam com frequência)
+// A cada 30s faz sync completo de eventos + membros
+let _syncInterval=null;
+let _fullSyncInterval=null;
+let _lastScalesHash='';
+let _isSyncing=false;
+
+function setSyncStatus(state){
+  const dot=document.getElementById('sync-dot');
+  const lbl=document.getElementById('sync-label');
+  if(!dot)return;
+  dot.className='sync-dot'+(state==='syncing'?' syncing':state==='offline'?' offline':'');
+  lbl.textContent=state==='syncing'?'Sincronizando...':state==='offline'?'Sem conexão':'Ao vivo ✓';
+}
+
+function hashScales(scales){
+  return scales.map(s=>s.id+'|'+s.status).join(',');
+}
+
+async function pollScales(){
+  if(_isSyncing||!currentUser)return;
+  _isSyncing=true;
+  setSyncStatus('syncing');
+  try{
+    const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
+    const seen=new Set();
+    const fresh=raw.filter(s=>{
+      const k=s.event_id+'|'+s.role+'|'+s.member_name;
+      if(seen.has(k))return false;seen.add(k);return true;
+    });
+    const newHash=hashScales(fresh);
+    if(newHash!==_lastScalesHash){
+      _lastScalesHash=newHash;
+      allScales=fresh;
+      renderScaleOutput();
+      renderMyScales();
+      renderDashboard();
+      document.getElementById('dash-scale-count').textContent=allScales.length;
+    }
+    setSyncStatus('live');
+  }catch(e){
+    setSyncStatus('offline');
+  }finally{_isSyncing=false;}
+}
+
+async function fullSync(){
+  if(!currentUser)return;
+  await Promise.all([loadEvents(),loadMembers()]);
+  await pollScales();
+}
+
+function startSync(){
+  stopSync();
+  // confirmações: polling a cada 5s
+  _syncInterval=setInterval(pollScales,5000);
+  // sync completo (eventos/membros): a cada 30s
+  _fullSyncInterval=setInterval(fullSync,30000);
+}
+function stopSync(){
+  if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}
+  if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}
+}
 
 // ── SESSÃO ────────────────────────────────────────────────────
 function saveSession(user,ministry){
   localStorage.setItem('lf_session',JSON.stringify({user,ministry}));
 }
-function clearSession(){
-  localStorage.removeItem('lf_session');
-}
+function clearSession(){localStorage.removeItem('lf_session');}
+
+// Login automático sem consulta extra ao banco — usa cache local e valida em background
 async function tryAutoLogin(){
   try{
     const raw=localStorage.getItem('lf_session');
     if(!raw)return false;
     const{user,ministry}=JSON.parse(raw);
     if(!user?.id)return false;
-    // verifica se ainda existe no banco
-    const rows=await sb('members','GET',null,`?id=eq.${user.id}`);
-    if(!rows.length){clearSession();return false;}
-    currentUser=rows[0];
-    // recarrega ministério atualizado
-    const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
-    currentMinistry=mins[0]||ministry;
+    // Usa os dados do cache imediatamente para lançar o app
+    currentUser=user;
+    currentMinistry=ministry;
+    // Valida e atualiza em background sem bloquear
+    sb('members','GET',null,`?id=eq.${user.id}`).then(rows=>{
+      if(!rows.length){clearSession();doLogout();return;}
+      currentUser=rows[0];
+      sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`).then(mins=>{
+        if(mins.length){currentMinistry=mins[0];updateUserUI();}
+      });
+    }).catch(()=>{/* continua offline */});
     return true;
   }catch(e){clearSession();return false;}
 }
 
 async function sb(table,method='GET',body=null,query=''){
   const r=await fetch(`${SB_URL}/rest/v1/${table}${query}`,{
-    method,headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
+    method,
+    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
     body:body?JSON.stringify(body):null
   });
   if(!r.ok){const e=await r.json();throw new Error(e.message||r.statusText);}
@@ -624,28 +620,17 @@ const ROLES_DEFS=[
 const MONTHS=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const WEEKS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-function fmt(dt){return `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;}
+function fmt(dt){return`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;}
 function initials(n){return(n||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
-
-// gera código único tipo XXXX1234
 function genCode(){
-  const letters='ABCDEFGHJKLMNPQRSTUVWXYZ';
-  const nums='0123456789';
-  let c='';
-  for(let i=0;i<4;i++)c+=letters[Math.floor(Math.random()*letters.length)];
-  for(let i=0;i<4;i++)c+=nums[Math.floor(Math.random()*nums.length)];
-  return c;
+  const L='ABCDEFGHJKLMNPQRSTUVWXYZ',N='0123456789';
+  return[...Array(4)].map(()=>L[Math.floor(Math.random()*L.length)]).join('')+
+         [...Array(4)].map(()=>N[Math.floor(Math.random()*N.length)]).join('');
 }
-
-// pega código da URL se veio de link de convite
-function getCodeFromURL(){
-  const p=new URLSearchParams(window.location.search);
-  return p.get('code')||'';
-}
+function getCodeFromURL(){return new URLSearchParams(window.location.search).get('code')||'';}
 
 // ── AUTH ──────────────────────────────────────────────────────
 let selectedMinistryType=null;
-
 function switchTab(t){
   ['login-form','register-form','forgot-form'].forEach(f=>document.getElementById(f).style.display='none');
   document.getElementById(t+'-form').style.display='block';
@@ -655,92 +640,63 @@ function switchTab(t){
   if(t==='forgot')document.getElementById('forgot-result').style.display='none';
   if(t==='register'){
     goRegStep1();
-    // se veio de link de convite, pré-seleciona "entrar"
     const code=getCodeFromURL();
-    if(code){
-      selectMinistryType('join');
-      document.getElementById('reg-code-j').value=code.toUpperCase();
-      previewMinistry(code.toUpperCase());
-    }
+    if(code){selectMinistryType('join');document.getElementById('reg-code-j').value=code.toUpperCase();previewMinistry(code.toUpperCase());}
   }
 }
-
 function selectMinistryType(type){
   selectedMinistryType=type;
   document.getElementById('mtp-create').classList.toggle('selected',type==='create');
   document.getElementById('mtp-join').classList.toggle('selected',type==='join');
   document.getElementById('reg-type-warning').style.display='none';
 }
-
 function goRegStep1(){
   document.getElementById('reg-step-1').style.display='block';
   document.getElementById('reg-step-2').style.display='none';
 }
-
 function goRegStep2(){
   if(!selectedMinistryType){
     document.getElementById('reg-type-warning').style.display='block';
-    document.getElementById('reg-type-warning').textContent='Escolha uma das opções acima.';
-    return;
+    document.getElementById('reg-type-warning').textContent='Escolha uma das opções acima.';return;
   }
   document.getElementById('reg-step-1').style.display='none';
   document.getElementById('reg-step-2').style.display='block';
   if(selectedMinistryType==='create'){
     document.getElementById('reg-create-fields').style.display='block';
     document.getElementById('reg-join-fields').style.display='none';
-  } else {
+  }else{
     document.getElementById('reg-create-fields').style.display='none';
     document.getElementById('reg-join-fields').style.display='block';
-    // pré-preencher código da URL
     const code=getCodeFromURL();
     if(code)document.getElementById('reg-code-j').value=code.toUpperCase();
   }
 }
-
 function toggleRolePick(el){el.classList.toggle('selected');}
 
-// preview do ministério ao digitar código
 let previewTimeout=null;
 document.addEventListener('DOMContentLoaded',async()=>{
-  // tenta login automático pela sessão salva
   const loggedIn=await tryAutoLogin();
-  if(loggedIn){
-    await launchApp();
-    return;
-  }
+  if(loggedIn){await launchApp();return;}
   const codeInput=document.getElementById('reg-code-j');
   if(codeInput){
     codeInput.addEventListener('input',()=>{
       clearTimeout(previewTimeout);
-      const v=codeInput.value.trim().toUpperCase();
-      codeInput.value=v;
-      if(v.length>=6){
-        previewTimeout=setTimeout(()=>previewMinistry(v),500);
-      } else {
-        document.getElementById('ministry-preview').style.display='none';
-      }
+      const v=codeInput.value.trim().toUpperCase();codeInput.value=v;
+      if(v.length>=6)previewTimeout=setTimeout(()=>previewMinistry(v),500);
+      else document.getElementById('ministry-preview').style.display='none';
     });
   }
-  // checar URL ao carregar
   const code=getCodeFromURL();
-  if(code){
-    switchTab('register');
-  }
+  if(code)switchTab('register');
 });
 
 async function previewMinistry(code){
   try{
     const rows=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
     const prev=document.getElementById('ministry-preview');
-    if(rows.length){
-      prev.style.display='block';
-      prev.innerHTML=`✅ Ministério encontrado: <strong>${rows[0].name}</strong>`;
-    } else {
-      prev.style.display='block';
-      prev.style.background='#FEE2E2';
-      prev.innerHTML='❌ Código não encontrado. Verifique com o seu líder.';
-    }
-  }catch(e){/* silencioso */}
+    if(rows.length){prev.style.display='block';prev.style.background='var(--blue-light)';prev.innerHTML=`✅ Ministério encontrado: <strong>${rows[0].name}</strong>`;}
+    else{prev.style.display='block';prev.style.background='#FEE2E2';prev.innerHTML='❌ Código não encontrado.';}
+  }catch(e){}
 }
 
 async function doLogin(){
@@ -752,11 +708,8 @@ async function doLogin(){
   try{
     const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}`);
     if(!rows.length){
-      // distingue e-mail não encontrado de senha errada
       const emailCheck=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);
-      if(!emailCheck.length)showToast('E-mail não cadastrado','error');
-      else showToast('Senha incorreta','error');
-      return;
+      showToast(emailCheck.length?'Senha incorreta':'E-mail não cadastrado','error');return;
     }
     currentUser=rows[0];
     const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
@@ -775,30 +728,20 @@ async function doRegisterCreate(){
   const roles=[...document.querySelectorAll('#roles-picker-c .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!ministryName){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<6){showToast('Senha precisa ter ao menos 6 caracteres','error');return;}
+  if(pass.length<6){showToast('Senha com ao menos 6 caracteres','error');return;}
   if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
   setLoading('btn-register-c',true,'Criar conta →');
   try{
-    // criar ministério com código único
     let code=genCode();
-    // garantir unicidade (tenta até 3x)
-    for(let i=0;i<3;i++){
-      const exists=await sb('ministries','GET',null,`?invite_code=eq.${code}`);
-      if(!exists.length)break;
-      code=genCode();
-    }
+    for(let i=0;i<3;i++){const ex=await sb('ministries','GET',null,`?invite_code=eq.${code}`);if(!ex.length)break;code=genCode();}
     const ministry=await sb('ministries','POST',{name:ministryName,invite_code:code});
-    const ministryId=ministry[0].id;
-    // criar membro como admin
-    const rows=await sb('members','POST',{name,email,password:pass,is_admin:true,roles,ministry_id:ministryId});
-    currentUser=rows[0];
-    currentMinistry=ministry[0];
+    const rows=await sb('members','POST',{name,email,password:pass,is_admin:true,roles,ministry_id:ministry[0].id});
+    currentUser=rows[0];currentMinistry=ministry[0];
     saveSession(currentUser,currentMinistry);
     await launchApp();
-    showToast('🎉 Ministério criado com sucesso!','success');
+    showToast('🎉 Ministério criado!','success');
   }catch(e){
-    if(e.message.includes('unique'))showToast('E-mail já cadastrado','error');
-    else showToast('Erro: '+e.message,'error');
+    showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');
   }finally{setLoading('btn-register-c',false,'Criar conta →');}
 }
 
@@ -810,24 +753,19 @@ async function doRegisterJoin(){
   const roles=[...document.querySelectorAll('#roles-picker-j .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!code){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<6){showToast('Senha precisa ter ao menos 6 caracteres','error');return;}
+  if(pass.length<6){showToast('Senha com ao menos 6 caracteres','error');return;}
   if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
   setLoading('btn-register-j',true,'Entrar na equipe →');
   try{
-    // verificar código
     const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
     if(!mins.length){showToast('Código de ministério inválido','error');return;}
-    const ministry=mins[0];
-    // criar membro como membro normal
-    const rows=await sb('members','POST',{name,email,password:pass,is_admin:false,roles,ministry_id:ministry.id});
-    currentUser=rows[0];
-    currentMinistry=ministry;
+    const rows=await sb('members','POST',{name,email,password:pass,is_admin:false,roles,ministry_id:mins[0].id});
+    currentUser=rows[0];currentMinistry=mins[0];
     saveSession(currentUser,currentMinistry);
     await launchApp();
-    showToast(`🎉 Bem-vindo ao ${ministry.name}!`,'success');
+    showToast(`🎉 Bem-vindo ao ${mins[0].name}!`,'success');
   }catch(e){
-    if(e.message.includes('unique'))showToast('E-mail já cadastrado','error');
-    else showToast('Erro: '+e.message,'error');
+    showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');
   }finally{setLoading('btn-register-j',false,'Entrar na equipe →');}
 }
 
@@ -837,21 +775,13 @@ async function joinMinistryFromProfile(){
   try{
     const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
     if(!mins.length){showToast('Código não encontrado','error');return;}
-    const ministry=mins[0];
-    if(ministry.id===currentMinistry?.id){showToast('Você já está neste ministério','error');return;}
-    // confirmação antes de sair
-    if(!confirm(`⚠️ Ao entrar em "${ministry.name}" você vai sair de "${currentMinistry?.name||'ministério atual'}". O líder atual não será notificado automaticamente. Deseja continuar?`))return;
-    // atualizar ministry_id do membro
-    await sb('members','PATCH',{ministry_id:ministry.id,is_admin:false},`?id=eq.${currentUser.id}`);
-    currentUser.ministry_id=ministry.id;
-    currentMinistry=ministry;
+    if(mins[0].id===currentMinistry?.id){showToast('Você já está neste ministério','error');return;}
+    if(!confirm(`⚠️ Entrar em "${mins[0].name}" e sair de "${currentMinistry?.name||'ministério atual'}"?`))return;
+    await sb('members','PATCH',{ministry_id:mins[0].id,is_admin:false},`?id=eq.${currentUser.id}`);
+    currentUser.ministry_id=mins[0].id;currentMinistry=mins[0];
     document.getElementById('join-code-input').value='';
-    showToast(`✅ Entrou em ${ministry.name}!`,'success');
-    // recarregar tudo
-    await Promise.all([loadEvents(),loadMembers(),loadAvailability()]);
-    await loadScales();
-    updateUserUI();
-    navigate('dashboard');
+    await fullSync();updateUserUI();navigate('dashboard');
+    showToast(`✅ Entrou em ${mins[0].name}!`,'success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
@@ -862,73 +792,55 @@ async function doForgot(){
   try{
     const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);
     const res=document.getElementById('forgot-result');
-    if(!rows.length){
-      res.style.display='block';res.style.background='#FEE2E2';
-      res.innerHTML='<strong>❌ E-mail não encontrado.</strong> Verifique ou cadastre-se.';
-    }else{
-      res.style.display='block';res.style.background='var(--blue-light)';
-      res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br>Sua senha: <strong>${'•'.repeat(rows[0].password.length)}</strong><br><small style="color:var(--gray)">Entre em contato com o administrador para redefinir sua senha.</small>`;
-    }
+    if(!rows.length){res.style.display='block';res.style.background='#FEE2E2';res.innerHTML='<strong>❌ E-mail não encontrado.</strong>';}
+    else{res.style.display='block';res.style.background='var(--blue-light)';res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br><small style="color:var(--gray)">Entre em contato com o administrador para redefinir sua senha.</small>`;}
   }catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-forgot',false,'Buscar senha →');}
 }
 
 async function deleteSelfProfile(){
-  if(currentUser.is_admin){showToast('Admin não pode apagar o próprio perfil. Transfira o admin primeiro.','error');return;}
+  if(currentUser.is_admin){showToast('Admin não pode se apagar. Transfira o admin primeiro.','error');return;}
   if(!confirm('Tem certeza? Seus dados serão apagados permanentemente.'))return;
   try{
     await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}`);
     await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(currentUser.name)}`);
     await sb('members','DELETE',null,`?id=eq.${currentUser.id}`);
-    clearSession();
-    showToast('Perfil apagado. Até mais! 👋','');
+    clearSession();showToast('Perfil apagado. Até mais! 👋','');
     setTimeout(()=>doLogout(),1500);
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
 function doLogout(){
   currentUser=null;currentMinistry=null;allEvents=[];allMembers=[];allScales=[];
-  if(window._scaleInterval){clearInterval(window._scaleInterval);window._scaleInterval=null;}
-  clearSession();
-  localStorage.removeItem('lastPage');
+  stopSync();clearSession();localStorage.removeItem('lastPage');
   document.getElementById('app').style.display='none';
   document.getElementById('auth-screen').style.display='flex';
 }
 
 function setLoading(id,on,label){
   const b=document.getElementById(id);if(!b)return;
-  b.disabled=on;
-  b.innerHTML=on?'<span class="spinner"></span> Aguarde...':label;
+  b.disabled=on;b.innerHTML=on?'<span class="spinner"></span> Aguarde...':label;
 }
 
-// ── INVITE LINK ───────────────────────────────────────────────
-function getInviteLink(){
-  const base=window.location.href.split('?')[0];
-  return `${base}?code=${currentMinistry?.invite_code||''}`;
-}
-
+// ── INVITE ────────────────────────────────────────────────────
+function getInviteLink(){return`${window.location.href.split('?')[0]}?code=${currentMinistry?.invite_code||''}`;}
 function copyInviteLink(){
   const link=getInviteLink();
-  if(navigator.clipboard&&window.isSecureContext){
-    navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>fallbackCopy(link));
-  }else{fallbackCopy(link);}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>fallbackCopy(link));
+  else fallbackCopy(link);
 }
 function fallbackCopy(text){
   const ta=document.createElement('textarea');
-  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  ta.value=text;ta.style.cssText='position:fixed;opacity:0';
   document.body.appendChild(ta);ta.focus();ta.select();
-  try{document.execCommand('copy');showToast('✅ Link copiado!','success');}
-  catch(e){showToast('Copie o link manualmente','error');}
+  try{document.execCommand('copy');showToast('✅ Link copiado!','success');}catch(e){showToast('Copie manualmente','error');}
   document.body.removeChild(ta);
 }
-
 function shareInviteWhatsApp(){
   const mn=currentMinistry?.name||'nosso ministério';
-  const link=getInviteLink();
-  const msg=`🎵 *LouvorFlow - ${mn}*\n\nOlá! Você foi convidado para entrar na nossa equipe de louvor.\n\nClique no link abaixo para se cadastrar:\n${link}\n\n_O código de acesso já vem preenchido automaticamente!_ ✅`;
+  const msg=`🎵 *LouvorFlow - ${mn}*\n\nOlá! Você foi convidado para entrar na nossa equipe de louvor.\n\nClique no link para se cadastrar:\n${getInviteLink()}\n\n_O código já vem preenchido automaticamente!_ ✅`;
   window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
-
 function updateInviteDisplay(){
   if(!currentMinistry)return;
   document.getElementById('invite-code-display').textContent=currentMinistry.invite_code||'---';
@@ -939,29 +851,23 @@ function updateInviteDisplay(){
 async function launchApp(){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app').style.display='flex';
-  // sempre recarrega o ministério do banco para pegar nome atualizado
-  if(currentUser?.ministry_id){
-    const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
-    if(mins.length)currentMinistry=mins[0];
-  }
+  // Exibe interface imediatamente com dados do cache
   updateUserUI();
   buildRqGrid();
+  // Depois carrega dados frescos do banco em paralelo
   await Promise.all([loadEvents(),loadMembers(),loadAvailability()]);
   await loadScales();
   buildAvailGrid();
   document.getElementById('cfg-my-name').value=currentUser.name||'';
   document.getElementById('cfg-ministry-name').value=currentMinistry?.name||'Ministério';
   updateInviteDisplay();
-  const lastPage=localStorage.getItem('lastPage')||'dashboard';
-  navigate(lastPage);
-  if(window._scaleInterval)clearInterval(window._scaleInterval);
-  window._scaleInterval=setInterval(async()=>{
-    await loadEvents();
-    await loadScales();
-  },30000);
+  navigate(localStorage.getItem('lastPage')||'dashboard');
+  setSyncStatus('live');
+  startSync();
 }
 
 function updateUserUI(){
+  if(!currentUser)return;
   const ini=initials(currentUser.name);
   document.getElementById('user-avatar').textContent=ini;
   document.getElementById('greet-name').textContent=currentUser.name.split(' ')[0];
@@ -972,13 +878,11 @@ function updateUserUI(){
   const rc=document.getElementById('profile-roles-chips');
   rc.innerHTML=(currentUser.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')||'<span style="font-size:11px;color:var(--gray)">Sem funções</span>';
   document.getElementById('ministry-name').textContent=currentMinistry?.name||'LouvorFlow';
-  // admin controls
   const isAdmin=currentUser.is_admin;
   document.querySelectorAll('.admin-only').forEach(el=>el.style.display=isAdmin?'':'none');
   document.getElementById('admin-gen-dash').style.display=isAdmin?'block':'none';
   document.getElementById('nav-config').style.display=isAdmin?'flex':'none';
   document.getElementById('admin-config-link').style.display=isAdmin?'block':'none';
-  // botão entrar em outra equipe (só membros não admin)
   document.getElementById('join-another-box').style.display=isAdmin?'none':'block';
 }
 
@@ -988,43 +892,36 @@ async function saveMinistryName(){
   if(!v){showToast('Digite um nome','error');return;}
   try{
     await sb('ministries','PATCH',{name:v},`?id=eq.${currentMinistry.id}`);
-    currentMinistry.name=v;
-    document.getElementById('ministry-name').textContent=v;
+    currentMinistry.name=v;document.getElementById('ministry-name').textContent=v;
     document.getElementById('profile-sub').textContent=`Líder · ${v}`;
-    updateInviteDisplay();
-    showToast('✅ Nome do ministério atualizado!','success');
+    updateInviteDisplay();showToast('✅ Nome atualizado!','success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
-
 async function saveMyName(){
   const v=document.getElementById('cfg-my-name').value.trim();
   if(!v){showToast('Digite seu nome','error');return;}
   try{
     await sb('members','PATCH',{name:v},`?id=eq.${currentUser.id}`);
-    currentUser.name=v;updateUserUI();
-    showToast('✅ Nome atualizado!','success');
+    currentUser.name=v;updateUserUI();showToast('✅ Nome atualizado!','success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
-
 async function saveMyPass(){
   const v=document.getElementById('cfg-my-pass').value;
-  if(!v||v.length<4){showToast('Senha precisa ter ao menos 4 caracteres','error');return;}
+  if(!v||v.length<4){showToast('Senha com ao menos 4 caracteres','error');return;}
   try{
     await sb('members','PATCH',{password:v},`?id=eq.${currentUser.id}`);
-    currentUser.password=v;
-    document.getElementById('cfg-my-pass').value='';
+    currentUser.password=v;document.getElementById('cfg-my-pass').value='';
     showToast('✅ Senha atualizada!','success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
-// ── SIDEBAR MOBILE ────────────────────────────────────────────
+// ── SIDEBAR ───────────────────────────────────────────────────
 function toggleSidebar(){
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('sidebar-overlay').classList.toggle('open');
 }
 
 // ── DATA LOADERS ──────────────────────────────────────────────
-// todas as queries filtram por ministry_id — isolamento total entre equipes
 async function loadEvents(){
   if(!currentUser?.ministry_id)return;
   try{
@@ -1047,11 +944,8 @@ async function loadScales(){
   try{
     const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
     const seen=new Set();
-    allScales=raw.filter(s=>{
-      const key=s.event_id+'|'+s.role+'|'+s.member_name;
-      if(seen.has(key))return false;
-      seen.add(key);return true;
-    });
+    allScales=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
+    _lastScalesHash=hashScales(allScales);
     renderScaleOutput();renderMyScales();renderDashboard();
     document.getElementById('dash-scale-count').textContent=allScales.length;
   }catch(e){console.error(e);}
@@ -1080,65 +974,43 @@ function renderEventsList(){
     </div>`;
   }).join('');
 }
-function renderDashboard(){
-  // seta data mínima do campo de evento
-  document.getElementById('new-ev-date').min=fmt(new Date());
 
+function renderDashboard(){
+  document.getElementById('new-ev-date').min=fmt(new Date());
   const isAdmin=currentUser.is_admin;
-  // painel admin: resumo de confirmações
   const adminPanel=document.getElementById('admin-confirm-panel');
-  const adminSummary=document.getElementById('admin-confirm-summary');
-  // alerta membro
   const memberAlert=document.getElementById('member-scale-alert');
   const memberAlertText=document.getElementById('member-scale-alert-text');
   const memberAlertBtns=document.getElementById('member-scale-alert-btns');
 
-  if(!allScales.length){
-    adminPanel.style.display='none';
-    memberAlert.style.display='none';
-    return;
-  }
+  if(!allScales.length){adminPanel.style.display='none';memberAlert.style.display='none';return;}
 
   if(isAdmin){
-    // conta confirmações gerais
     const total=allScales.length;
     const confirmed=allScales.filter(s=>s.status==='confirmed').length;
     const refused=allScales.filter(s=>s.status==='refused').length;
     const pending=total-confirmed-refused;
     const pct=total?Math.round(confirmed/total*100):0;
     adminPanel.style.display='block';
-    adminSummary.innerHTML=`
+    document.getElementById('admin-confirm-summary').innerHTML=`
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-        <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div>
-          <div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div>
-        </div>
-        <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div>
-          <div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div>
-        </div>
-        <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div>
-          <div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Recusados</div>
-        </div>
+        <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
+        <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
+        <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div><div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Recusados</div></div>
       </div>
-      <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden">
-        <div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div>
-      </div>
+      <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden"><div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div></div>
       <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
     memberAlert.style.display='none';
-  } else {
+  }else{
     adminPanel.style.display='none';
-    // pega TODAS as escalas pendentes do membro agrupadas por evento
     const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
     if(!mine.length){memberAlert.style.display='none';return;}
-    // agrupa por evento
     const byEv={};
     mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
     const evIds=Object.keys(byEv);
-    memberAlert.style.display='block';
     const firstEv=allEvents.find(e=>e.id===evIds[0]);
     if(!firstEv){memberAlert.style.display='none';return;}
+    memberAlert.style.display='block';
     const{day,mon,week}=dateLabel(firstEv.date);
     const total=evIds.length;
     memberAlertText.textContent=total>1
@@ -1156,18 +1028,19 @@ function renderDashEvents(){
   const up=allEvents.filter(e=>e.date>=fmt(new Date())).slice(0,3);
   if(!up.length){
     el.innerHTML=currentUser.is_admin
-      ?'<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado. <button onclick="showModal(\'add-event-modal\')" style="background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;font-size:13px">+ Criar primeiro evento →</button></p>'
-      :'<p style="color:var(--gray);font-size:13px">Nenhum evento próximo. Aguarde seu líder cadastrar eventos. 📅</p>';
+      ?'<p style="color:var(--gray);font-size:13px">Nenhum evento. <button onclick="showModal(\'add-event-modal\')" style="background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;font-size:13px">+ Criar →</button></p>'
+      :'<p style="color:var(--gray);font-size:13px">Nenhum evento próximo. 📅</p>';
     return;
   }
-  el.innerHTML=`<div class="events-list">`+up.map(ev=>{
+  el.innerHTML='<div class="events-list">'+up.map(ev=>{
     const{day,mon,week}=dateLabel(ev.date);
     return`<div class="event-item ${typeClass(ev.type)}">
       <div class="event-date-box"><div class="day">${day}</div><div class="mon">${mon}</div></div>
       <div class="event-info"><h4>${ev.name}</h4><p>${week} · ${ev.time}</p></div>
     </div>`;
-  }).join('')+`</div>`;
+  }).join('')+'</div>';
 }
+
 async function removeEvent(id){
   if(!confirm('🗑️ Apagar este evento? As escalas vinculadas também serão removidas.'))return;
   try{
@@ -1193,10 +1066,8 @@ function isPrincipalAdmin(){
   if(!currentUser.is_admin)return false;
   const admins=allMembers.filter(m=>m.is_admin);
   if(!admins.length)return false;
-  const first=admins.reduce((a,b)=>a.id<b.id?a:b);
-  return currentUser.id===first.id;
+  return currentUser.id===admins.reduce((a,b)=>a.id<b.id?a:b).id;
 }
-
 function renderMembersGrid(){
   const g=document.getElementById('members-grid');if(!g)return;
   const isSuperAdmin=isPrincipalAdmin();
@@ -1204,57 +1075,45 @@ function renderMembersGrid(){
   g.innerHTML=allMembers.map(m=>{
     const isMe=m.id===currentUser.id;
     const targetIsAdmin=m.is_admin;
-  const canAct=isAnyAdmin&&!isMe;
-    const canPromoteDemote=isSuperAdmin&&canAct;
+    const canAct=isAnyAdmin&&!isMe;
+    const canPD=isSuperAdmin&&canAct;
     let actions='';
     if(canAct){
       actions=`<div style="display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap">
-        ${canPromoteDemote?(targetIsAdmin
+        ${canPD?(targetIsAdmin
           ?`<button onclick="demoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--yellow);background:#FEF9C3;color:#B45309;cursor:pointer;font-weight:700">⬇️ Tornar Membro</button>`
           :`<button onclick="promoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--blue);background:var(--blue-light);color:var(--blue);cursor:pointer;font-weight:700">⬆️ Tornar Admin</button>`)
         :''}
-        <button onclick="removeMember('${m.id}','${m.name.replace(/'/g,"\'")}','${m.email}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--red);background:#FEE2E2;color:var(--red);cursor:pointer;font-weight:700">🗑️ Remover</button>
+        <button onclick="removeMember('${m.id}','${m.name.replace(/'/g,"\\'")}','${m.email}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--red);background:#FEE2E2;color:var(--red);cursor:pointer;font-weight:700">🗑️ Remover</button>
       </div>`;
     }
-    const superBadge=isSuperAdmin&&isMe?'<span style="font-size:9px;background:#EDE9FE;color:#7C3AED;border-radius:20px;padding:2px 7px;font-weight:700">👑 Admin Principal</span>':'';
     return`<div class="member-card">
       <div class="member-avatar">${initials(m.name)}</div>
       <h4>${m.name}${isMe?' <span style="font-size:9px;color:var(--gray)">(você)</span>':''}</h4>
       <p>${targetIsAdmin?'Admin':'Membro'}</p>
       <div class="member-roles">${(m.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')}</div>
       <span class="badge available">Ativo</span>
-      ${superBadge}
       ${actions}
     </div>`;
   }).join('');
 }
-
 async function promoteMember(id){
   if(!confirm('Tornar este membro Administrador?'))return;
-  try{
-    await sb('members','PATCH',{is_admin:true},`?id=eq.${id}`);
-    await loadMembers();
-    showToast('⬆️ Membro promovido a Admin!','success');
-  }catch(e){showToast('Erro: '+e.message,'error');}
+  try{await sb('members','PATCH',{is_admin:true},`?id=eq.${id}`);await loadMembers();showToast('⬆️ Promovido a Admin!','success');}
+  catch(e){showToast('Erro: '+e.message,'error');}
 }
-
 async function demoteMember(id){
   if(!confirm('Rebaixar este Admin para Membro?'))return;
-  try{
-    await sb('members','PATCH',{is_admin:false},`?id=eq.${id}`);
-    await loadMembers();
-    showToast('⬇️ Admin rebaixado para Membro!','');
-  }catch(e){showToast('Erro: '+e.message,'error');}
+  try{await sb('members','PATCH',{is_admin:false},`?id=eq.${id}`);await loadMembers();showToast('⬇️ Rebaixado para Membro!','');}
+  catch(e){showToast('Erro: '+e.message,'error');}
 }
-
 async function removeMember(id,name,email){
-  if(!confirm(`Remover "${name}" da equipe? Essa ação não pode ser desfeita.`))return;
+  if(!confirm(`Remover "${name}" da equipe?`))return;
   try{
     await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(email)}&ministry_id=eq.${currentUser.ministry_id}`);
     await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(name)}&ministry_id=eq.${currentUser.ministry_id}`);
     await sb('members','DELETE',null,`?id=eq.${id}`);
-    await loadMembers();await loadScales();
-    showToast('🗑️ Membro removido!','');
+    await loadMembers();await loadScales();showToast('🗑️ Membro removido!','');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
@@ -1293,10 +1152,7 @@ async function generateScale(){
   ROLES_DEFS.forEach(r=>{for(let i=0;i<(rqState[r.key]||0);i++)comp.push(`${r.icon} ${r.name}`);});
   if(!comp.length){showToast('Adicione pelo menos uma função','error');return;}
   if(!allEvents.length){showToast('Cadastre eventos primeiro','error');return;}
-  // aviso se já tem escalas geradas
-  if(allScales.length>0){
-    if(!confirm('⚠️ Já existem escalas geradas. Gerar novamente vai apagar todas as escalas atuais e as confirmações de presença. Deseja continuar?'))return;
-  }
+  if(allScales.length>0&&!confirm('⚠️ Isso vai apagar as escalas e confirmações atuais. Continuar?'))return;
   showToast('⚡ Gerando escalas...','');
   Object.keys(usageCnt).forEach(k=>delete usageCnt[k]);
   try{
@@ -1306,7 +1162,7 @@ async function generateScale(){
       const usedToday=[];
       comp.forEach(role=>{
         const m=pickMember(role,usedToday);
-        if(m.name==='⚠️ Sem membro')return; // pula funções sem membro
+        if(m.name==='⚠️ Sem membro')return;
         usedToday.push(m.name);
         inserts.push({event_id:ev.id,member_name:m.name,member_init:initials(m.name),role,status:'pending',ministry_id:currentUser.ministry_id});
       });
@@ -1317,13 +1173,28 @@ async function generateScale(){
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
+// ── CONFIRMAR — atualização otimista ──────────────────────────
 async function confirmScale(id,status){
+  // 1) Atualiza localmente na hora (sem esperar o banco)
+  const sc=allScales.find(s=>s.id===id);
+  if(sc){
+    sc.status=status;
+    renderScaleOutput();
+    renderMyScales();
+    renderDashboard();
+  }
+  // 2) Toast imediato
+  showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.',status==='confirmed'?'success':'');
+  // 3) Persiste no banco em background
   try{
     await sb('scales','PATCH',{status},`?id=eq.${id}`);
-    await loadScales();
-    renderDashboard();
-    showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.',status==='confirmed'?'success':'');
-  }catch(e){showToast('Erro: '+e.message,'error');}
+    // após salvar, atualiza o hash para evitar re-render desnecessário no próximo poll
+    _lastScalesHash=hashScales(allScales);
+  }catch(e){
+    // Reverte se falhou
+    if(sc){sc.status='pending';renderScaleOutput();renderMyScales();renderDashboard();}
+    showToast('Erro ao salvar. Tente novamente.','error');
+  }
 }
 
 function renderScaleOutput(){
@@ -1336,12 +1207,11 @@ function renderScaleOutput(){
     const rows=byEvent[eid];
     const ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
     const{day,mon,week}=dateLabel(ev.date);
-    const evId=eid;
     html+=`<div class="scale-day-block">
       <div class="scale-day-header">
         <div class="scale-day-date"><span class="sdh-day">${String(day).padStart(2,'0')}</span><span class="sdh-week">${week.toUpperCase()}</span></div>
         <div><div class="scale-day-event">${ev.name}</div><span style="font-size:10px;color:var(--gray)">${mon} · ${ev.time}</span></div>
-        <button onclick="shareScaleWhatsApp('${evId}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0">
+        <button onclick="shareScaleWhatsApp('${eid}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
           Enviar
         </button>
@@ -1351,11 +1221,7 @@ function renderScaleOutput(){
         const isMe=r.member_name===currentUser.name;
         const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':'<span class="badge pending">⏳ Pendente</span>';
         const confirmBtns=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';
-        return`<tr>
-        <td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td>
-        <td>${r.role}</td><td><strong>${r.member_name}</strong>${confirmBtns}</td>
-        <td>${statusBadge}</td>
-      </tr>`;
+        return`<tr><td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td><td>${r.role}</td><td><strong>${r.member_name}</strong>${confirmBtns}</td><td>${statusBadge}</td></tr>`;
       }).join('')}</tbody></table></div>
     </div>`;
   });
@@ -1367,18 +1233,10 @@ function shareScaleWhatsApp(eventId){
   const rows=allScales.filter(s=>s.event_id===eventId);
   const{day,mon,week}=dateLabel(ev.date);
   const mn=currentMinistry?.name||'Ministério';
-  let msg=`*${mn}*\n`;
-  msg+=` *${ev.name}*\n`;
-  msg+=` ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${ev.time}\n`;
-  msg+=` Tipo: ${ev.type}\n\n`;
-  msg+=` Equipe Escalada:\n`;
-  rows.forEach((r,i)=>{
-    const st=r.status==='confirmed'?'✅':r.status==='refused'?'❌':'⏳';
-    msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}* ${st}\n`;
-  });
+  let msg=`*${mn}*\n *${ev.name}*\n ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${ev.time}\n Tipo: ${ev.type}\n\n Equipe Escalada:\n`;
+  rows.forEach((r,i)=>{const st=r.status==='confirmed'?'✅':r.status==='refused'?'❌':'⏳';msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}* ${st}\n`;});
   msg+=`\n_Gerado pelo LouvorFlow_`;
-  const url='https://wa.me/?text='+encodeURIComponent(msg);
-  window.open(url,'_blank');
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
 
 function renderMyScales(){
@@ -1424,17 +1282,14 @@ function buildAvailGrid(){
   for(let d=1;d<=dim;d++){
     const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const cell=document.createElement('div');
-    // padrão: disponível (true), só marca indisponível se explicitamente false
-    const st=availState[ds];
-    const isAvail=st===false?false:true; // padrão true
+    const isAvail=availState[ds]!==false;
     cell.className='day-cell'+(isAvail?' avail':' unavail');
     if(ds===todayStr)cell.classList.add('today');
     if(eventDays.has(ds))cell.classList.add('has-event');
     cell.textContent=d;
     cell.onclick=()=>{
-      // toggle: disponível ↔ indisponível
-      if(availState[ds]===false){delete availState[ds];}
-      else{availState[ds]=false;}
+      if(availState[ds]===false)delete availState[ds];
+      else availState[ds]=false;
       buildAvailGrid();
     };
     grid.appendChild(cell);
@@ -1444,7 +1299,6 @@ async function saveAvailability(){
   try{
     const{y,m}=availMonth;
     const dim=new Date(y,m+1,0).getDate();
-    // salva todos os dias do mês: disponível por padrão, exceto os marcados como false
     const rows=[];
     for(let d=1;d<=dim;d++){
       const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
@@ -1470,10 +1324,6 @@ function navigate(p){
   document.getElementById('sidebar-overlay').classList.remove('open');
   localStorage.setItem('lastPage',p);
   if(p==='config')updateInviteDisplay();
-}
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebar-overlay').classList.toggle('open');
 }
 function toggleDropdown(){document.getElementById('dropdown').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('.user-menu'))document.getElementById('dropdown').classList.remove('open');});
