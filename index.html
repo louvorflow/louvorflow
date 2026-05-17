@@ -989,8 +989,26 @@ function renderDashboard(){
     const refused=allScales.filter(s=>s.status==='refused').length;
     const pending=total-confirmed-refused;
     const pct=total?Math.round(confirmed/total*100):0;
+    // escalas recusadas com substituto sugerido
+    const refusedScales=allScales.filter(s=>s.status==='refused');
+    const subAlerts=refusedScales.map(s=>{
+      const sub=s._suggestedSub||findSubstitute(s)?.name;
+      const ev=allEvents.find(e=>e.id===s.event_id);
+      return sub?`<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;background:#FEF9C3;border-radius:9px;padding:9px 11px;margin-bottom:6px;border-left:3px solid var(--yellow)">
+        <div style="font-size:11px;line-height:1.5">
+          <strong>❌ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · ${ev.name}`:''}
+          <br><span style="color:var(--gray)">Substituto sugerido: <strong style="color:var(--blue)">${sub}</strong></span>
+        </div>
+        <button onclick="applySubstitute('${s.id}')" style="padding:6px 12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap">✅ Aceitar</button>
+      </div>`:
+      `<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)">
+        <strong>❌ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · ${ev.name}`:''}<br>
+        <span style="color:var(--red)">Sem substituto disponível para essa função</span>
+      </div>`;
+    }).join('');
     adminPanel.style.display='block';
     document.getElementById('admin-confirm-summary').innerHTML=`
+      ${subAlerts?`<div style="margin-bottom:10px">${subAlerts}</div>`:''}
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
         <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
         <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
@@ -1178,26 +1196,73 @@ async function generateScale(){
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
-// ── CONFIRMAR — atualização otimista ──────────────────────────
-async function confirmScale(id,status){
-  // 1) Atualiza localmente na hora (sem esperar o banco)
-  const sc=allScales.find(s=>s.id===id);
-  if(sc){
-    sc.status=status;
-    renderScaleOutput();
-    renderMyScales();
-    renderDashboard();
-  }
-  // 2) Toast imediato
-  showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.',status==='confirmed'?'success':'');
-  // 3) Persiste no banco em background
+// ── SUBSTITUIÇÃO AUTOMÁTICA ───────────────────────────────────
+function findSubstitute(scale){
+  // pega membros com a mesma função, exceto o que recusou
+  const candidates=allMembers.filter(m=>
+    m.name!==scale.member_name &&
+    (m.roles||[]).includes(scale.role.replace(/^[\p{Emoji}\s]+/u,'').trim()) ||
+    (m.roles||[]).some(r=>scale.role.includes(r.replace(/^[\p{Emoji}\s]+/u,'').trim()))
+  );
+  if(!candidates.length)return null;
+  // prefere quem tem menos escalas
+  const cnt={};
+  allScales.forEach(s=>{cnt[s.member_name]=(cnt[s.member_name]||0)+1;});
+  candidates.sort((a,b)=>(cnt[a.name]||0)-(cnt[b.name]||0));
+  return candidates[0];
+}
+
+async function applySubstitute(scaleId){
+  const sc=allScales.find(s=>s.id===scaleId);
+  if(!sc)return;
+  const sub=findSubstitute(sc);
+  if(!sub){showToast('Nenhum substituto disponível para essa função','error');return;}
+  // atualiza localmente
+  sc.member_name=sub.name;
+  sc.member_init=initials(sub.name);
+  sc.status='pending';
+  sc.substitute_of=undefined;
+  renderScaleOutput();renderMyScales();renderDashboard();
+  showToast(`✅ ${sub.name} assumiu a vaga!`,'success');
   try{
-    await sb('scales','PATCH',{status},`?id=eq.${id}`);
-    // força poll imediato para todos verem a mudança
+    await sb('scales','PATCH',{member_name:sub.name,member_init:initials(sub.name),status:'pending'},`?id=eq.${scaleId}`);
     pollNow();
   }catch(e){
-    // Reverte se falhou
-    if(sc){sc.status='pending';renderScaleOutput();renderMyScales();renderDashboard();}
+    showToast('Erro ao salvar substituto','error');
+  }
+}
+
+// ── CONFIRMAR — atualização otimista ──────────────────────────
+async function confirmScale(id,status){
+  const sc=allScales.find(s=>s.id===id);
+  if(!sc)return;
+
+  // se recusou, busca substituto imediatamente
+  let substitute=null;
+  if(status==='refused'){
+    substitute=findSubstitute(sc);
+  }
+
+  // 1) Atualiza localmente na hora
+  sc.status=status;
+  if(substitute)sc._suggestedSub=substitute.name;
+  renderScaleOutput();
+  renderMyScales();
+  renderDashboard();
+
+  // 2) Toast imediato
+  if(status==='confirmed'){
+    showToast('✅ Presença confirmada!','success');
+  }else{
+    showToast(substitute?`❌ Recusado · Substituto sugerido: ${substitute.name}`:'❌ Recusado · Sem substituto disponível','');
+  }
+
+  // 3) Persiste no banco
+  try{
+    await sb('scales','PATCH',{status},`?id=eq.${id}`);
+    pollNow();
+  }catch(e){
+    if(sc){sc.status='pending';sc._suggestedSub=undefined;renderScaleOutput();renderMyScales();renderDashboard();}
     showToast('Erro ao salvar. Tente novamente.','error');
   }
 }
