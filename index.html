@@ -577,6 +577,30 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 const SB_URL = 'https://jkjfewvfevdblmcqjszg.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
 
+// ── SESSÃO ────────────────────────────────────────────────────
+function saveSession(user,ministry){
+  localStorage.setItem('lf_session',JSON.stringify({user,ministry}));
+}
+function clearSession(){
+  localStorage.removeItem('lf_session');
+}
+async function tryAutoLogin(){
+  try{
+    const raw=localStorage.getItem('lf_session');
+    if(!raw)return false;
+    const{user,ministry}=JSON.parse(raw);
+    if(!user?.id)return false;
+    // verifica se ainda existe no banco
+    const rows=await sb('members','GET',null,`?id=eq.${user.id}`);
+    if(!rows.length){clearSession();return false;}
+    currentUser=rows[0];
+    // recarrega ministério atualizado
+    const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
+    currentMinistry=mins[0]||ministry;
+    return true;
+  }catch(e){clearSession();return false;}
+}
+
 async function sb(table,method='GET',body=null,query=''){
   const r=await fetch(`${SB_URL}/rest/v1/${table}${query}`,{
     method,headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
@@ -678,7 +702,13 @@ function toggleRolePick(el){el.classList.toggle('selected');}
 
 // preview do ministério ao digitar código
 let previewTimeout=null;
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',async()=>{
+  // tenta login automático pela sessão salva
+  const loggedIn=await tryAutoLogin();
+  if(loggedIn){
+    await launchApp();
+    return;
+  }
   const codeInput=document.getElementById('reg-code-j');
   if(codeInput){
     codeInput.addEventListener('input',()=>{
@@ -732,6 +762,7 @@ async function doLogin(){
     currentUser=rows[0];
     const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
     currentMinistry=mins[0]||null;
+    saveSession(currentUser,currentMinistry);
     await launchApp();
   }catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-login',false,'Entrar →');}
@@ -745,7 +776,8 @@ async function doRegisterCreate(){
   const roles=[...document.querySelectorAll('#roles-picker-c .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!ministryName){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<4){showToast('Senha precisa ter ao menos 4 caracteres','error');return;}
+  if(pass.length<6){showToast('Senha precisa ter ao menos 6 caracteres','error');return;}
+  if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
   setLoading('btn-register-c',true,'Criar conta →');
   try{
     // criar ministério com código único
@@ -762,6 +794,7 @@ async function doRegisterCreate(){
     const rows=await sb('members','POST',{name,email,password:pass,is_admin:true,roles,ministry_id:ministryId});
     currentUser=rows[0];
     currentMinistry=ministry[0];
+    saveSession(currentUser,currentMinistry);
     await launchApp();
     showToast('🎉 Ministério criado com sucesso!','success');
   }catch(e){
@@ -778,7 +811,8 @@ async function doRegisterJoin(){
   const roles=[...document.querySelectorAll('#roles-picker-j .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!code){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<4){showToast('Senha precisa ter ao menos 4 caracteres','error');return;}
+  if(pass.length<6){showToast('Senha precisa ter ao menos 6 caracteres','error');return;}
+  if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
   setLoading('btn-register-j',true,'Entrar na equipe →');
   try{
     // verificar código
@@ -789,6 +823,7 @@ async function doRegisterJoin(){
     const rows=await sb('members','POST',{name,email,password:pass,is_admin:false,roles,ministry_id:ministry.id});
     currentUser=rows[0];
     currentMinistry=ministry;
+    saveSession(currentUser,currentMinistry);
     await launchApp();
     showToast(`🎉 Bem-vindo ao ${ministry.name}!`,'success');
   }catch(e){
@@ -840,11 +875,13 @@ async function doForgot(){
 }
 
 async function deleteSelfProfile(){
+  if(currentUser.is_admin){showToast('Admin não pode apagar o próprio perfil. Transfira o admin primeiro.','error');return;}
   if(!confirm('Tem certeza? Seus dados serão apagados permanentemente.'))return;
   try{
     await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}`);
     await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(currentUser.name)}`);
     await sb('members','DELETE',null,`?id=eq.${currentUser.id}`);
+    clearSession();
     showToast('Perfil apagado. Até mais! 👋','');
     setTimeout(()=>doLogout(),1500);
   }catch(e){showToast('Erro: '+e.message,'error');}
@@ -853,6 +890,7 @@ async function deleteSelfProfile(){
 function doLogout(){
   currentUser=null;currentMinistry=null;allEvents=[];allMembers=[];allScales=[];
   if(window._scaleInterval){clearInterval(window._scaleInterval);window._scaleInterval=null;}
+  clearSession();
   localStorage.removeItem('lastPage');
   document.getElementById('app').style.display='none';
   document.getElementById('auth-screen').style.display='flex';
@@ -872,12 +910,17 @@ function getInviteLink(){
 
 function copyInviteLink(){
   const link=getInviteLink();
-  navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>{
-    // fallback
-    const inp=document.getElementById('invite-link-display');
-    inp.select();document.execCommand('copy');
-    showToast('✅ Link copiado!','success');
-  });
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>fallbackCopy(link));
+  }else{fallbackCopy(link);}
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');showToast('✅ Link copiado!','success');}
+  catch(e){showToast('Copie o link manualmente','error');}
+  document.body.removeChild(ta);
 }
 
 function shareInviteWhatsApp(){
@@ -1263,7 +1306,9 @@ async function generateScale(){
     allEvents.forEach(ev=>{
       const usedToday=[];
       comp.forEach(role=>{
-        const m=pickMember(role,usedToday);usedToday.push(m.name);
+        const m=pickMember(role,usedToday);
+        if(m.name==='⚠️ Sem membro')return; // pula funções sem membro
+        usedToday.push(m.name);
         inserts.push({event_id:ev.id,member_name:m.name,member_init:initials(m.name),role,status:'pending',ministry_id:currentUser.ministry_id});
       });
     });
@@ -1277,7 +1322,8 @@ async function confirmScale(id,status){
   try{
     await sb('scales','PATCH',{status},`?id=eq.${id}`);
     await loadScales();
-    showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.', status==='confirmed'?'success':'');
+    renderDashboard();
+    showToast(status==='confirmed'?'✅ Presença confirmada!':'❌ Presença recusada.',status==='confirmed'?'success':'');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 
@@ -1328,7 +1374,8 @@ function shareScaleWhatsApp(eventId){
   msg+=` Tipo: ${ev.type}\n\n`;
   msg+=` Equipe Escalada:\n`;
   rows.forEach((r,i)=>{
-    msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}*\n`;
+    const st=r.status==='confirmed'?'✅':r.status==='refused'?'❌':'⏳';
+    msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}* ${st}\n`;
   });
   msg+=`\n_Gerado pelo LouvorFlow_`;
   const url='https://wa.me/?text='+encodeURIComponent(msg);
