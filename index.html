@@ -508,13 +508,7 @@ let _fullSyncInterval=null;
 let _lastScalesHash='';
 let _isSyncing=false;
 
-function setSyncStatus(state){
-  const dot=document.getElementById('sync-dot');
-  const lbl=document.getElementById('sync-label');
-  if(!dot)return;
-  dot.className='sync-dot'+(state==='syncing'?' syncing':state==='offline'?' offline':'');
-  lbl.textContent=state==='syncing'?'Sincronizando...':state==='offline'?'Sem conexão':'Ao vivo ✓';
-}
+function setSyncStatus(state){/* indicador removido */}
 
 function hashScales(scales){
   return scales.map(s=>s.id+'|'+s.status).join(',');
