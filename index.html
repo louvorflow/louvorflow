@@ -63,16 +63,68 @@ aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:1
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
-.greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
-.greeting h2{font-size:20px;font-weight:800}
-.greeting p{color:var(--gray);font-size:13px;margin-top:2px}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.stat-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.stat-card .sc-icon{font-size:22px;margin-bottom:8px}
+
+/* ── DASHBOARD NOVO ── */
+.dash-section-label{font-size:10px;font-weight:800;color:#B0B8CC;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;display:flex;align-items:center;gap:6px}
+.dash-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Hero card — próximo evento */
+.hero-event-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:16px;padding:18px;color:#fff;margin-bottom:6px;position:relative;overflow:hidden}
+.hero-event-card::before{content:'🎵';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.08}
+.hero-ev-label{font-size:10px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.hero-ev-name{font-size:18px;font-weight:800;margin-bottom:2px}
+.hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:14px}
+.countdown-row{display:flex;gap:8px;margin-bottom:14px}
+.cd-block{background:rgba(255,255,255,.18);border-radius:10px;padding:8px 10px;text-align:center;min-width:52px;flex:1}
+.cd-num{font-size:20px;font-weight:800;line-height:1}
+.cd-lbl{font-size:9px;font-weight:600;opacity:.75;text-transform:uppercase;margin-top:2px}
+.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;height:6px;overflow:hidden}
+.progress-bar-fill{height:100%;background:#fff;border-radius:20px;transition:width .8s ease}
+.progress-bar-label{display:flex;justify-content:space-between;font-size:10px;opacity:.7;margin-top:5px}
+.no-event-card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:2px dashed var(--border);margin-bottom:6px}
+.no-event-card p{color:var(--gray);font-size:13px;margin-bottom:10px}
+
+/* Stats com contexto */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.stat-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.stat-card .sc-icon{font-size:20px;margin-bottom:6px}
 .stat-card .sc-num{font-size:22px;font-weight:800}
-.stat-card .sc-label{font-size:11px;color:var(--gray);margin-top:2px}
-.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
-.card h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.stat-card .sc-label{font-size:10px;color:var(--gray);margin-top:1px}
+.stat-card .sc-trend{font-size:10px;font-weight:700;margin-top:4px;display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:20px}
+.sc-trend.up{background:#DCFCE7;color:#16A34A}
+.sc-trend.neutral{background:#F3F4F6;color:var(--gray)}
+.sc-trend.down{background:#FEE2E2;color:#B91C1C}
+.stat-card .sc-bar{height:3px;border-radius:20px;background:var(--border);margin-top:8px;overflow:hidden}
+.stat-card .sc-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--blue),var(--purple))}
+
+/* Semana cards */
+.week-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.week-event-card{background:#fff;border-radius:12px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.04);border-left:4px solid var(--blue)}
+.week-event-card.ensaio{border-left-color:var(--purple)}
+.week-event-card.vigilia{border-left-color:var(--yellow)}
+.wec-date{min-width:38px;text-align:center}
+.wec-day{font-size:18px;font-weight:800;color:var(--blue);line-height:1}
+.wec-mon{font-size:9px;font-weight:600;color:var(--gray);text-transform:uppercase}
+.wec-info{flex:1}
+.wec-name{font-size:13px;font-weight:700}
+.wec-sub{font-size:11px;color:var(--gray);margin-top:2px}
+.wec-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue);white-space:nowrap}
+
+/* Equipe resumo */
+.team-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:6px}
+.team-sum-card{background:#fff;border-radius:12px;padding:13px;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.tsc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.tsc-title{font-size:11px;font-weight:700;color:var(--gray)}
+.tsc-icon{font-size:18px}
+.tsc-val{font-size:20px;font-weight:800;color:var(--dark)}
+.tsc-sub{font-size:10px;color:var(--gray);margin-top:2px}
+.health-bar{height:6px;border-radius:20px;background:var(--border);overflow:hidden;margin-top:6px}
+.health-bar-fill{height:100%;border-radius:20px;transition:width .8s ease}
+
+/* Alerta membro */
+.member-alert-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;color:#fff;margin-bottom:6px}
+
+/* gen box */
 .gen-box{background:var(--blue-light);border-radius:14px;padding:18px;margin-bottom:14px}
 .gen-box h3{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:3px}
 .gen-box p{font-size:12px;color:var(--gray);margin-bottom:12px}
@@ -86,6 +138,12 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .gen-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .btn-gen{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
 .btn-gen:hover{background:#3a63f0}
+
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
+.card h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px}
+.greeting h2{font-size:20px;font-weight:800}
+.greeting p{color:var(--gray);font-size:13px;margin-top:2px}
 .scale-day-block{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
 .scale-day-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--blue-light);border-bottom:1.5px solid var(--border);flex-wrap:wrap}
 .scale-day-date{display:flex;flex-direction:column;align-items:center;min-width:44px;background:var(--blue);color:#fff;border-radius:8px;padding:4px 8px}
@@ -199,13 +257,14 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   aside{position:fixed;left:-260px;top:58px;bottom:0;height:auto;z-index:250;width:240px;padding:16px 12px;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease}
   aside.open{left:0}
   .hamburger{display:block}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
   .members-grid{grid-template-columns:repeat(2,1fr)}
   .profile-grid{grid-template-columns:1fr}
   .rq-grid{grid-template-columns:repeat(2,1fr)}
   main{padding:14px 12px}
   .scale-filter-bar input[type=date]{min-width:100px}
   .header-left h4{max-width:130px}
+  .team-summary-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:400px){
   .stats-grid{grid-template-columns:1fr 1fr}
@@ -216,6 +275,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   .ministry-type-picker{flex-direction:column}
   .scale-filter-bar{flex-direction:column;align-items:stretch}
   .scale-filter-bar input[type=date]{min-width:unset}
+  .team-summary-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -333,21 +393,59 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
     <main>
       <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
+        <!-- Saudação -->
         <div class="greeting-row">
-          <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p>Resumo do ministério.</p></div>
+          <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p id="dash-subtitle">Resumo do ministério.</p></div>
           <span id="role-badge" class="badge admin">Admin</span>
         </div>
-        <div class="stats-grid">
-          <div class="stat-card"><div class="sc-icon">🎵</div><div class="sc-num" id="dash-ev-count">—</div><div class="sc-label">Eventos</div></div>
-          <div class="stat-card"><div class="sc-icon">👥</div><div class="sc-num" id="dash-member-count">—</div><div class="sc-label">Membros</div></div>
-          <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="dash-scale-count">—</div><div class="sc-label">Escalas</div></div>
-        </div>
-        <!-- Alerta para membros (confirmações pendentes) -->
-        <div id="member-scale-alert" style="display:none;background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;margin-bottom:14px;color:#fff">
+
+        <!-- Alerta membro (confirmações pendentes) -->
+        <div id="member-scale-alert" style="display:none" class="member-alert-card">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
           <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
         </div>
+
+        <!-- SEÇÃO: AGORA -->
+        <div class="dash-section-label">🔴 Agora</div>
+
+        <!-- Hero: próximo evento + countdown -->
+        <div id="dash-hero-event"></div>
+
+        <!-- Stats com contexto -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="sc-icon">🎵</div>
+            <div class="sc-num" id="dash-ev-count">—</div>
+            <div class="sc-label">Eventos</div>
+            <div id="dash-ev-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-ev-bar" style="width:0%"></div></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-icon">👥</div>
+            <div class="sc-num" id="dash-member-count">—</div>
+            <div class="sc-label">Membros</div>
+            <div id="dash-mem-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-mem-bar" style="width:0%"></div></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-icon">📋</div>
+            <div class="sc-num" id="dash-scale-count">—</div>
+            <div class="sc-label">Escalas</div>
+            <div id="dash-sc-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: ESTA SEMANA -->
+        <div class="dash-section-label">📅 Esta semana</div>
+        <div id="dash-week-events" class="week-cards"></div>
+
+        <!-- SEÇÃO: EQUIPE -->
+        <div class="dash-section-label">👥 Equipe</div>
+        <div class="team-summary-grid" id="dash-team-summary"></div>
+
+        <!-- Gerador de escala (admin) -->
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -356,10 +454,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <span id="total-dash" style="font-size:12px;color:var(--gray)">Total: <strong>0</strong></span>
             <button class="btn-gen" onclick="generateScale()">⚡ GERAR</button>
           </div>
-        </div>
-        <div class="card">
-          <h3>📅 Próximos Eventos</h3>
-          <div id="dash-events-preview"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
         </div>
       </div>
 
@@ -388,7 +482,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="greeting"><h2>📋 Escalas</h2></div>
           <button class="btn-gen admin-only" style="display:none" onclick="navigate('dashboard')">⚡ Gerar</button>
         </div>
-        <!-- ✅ PAINEL DE CONFIRMAÇÕES (só admin, só quando há escalas) -->
         <div id="scales-confirm-panel" style="display:none" class="card">
           <h3>📊 Confirmações da Escala</h3>
           <div id="scales-confirm-summary"></div>
@@ -538,22 +631,21 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
 
-let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false;
-function hashScales(scales){return scales.map(s=>s.id+'|'+s.status+'|'+s.member_name).join(',');}
+let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false,_cdInterval=null;
+function hashScales(s){return s.map(x=>x.id+'|'+x.status+'|'+x.member_name).join(',');}
+
 async function pollScales(){
-  if(_isSyncing||!currentUser)return;
-  _isSyncing=true;
+  if(_isSyncing||!currentUser)return;_isSyncing=true;
   try{
     const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
-    const seen=new Set();
-    const fresh=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
+    const seen=new Set(),fresh=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
     const newHash=hashScales(fresh);
     if(newHash!==_lastScalesHash){
       _lastScalesHash=newHash;
-      fresh.forEach(s=>{const prev=allScales.find(p=>p.id===s.id);if(prev){s._autoSwapped=prev._autoSwapped;s._refusedBy=prev._refusedBy;}});
-      allScales=fresh;
-      renderScaleOutput();renderMyScales();renderDashboard();
+      fresh.forEach(s=>{const p=allScales.find(x=>x.id===s.id);if(p){s._autoSwapped=p._autoSwapped;s._refusedBy=p._refusedBy;}});
+      allScales=fresh;renderScaleOutput();renderMyScales();renderDashboard();
       document.getElementById('dash-scale-count').textContent=allScales.length;
+      updateScaleTrend();
     }
   }catch(e){}
   _isSyncing=false;
@@ -561,20 +653,13 @@ async function pollScales(){
 function pollNow(){_isSyncing=false;pollScales();}
 async function fullSync(){if(!currentUser)return;await Promise.all([loadEvents(),loadMembers()]);await pollScales();}
 function startSync(){stopSync();pollNow();_syncInterval=setInterval(pollScales,5000);_fullSyncInterval=setInterval(fullSync,30000);}
-function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}}
+function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}if(_cdInterval){clearInterval(_cdInterval);_cdInterval=null;}}
 
 function saveSession(u,m){localStorage.setItem('lf_session',JSON.stringify({user:u,ministry:m}));}
 function clearSession(){localStorage.removeItem('lf_session');}
 async function tryAutoLogin(){
-  try{
-    const raw=localStorage.getItem('lf_session');if(!raw)return false;
-    const{user,ministry}=JSON.parse(raw);if(!user?.id)return false;
-    currentUser=user;currentMinistry=ministry;
-    sb('members','GET',null,`?id=eq.${user.id}`).then(rows=>{
-      if(!rows.length){clearSession();doLogout();return;}
-      currentUser=rows[0];
-      sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`).then(mins=>{if(mins.length){currentMinistry=mins[0];updateUserUI();}});
-    }).catch(()=>{});
+  try{const raw=localStorage.getItem('lf_session');if(!raw)return false;const{user,ministry}=JSON.parse(raw);if(!user?.id)return false;currentUser=user;currentMinistry=ministry;
+    sb('members','GET',null,`?id=eq.${user.id}`).then(rows=>{if(!rows.length){clearSession();doLogout();return;}currentUser=rows[0];sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`).then(mins=>{if(mins.length){currentMinistry=mins[0];updateUserUI();}});}).catch(()=>{});
     return true;
   }catch(e){clearSession();return false;}
 }
@@ -607,7 +692,7 @@ function switchTab(t){
   if(t==='forgot')document.getElementById('forgot-result').style.display='none';
   if(t==='register'){goRegStep1();const code=getCodeFromURL();if(code){selectMinistryType('join');document.getElementById('reg-code-j').value=code.toUpperCase();previewMinistry(code.toUpperCase());}}
 }
-function selectMinistryType(type){selectedMinistryType=type;document.getElementById('mtp-create').classList.toggle('selected',type==='create');document.getElementById('mtp-join').classList.toggle('selected',type==='join');document.getElementById('reg-type-warning').style.display='none';}
+function selectMinistryType(t){selectedMinistryType=t;document.getElementById('mtp-create').classList.toggle('selected',t==='create');document.getElementById('mtp-join').classList.toggle('selected',t==='join');document.getElementById('reg-type-warning').style.display='none';}
 function goRegStep1(){document.getElementById('reg-step-1').style.display='block';document.getElementById('reg-step-2').style.display='none';}
 function goRegStep2(){if(!selectedMinistryType){document.getElementById('reg-type-warning').style.display='block';document.getElementById('reg-type-warning').textContent='Escolha uma das opções acima.';return;}document.getElementById('reg-step-1').style.display='none';document.getElementById('reg-step-2').style.display='block';if(selectedMinistryType==='create'){document.getElementById('reg-create-fields').style.display='block';document.getElementById('reg-join-fields').style.display='none';}else{document.getElementById('reg-create-fields').style.display='none';document.getElementById('reg-join-fields').style.display='block';const code=getCodeFromURL();if(code)document.getElementById('reg-code-j').value=code.toUpperCase();}}
 function toggleRolePick(el){el.classList.toggle('selected');}
@@ -616,8 +701,8 @@ let previewTimeout=null;
 document.addEventListener('DOMContentLoaded',async()=>{
   const loggedIn=await tryAutoLogin();
   if(loggedIn){await launchApp();return;}
-  const codeInput=document.getElementById('reg-code-j');
-  if(codeInput){codeInput.addEventListener('input',()=>{clearTimeout(previewTimeout);const v=codeInput.value.trim().toUpperCase();codeInput.value=v;if(v.length>=6)previewTimeout=setTimeout(()=>previewMinistry(v),500);else document.getElementById('ministry-preview').style.display='none';});}
+  const ci=document.getElementById('reg-code-j');
+  if(ci){ci.addEventListener('input',()=>{clearTimeout(previewTimeout);const v=ci.value.trim().toUpperCase();ci.value=v;if(v.length>=6)previewTimeout=setTimeout(()=>previewMinistry(v),500);else document.getElementById('ministry-preview').style.display='none';});}
   const code=getCodeFromURL();if(code)switchTab('register');
 });
 
@@ -625,25 +710,19 @@ async function previewMinistry(code){
   try{const rows=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);const prev=document.getElementById('ministry-preview');if(rows.length){prev.style.display='block';prev.style.background='var(--blue-light)';prev.innerHTML=`✅ Ministério encontrado: <strong>${rows[0].name}</strong>`;}else{prev.style.display='block';prev.style.background='#FEE2E2';prev.innerHTML='❌ Código não encontrado.';}}catch(e){}
 }
 async function doLogin(){
-  const email=document.getElementById('login-email').value.trim().toLowerCase();
-  const pass=document.getElementById('login-pass').value;
+  const email=document.getElementById('login-email').value.trim().toLowerCase(),pass=document.getElementById('login-pass').value;
   if(!email||!pass){showToast('Preencha e-mail e senha','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
   setLoading('btn-login',true,'Entrar →');
   try{
     const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}`);
-    if(!rows.length){const emailCheck=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);showToast(emailCheck.length?'Senha incorreta':'E-mail não cadastrado','error');return;}
-    currentUser=rows[0];
-    const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);
-    currentMinistry=mins[0]||null;saveSession(currentUser,currentMinistry);await launchApp();
+    if(!rows.length){const ec=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);showToast(ec.length?'Senha incorreta':'E-mail não cadastrado','error');return;}
+    currentUser=rows[0];const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);currentMinistry=mins[0]||null;saveSession(currentUser,currentMinistry);await launchApp();
   }catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-login',false,'Entrar →');}
 }
 async function doRegisterCreate(){
-  const name=document.getElementById('reg-name-c').value.trim();
-  const email=document.getElementById('reg-email-c').value.trim().toLowerCase();
-  const pass=document.getElementById('reg-pass-c').value;
-  const ministryName=document.getElementById('reg-ministry-name').value.trim();
+  const name=document.getElementById('reg-name-c').value.trim(),email=document.getElementById('reg-email-c').value.trim().toLowerCase(),pass=document.getElementById('reg-pass-c').value,ministryName=document.getElementById('reg-ministry-name').value.trim();
   const roles=[...document.querySelectorAll('#roles-picker-c .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!ministryName){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
@@ -654,16 +733,12 @@ async function doRegisterCreate(){
     let code=genCode();for(let i=0;i<3;i++){const ex=await sb('ministries','GET',null,`?invite_code=eq.${code}`);if(!ex.length)break;code=genCode();}
     const ministry=await sb('ministries','POST',{name:ministryName,invite_code:code});
     const rows=await sb('members','POST',{name,email,password:pass,is_admin:true,roles,ministry_id:ministry[0].id});
-    currentUser=rows[0];currentMinistry=ministry[0];saveSession(currentUser,currentMinistry);
-    await launchApp();showToast('🎉 Ministério criado!','success');
+    currentUser=rows[0];currentMinistry=ministry[0];saveSession(currentUser,currentMinistry);await launchApp();showToast('🎉 Ministério criado!','success');
   }catch(e){showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');}
   finally{setLoading('btn-register-c',false,'Criar conta →');}
 }
 async function doRegisterJoin(){
-  const name=document.getElementById('reg-name-j').value.trim();
-  const email=document.getElementById('reg-email-j').value.trim().toLowerCase();
-  const pass=document.getElementById('reg-pass-j').value;
-  const code=document.getElementById('reg-code-j').value.trim().toUpperCase();
+  const name=document.getElementById('reg-name-j').value.trim(),email=document.getElementById('reg-email-j').value.trim().toLowerCase(),pass=document.getElementById('reg-pass-j').value,code=document.getElementById('reg-code-j').value.trim().toUpperCase();
   const roles=[...document.querySelectorAll('#roles-picker-j .rp-item.selected')].map(e=>e.textContent.trim());
   if(!name||!email||!pass||!code){showToast('Preencha todos os campos','error');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
@@ -674,32 +749,27 @@ async function doRegisterJoin(){
     const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
     if(!mins.length){showToast('Código de ministério inválido','error');return;}
     const rows=await sb('members','POST',{name,email,password:pass,is_admin:false,roles,ministry_id:mins[0].id});
-    currentUser=rows[0];currentMinistry=mins[0];saveSession(currentUser,currentMinistry);
-    await launchApp();showToast(`🎉 Bem-vindo ao ${mins[0].name}!`,'success');
+    currentUser=rows[0];currentMinistry=mins[0];saveSession(currentUser,currentMinistry);await launchApp();showToast(`🎉 Bem-vindo ao ${mins[0].name}!`,'success');
   }catch(e){showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');}
   finally{setLoading('btn-register-j',false,'Entrar na equipe →');}
 }
 async function joinMinistryFromProfile(){
-  const code=document.getElementById('join-code-input').value.trim().toUpperCase();
-  if(!code){showToast('Digite o código','error');return;}
+  const code=document.getElementById('join-code-input').value.trim().toUpperCase();if(!code){showToast('Digite o código','error');return;}
   try{
     const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
     if(!mins.length){showToast('Código não encontrado','error');return;}
     if(mins[0].id===currentMinistry?.id){showToast('Você já está neste ministério','error');return;}
     if(!confirm(`⚠️ Entrar em "${mins[0].name}" e sair de "${currentMinistry?.name||'ministério atual'}"?`))return;
     await sb('members','PATCH',{ministry_id:mins[0].id,is_admin:false},`?id=eq.${currentUser.id}`);
-    currentUser.ministry_id=mins[0].id;currentMinistry=mins[0];
-    document.getElementById('join-code-input').value='';
+    currentUser.ministry_id=mins[0].id;currentMinistry=mins[0];document.getElementById('join-code-input').value='';
     await fullSync();updateUserUI();navigate('dashboard');showToast(`✅ Entrou em ${mins[0].name}!`,'success');
   }catch(e){showToast('Erro: '+e.message,'error');}
 }
 async function doForgot(){
-  const email=document.getElementById('forgot-email').value.trim();
-  if(!email){showToast('Digite seu e-mail','error');return;}
+  const email=document.getElementById('forgot-email').value.trim();if(!email){showToast('Digite seu e-mail','error');return;}
   setLoading('btn-forgot',true,'Buscar →');
   try{
-    const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);
-    const res=document.getElementById('forgot-result');
+    const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);const res=document.getElementById('forgot-result');
     if(!rows.length){res.style.display='block';res.style.background='#FEE2E2';res.innerHTML='<strong>❌ E-mail não encontrado.</strong>';}
     else{res.style.display='block';res.style.background='var(--blue-light)';res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br><small style="color:var(--gray)">Entre em contato com o administrador para redefinir sua senha.</small>`;}
   }catch(e){showToast('Erro: '+e.message,'error');}
@@ -718,8 +788,7 @@ async function deleteSelfProfile(){
 function doLogout(){
   currentUser=null;currentMinistry=null;allEvents=[];allMembers=[];allScales=[];
   stopSync();clearSession();localStorage.removeItem('lastPage');
-  document.getElementById('app').style.display='none';
-  document.getElementById('auth-screen').style.display='flex';
+  document.getElementById('app').style.display='none';document.getElementById('auth-screen').style.display='flex';
 }
 function setLoading(id,on,label){const b=document.getElementById(id);if(!b)return;b.disabled=on;b.innerHTML=on?'<span class="spinner"></span> Aguarde...':label;}
 
@@ -730,17 +799,13 @@ function shareInviteWhatsApp(){const mn=currentMinistry?.name||'nosso ministéri
 function updateInviteDisplay(){if(!currentMinistry)return;document.getElementById('invite-code-display').textContent=currentMinistry.invite_code||'---';document.getElementById('invite-link-display').value=getInviteLink();}
 
 async function launchApp(){
-  document.getElementById('auth-screen').style.display='none';
-  document.getElementById('app').style.display='flex';
+  document.getElementById('auth-screen').style.display='none';document.getElementById('app').style.display='flex';
   updateUserUI();buildRqGrid();
   await Promise.all([loadEvents(),loadMembers(),loadAvailability()]);
-  await loadScales();
-  buildAvailGrid();
+  await loadScales();buildAvailGrid();
   document.getElementById('cfg-my-name').value=currentUser.name||'';
   document.getElementById('cfg-ministry-name').value=currentMinistry?.name||'Ministério';
-  updateInviteDisplay();
-  navigate(localStorage.getItem('lastPage')||'dashboard');
-  startSync();
+  updateInviteDisplay();navigate(localStorage.getItem('lastPage')||'dashboard');startSync();
 }
 function updateUserUI(){
   if(!currentUser)return;
@@ -765,20 +830,15 @@ function updateUserUI(){
 async function saveMinistryName(){const v=document.getElementById('cfg-ministry-name').value.trim();if(!v){showToast('Digite um nome','error');return;}try{await sb('ministries','PATCH',{name:v},`?id=eq.${currentMinistry.id}`);currentMinistry.name=v;document.getElementById('ministry-name').textContent=v;document.getElementById('profile-sub').textContent=`Líder · ${v}`;updateInviteDisplay();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyName(){const v=document.getElementById('cfg-my-name').value.trim();if(!v){showToast('Digite seu nome','error');return;}try{await sb('members','PATCH',{name:v},`?id=eq.${currentUser.id}`);currentUser.name=v;updateUserUI();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyPass(){const v=document.getElementById('cfg-my-pass').value;if(!v||v.length<4){showToast('Senha com ao menos 4 caracteres','error');return;}try{await sb('members','PATCH',{password:v},`?id=eq.${currentUser.id}`);currentUser.password=v;document.getElementById('cfg-my-pass').value='';showToast('✅ Senha atualizada!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
-
 function openEditRolesModal(){
-  const userRoles=currentUser.roles||[];
-  document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>{item.classList.toggle('selected',userRoles.includes(item.textContent.trim()));});
-  showModal('edit-roles-modal');
+  const ur=currentUser.roles||[];document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>item.classList.toggle('selected',ur.includes(item.textContent.trim())));showModal('edit-roles-modal');
 }
 async function saveEditedRoles(){
   const newRoles=[...document.querySelectorAll('#edit-roles-picker .rp-item.selected')].map(e=>e.textContent.trim());
   if(!newRoles.length){showToast('Selecione pelo menos uma função','error');return;}
   setLoading('btn-save-roles',true,'Salvar funções →');
-  try{
-    await sb('members','PATCH',{roles:newRoles},`?id=eq.${currentUser.id}`);
-    currentUser.roles=newRoles;updateUserUI();closeModal('edit-roles-modal');showToast('✅ Funções atualizadas!','success');
-  }catch(e){showToast('Erro: '+e.message,'error');}
+  try{await sb('members','PATCH',{roles:newRoles},`?id=eq.${currentUser.id}`);currentUser.roles=newRoles;updateUserUI();closeModal('edit-roles-modal');showToast('✅ Funções atualizadas!','success');}
+  catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-save-roles',false,'Salvar funções →');}
 }
 
@@ -786,11 +846,11 @@ function toggleSidebar(){document.getElementById('sidebar').classList.toggle('op
 
 async function loadEvents(){
   if(!currentUser?.ministry_id)return;
-  try{allEvents=await sb('events','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=date.asc`);renderEventsList();renderDashEvents();document.getElementById('dash-ev-count').textContent=allEvents.length;}catch(e){console.error(e);}
+  try{allEvents=await sb('events','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=date.asc`);renderEventsList();renderDashboard();document.getElementById('dash-ev-count').textContent=allEvents.length;updateEventTrend();}catch(e){console.error(e);}
 }
 async function loadMembers(){
   if(!currentUser?.ministry_id)return;
-  try{allMembers=await sb('members','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=name.asc`);renderMembersGrid();document.getElementById('dash-member-count').textContent=allMembers.length;document.getElementById('member-count-label').textContent=`${allMembers.length} membros ativos.`;}catch(e){console.error(e);}
+  try{allMembers=await sb('members','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=name.asc`);renderMembersGrid();document.getElementById('dash-member-count').textContent=allMembers.length;document.getElementById('member-count-label').textContent=`${allMembers.length} membros ativos.`;updateMemberTrend();}catch(e){console.error(e);}
 }
 async function loadScales(){
   if(!currentUser?.ministry_id)return;
@@ -798,7 +858,7 @@ async function loadScales(){
     const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
     const seen=new Set();allScales=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
     _lastScalesHash=hashScales(allScales);renderScaleOutput();renderMyScales();renderDashboard();
-    document.getElementById('dash-scale-count').textContent=allScales.length;
+    document.getElementById('dash-scale-count').textContent=allScales.length;updateScaleTrend();
   }catch(e){console.error(e);}
 }
 async function loadAvailability(){
@@ -806,8 +866,178 @@ async function loadAvailability(){
   try{const rows=await sb('availability','GET',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}&ministry_id=eq.${currentUser.ministry_id}`);availState={};rows.forEach(r=>{availState[r.date]=r.available;});}catch(e){console.error(e);}
 }
 
+// ── TREND HELPERS ──────────────────────────────────────────────
+function updateEventTrend(){
+  const now=new Date(),thisMonth=allEvents.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}).length;
+  const lastM=now.getMonth()===0?11:now.getMonth()-1,lastY=now.getMonth()===0?now.getFullYear()-1:now.getFullYear();
+  const lastMonth=allEvents.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getMonth()===lastM&&d.getFullYear()===lastY;}).length;
+  const el=document.getElementById('dash-ev-trend'),bar=document.getElementById('dash-ev-bar');
+  const diff=thisMonth-lastMonth;
+  el.className='sc-trend'+(diff>0?' up':diff<0?' down':' neutral');
+  el.textContent=diff>0?`+${diff} este mês`:diff<0?`${diff} este mês`:`Estável`;
+  if(bar)bar.style.width=`${Math.min(100,allEvents.length*10)}%`;
+}
+function updateMemberTrend(){
+  const el=document.getElementById('dash-mem-trend'),bar=document.getElementById('dash-mem-bar');
+  const admins=allMembers.filter(m=>m.is_admin).length;
+  el.className='sc-trend neutral';
+  el.textContent=`${admins} admin${admins!==1?'s':''}`;
+  if(bar)bar.style.width=`${Math.min(100,allMembers.length*8)}%`;
+}
+function updateScaleTrend(){
+  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
+  const pct=allScales.length?Math.round(confirmed/allScales.length*100):0;
+  const el=document.getElementById('dash-sc-trend'),bar=document.getElementById('dash-sc-bar');
+  el.className='sc-trend'+(pct>=70?' up':pct>=40?' neutral':' down');
+  el.textContent=`${pct}% confirmado`;
+  if(bar)bar.style.width=`${pct}%`;
+}
+
+// ── COUNTDOWN ──────────────────────────────────────────────────
+function getNextEvent(){
+  const today=fmt(new Date());return allEvents.find(e=>e.date>=today)||null;
+}
+function getDaysUntil(dateStr){
+  const now=new Date();now.setHours(0,0,0,0);const ev=new Date(dateStr+'T12:00:00');return Math.round((ev-now)/(1000*60*60*24));}
+function startCountdown(dateStr,timeStr){
+  if(_cdInterval)clearInterval(_cdInterval);
+  function tick(){
+    const el=document.getElementById('cd-days'),eh=document.getElementById('cd-hours'),em=document.getElementById('cd-mins'),es=document.getElementById('cd-secs');
+    if(!el)return clearInterval(_cdInterval);
+    const now=new Date(),target=new Date(`${dateStr}T${timeStr||'00:00'}:00`);
+    const diff=Math.max(0,target-now);
+    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    if(el)el.textContent=String(d).padStart(2,'0');
+    if(eh)eh.textContent=String(h).padStart(2,'0');
+    if(em)em.textContent=String(m).padStart(2,'0');
+    if(es)es.textContent=String(s).padStart(2,'0');
+    // barra de progresso
+    const bar=document.getElementById('cd-progress-fill');
+    if(bar){const totalDays=getDaysUntil(dateStr)+1;const pct=Math.max(0,Math.min(100,100-(diff/86400000/totalDays*100)));bar.style.width=pct+'%';}
+  }
+  tick();_cdInterval=setInterval(tick,1000);
+}
+
+// ── DASHBOARD PRINCIPAL ────────────────────────────────────────
+function renderDashboard(){
+  document.getElementById('new-ev-date').min=fmt(new Date());
+  // Saudação dinâmica
+  const h=new Date().getHours();
+  const sub=h<12?'Bom dia! Que a música abençoe hoje.':h<18?'Boa tarde! Seu ministério está aqui.':'Boa noite! Tudo pronto para louvar.';
+  const subEl=document.getElementById('dash-subtitle');if(subEl)subEl.textContent=sub;
+
+  renderHeroEvent();
+  renderWeekEvents();
+  renderTeamSummary();
+
+  // Alerta membro
+  const memberAlert=document.getElementById('member-scale-alert');
+  if(currentUser.is_admin){memberAlert.style.display='none';return;}
+  if(!allScales.length){memberAlert.style.display='none';return;}
+  const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
+  if(!mine.length){memberAlert.style.display='none';return;}
+  const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
+  const evIds=Object.keys(byEv),firstEv=allEvents.find(e=>e.id===evIds[0]);
+  if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
+  memberAlert.style.display='block';
+  const{day,mon,week}=dateLabel(firstEv.date),total=evIds.length;
+  document.getElementById('member-scale-alert-text').textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
+  document.getElementById('member-scale-alert-btns').innerHTML=byEv[evIds[0]].map(s=>`<button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button><button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>`).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
+}
+
+function renderHeroEvent(){
+  const container=document.getElementById('dash-hero-event');if(!container)return;
+  const next=getNextEvent();
+  if(!next){
+    container.innerHTML=currentUser.is_admin
+      ?`<div class="no-event-card"><p>Nenhum evento agendado ainda.</p><button onclick="showModal('add-event-modal')" class="btn-gen" style="margin:0 auto">+ Criar evento</button></div>`
+      :`<div class="no-event-card"><p>📅 Nenhum evento próximo.</p></div>`;
+    return;
+  }
+  const{day,mon,week}=dateLabel(next.date),days=getDaysUntil(next.date);
+  const urgency=days===0?'🔴 Hoje!':days===1?'🟡 Amanhã':days<=7?`🟢 Em ${days} dias`:`Em ${days} dias`;
+  // escalados no evento
+  const escalados=allScales.filter(s=>s.event_id===next.id);
+  const confirmed=escalados.filter(s=>s.status==='confirmed').length;
+  const pctConf=escalados.length?Math.round(confirmed/escalados.length*100):0;
+
+  container.innerHTML=`
+    <div class="hero-event-card">
+      <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
+      <div class="hero-ev-name">${next.name}</div>
+      <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
+      <div class="countdown-row">
+        <div class="cd-block"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Dias</div></div>
+        <div class="cd-block"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Horas</div></div>
+        <div class="cd-block"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Min</div></div>
+        <div class="cd-block"><div class="cd-num" id="cd-secs">--</div><div class="cd-lbl">Seg</div></div>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="cd-progress-fill" style="width:0%"></div></div>
+      <div class="progress-bar-label"><span>Agora</span><span>${String(day).padStart(2,'0')}/${mon}</span></div>
+      ${escalados.length?`<div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;opacity:.9">👥 ${escalados.length} escalados · ${pctConf}% confirmado</span><button onclick="navigate('scales')" style="background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">Ver →</button></div>`:''}
+    </div>`;
+  startCountdown(next.date,next.time);
+}
+
+function renderWeekEvents(){
+  const container=document.getElementById('dash-week-events');if(!container)return;
+  const now=new Date(),today=fmt(now);
+  const weekEnd=new Date(now);weekEnd.setDate(weekEnd.getDate()+7);const weekEndStr=fmt(weekEnd);
+  const weekEvs=allEvents.filter(e=>e.date>=today&&e.date<=weekEndStr);
+  if(!weekEvs.length){container.innerHTML=`<div style="background:#fff;border-radius:12px;padding:16px;text-align:center;color:var(--gray);font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,.04)">Nenhum evento esta semana 🎉</div>`;return;}
+  container.innerHTML=weekEvs.map(ev=>{
+    const{day,mon,week}=dateLabel(ev.date);
+    const sc=allScales.filter(s=>s.event_id===ev.id);
+    const conf=sc.filter(s=>s.status==='confirmed').length;
+    const badge=sc.length?`<span class="wec-badge">${conf}/${sc.length} ✅</span>`:'<span class="wec-badge" style="background:#FEF9C3;color:#B45309">Sem escala</span>';
+    return`<div class="week-event-card ${typeClass(ev.type)}">
+      <div class="wec-date"><div class="wec-day">${day}</div><div class="wec-mon">${mon}</div></div>
+      <div class="wec-info"><div class="wec-name">${ev.name}</div><div class="wec-sub">${week} · ${ev.time} · ${ev.type}</div></div>
+      ${badge}
+    </div>`;
+  }).join('');
+}
+
+function renderTeamSummary(){
+  const container=document.getElementById('dash-team-summary');if(!container)return;
+  const total=allMembers.length;
+  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
+  const pending=allScales.filter(s=>s.status==='pending').length;
+  const refused=allScales.filter(s=>s.status==='refused').length;
+  const pct=allScales.length?Math.round(confirmed/allScales.length*100):0;
+  const healthColor=pct>=70?'#22C55E':pct>=40?'#F59E0B':'#EF4444';
+  // funções cobertas
+  const allRoleNames=ROLES_DEFS.map(r=>`${r.icon} ${r.name}`);
+  const coveredRoles=allRoleNames.filter(r=>allMembers.some(m=>(m.roles||[]).includes(r)));
+  const missingRoles=allRoleNames.filter(r=>!allMembers.some(m=>(m.roles||[]).includes(r)));
+
+  container.innerHTML=`
+    <div class="team-sum-card">
+      <div class="tsc-top"><span class="tsc-title">Saúde da equipe</span><span class="tsc-icon">🌡️</span></div>
+      <div class="tsc-val" style="color:${healthColor}">${pct}%</div>
+      <div class="tsc-sub">${confirmed} conf · ${pending} pend · ${refused} rec</div>
+      <div class="health-bar"><div class="health-bar-fill" style="width:${pct}%;background:${healthColor}"></div></div>
+    </div>
+    <div class="team-sum-card">
+      <div class="tsc-top"><span class="tsc-title">Membros ativos</span><span class="tsc-icon">👥</span></div>
+      <div class="tsc-val">${total}</div>
+      <div class="tsc-sub">${allMembers.filter(m=>m.is_admin).length} admin · ${total-allMembers.filter(m=>m.is_admin).length} membros</div>
+    </div>
+    <div class="team-sum-card">
+      <div class="tsc-top"><span class="tsc-title">Funções cobertas</span><span class="tsc-icon">🎯</span></div>
+      <div class="tsc-val">${coveredRoles.length}<span style="font-size:13px;color:var(--gray);font-weight:600">/${allRoleNames.length}</span></div>
+      <div class="tsc-sub">${missingRoles.length?`⚠️ Falta: ${missingRoles.map(r=>r.split(' ').slice(1).join(' ')).join(', ')}`:'✅ Todas cobertas'}</div>
+    </div>
+    <div class="team-sum-card">
+      <div class="tsc-top"><span class="tsc-title">Total de eventos</span><span class="tsc-icon">📅</span></div>
+      <div class="tsc-val">${allEvents.length}</div>
+      <div class="tsc-sub">${allEvents.filter(e=>e.date>=fmt(new Date())).length} futuros · ${allEvents.filter(e=>e.date<fmt(new Date())).length} passados</div>
+    </div>`;
+}
+
 function dateLabel(s){const d=new Date(s+'T12:00:00');return{day:d.getDate(),mon:MONTHS[d.getMonth()].slice(0,3),week:WEEKS[d.getDay()]};}
 function typeClass(t){return t==='Ensaio'?'ensaio':t==='Vigília'?'vigilia':'';}
+
 function renderEventsList(){
   const el=document.getElementById('events-list');if(!el)return;
   if(!allEvents.length){el.innerHTML='<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado.</p>';return;}
@@ -818,51 +1048,16 @@ function renderEventsList(){
   }).join('');
 }
 
-// ── DASHBOARD: sem painel de confirmações ──────────────────────
-function renderDashboard(){
-  document.getElementById('new-ev-date').min=fmt(new Date());
-  const memberAlert=document.getElementById('member-scale-alert');
-  const memberAlertText=document.getElementById('member-scale-alert-text');
-  const memberAlertBtns=document.getElementById('member-scale-alert-btns');
-  if(currentUser.is_admin){memberAlert.style.display='none';return;}
-  if(!allScales.length){memberAlert.style.display='none';return;}
-  const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
-  if(!mine.length){memberAlert.style.display='none';return;}
-  const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
-  const evIds=Object.keys(byEv);
-  const firstEv=allEvents.find(e=>e.id===evIds[0]);
-  if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
-  memberAlert.style.display='block';
-  const{day,mon,week}=dateLabel(firstEv.date);
-  const total=evIds.length;
-  memberAlertText.textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
-  memberAlertBtns.innerHTML=byEv[evIds[0]].map(s=>`<button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button><button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>`).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
-}
-
-// ── ESCALAS: painel de confirmações (só admin) ─────────────────
 function renderScalesConfirmPanel(){
-  const panel=document.getElementById('scales-confirm-panel');
-  const summary=document.getElementById('scales-confirm-summary');
+  const panel=document.getElementById('scales-confirm-panel'),summary=document.getElementById('scales-confirm-summary');
   if(!currentUser.is_admin||!allScales.length){panel.style.display='none';return;}
-  const total=allScales.length;
-  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
-  const refused=allScales.filter(s=>s.status==='refused').length;
-  const pending=total-confirmed-refused;
+  const total=allScales.length,confirmed=allScales.filter(s=>s.status==='confirmed').length,refused=allScales.filter(s=>s.status==='refused').length,pending=total-confirmed-refused;
   const pct=total?Math.round(confirmed/total*100):0;
-  const autoSwapped=allScales.filter(s=>s._autoSwapped&&s._refusedBy);
-  const noSubRefused=allScales.filter(s=>s.status==='refused'&&!s._autoSwapped);
-  const autoSwapLogs=autoSwapped.map(s=>{
-    const ev=allEvents.find(e=>e.id===s.event_id);
-    return`<div class="autoswap-log">🔄 <strong>Troca automática</strong>${ev?` em <em>${ev.name}</em>`:''}<br><span style="color:var(--gray)">${s._refusedBy} recusou → <strong style="color:var(--blue)">${s.member_name}</strong> assumiu <em>${s.role}</em></span></div>`;
-  }).join('');
-  const noSubAlerts=noSubRefused.map(s=>{
-    const ev=allEvents.find(e=>e.id===s.event_id);
-    return`<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)"><strong>⚠️ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · <em>${ev.name}</em>`:''}<br><span style="color:var(--red)">Nenhum substituto encontrado — substitua manualmente.</span></div>`;
-  }).join('');
-  const allAlerts=autoSwapLogs+noSubAlerts;
+  const autoSwapped=allScales.filter(s=>s._autoSwapped&&s._refusedBy),noSubRefused=allScales.filter(s=>s.status==='refused'&&!s._autoSwapped);
+  const autoSwapLogs=autoSwapped.map(s=>{const ev=allEvents.find(e=>e.id===s.event_id);return`<div class="autoswap-log">🔄 <strong>Troca automática</strong>${ev?` em <em>${ev.name}</em>`:''}<br><span style="color:var(--gray)">${s._refusedBy} recusou → <strong style="color:var(--blue)">${s.member_name}</strong> assumiu <em>${s.role}</em></span></div>`;}).join('');
+  const noSubAlerts=noSubRefused.map(s=>{const ev=allEvents.find(e=>e.id===s.event_id);return`<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)"><strong>⚠️ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · <em>${ev.name}</em>`:''}<br><span style="color:var(--red)">Nenhum substituto encontrado.</span></div>`;}).join('');
   panel.style.display='block';
-  summary.innerHTML=
-    (allAlerts?`<div style="margin-bottom:10px">${allAlerts}</div>`:'')+
+  summary.innerHTML=(autoSwapLogs+noSubAlerts?`<div style="margin-bottom:10px">${autoSwapLogs+noSubAlerts}</div>`:'')+
     `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
       <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
       <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
@@ -872,19 +1067,12 @@ function renderScalesConfirmPanel(){
     <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
 }
 
-function renderDashEvents(){
-  const el=document.getElementById('dash-events-preview');if(!el)return;
-  const up=allEvents.filter(e=>e.date>=fmt(new Date())).slice(0,3);
-  if(!up.length){el.innerHTML=currentUser.is_admin?'<p style="color:var(--gray);font-size:13px">Nenhum evento. <button onclick="showModal(\'add-event-modal\')" style="background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;font-size:13px">+ Criar →</button></p>':'<p style="color:var(--gray);font-size:13px">Nenhum evento próximo. 📅</p>';return;}
-  el.innerHTML='<div class="events-list">'+up.map(ev=>{const{day,mon,week}=dateLabel(ev.date);return`<div class="event-item ${typeClass(ev.type)}"><div class="event-date-box"><div class="day">${day}</div><div class="mon">${mon}</div></div><div class="event-info"><h4>${ev.name}</h4><p>${week} · ${ev.time}</p></div></div>`;}).join('')+'</div>';
-}
 async function removeEvent(id){
   if(!confirm('🗑️ Apagar este evento? As escalas vinculadas também serão removidas.'))return;
   try{await sb('scales','DELETE',null,`?event_id=eq.${id}`);await sb('events','DELETE',null,`?id=eq.${id}`);await loadEvents();await loadScales();showToast('🗑️ Evento removido','');}catch(e){showToast('Erro: '+e.message,'error');}
 }
 async function addEvent(){
-  const name=document.getElementById('new-ev-name').value.trim();
-  const date=document.getElementById('new-ev-date').value;
+  const name=document.getElementById('new-ev-name').value.trim(),date=document.getElementById('new-ev-date').value;
   if(!name||!date){showToast('Preencha nome e data','error');return;}
   try{await sb('events','POST',{name,date,time:document.getElementById('new-ev-time').value||'09:00',type:document.getElementById('new-ev-type').value,ministry_id:currentUser.ministry_id});closeModal('add-event-modal');document.getElementById('new-ev-name').value='';await loadEvents();showToast('📅 Evento criado!','success');}catch(e){showToast('Erro: '+e.message,'error');}
 }
@@ -894,10 +1082,10 @@ function renderMembersGrid(){
   const g=document.getElementById('members-grid');if(!g)return;
   const isSuperAdmin=isPrincipalAdmin(),isAnyAdmin=currentUser.is_admin;
   g.innerHTML=allMembers.map(m=>{
-    const isMe=m.id===currentUser.id,targetIsAdmin=m.is_admin,canAct=isAnyAdmin&&!isMe,canPD=isSuperAdmin&&canAct;
+    const isMe=m.id===currentUser.id,tAdmin=m.is_admin,canAct=isAnyAdmin&&!isMe,canPD=isSuperAdmin&&canAct;
     let actions='';
-    if(canAct){actions=`<div style="display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap">${canPD?(targetIsAdmin?`<button onclick="demoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--yellow);background:#FEF9C3;color:#B45309;cursor:pointer;font-weight:700">⬇️ Membro</button>`:`<button onclick="promoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--blue);background:var(--blue-light);color:var(--blue);cursor:pointer;font-weight:700">⬆️ Admin</button>`):''}  <button onclick="removeMember('${m.id}','${m.name.replace(/'/g,"\\'")}','${m.email}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--red);background:#FEE2E2;color:var(--red);cursor:pointer;font-weight:700">🗑️</button></div>`;}
-    return`<div class="member-card"><div class="member-avatar">${initials(m.name)}</div><h4>${m.name}${isMe?' <span style="font-size:9px;color:var(--gray)">(você)</span>':''}</h4><p>${targetIsAdmin?'Admin':'Membro'}</p><div class="member-roles">${(m.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')}</div><span class="badge available">Ativo</span>${actions}</div>`;
+    if(canAct){actions=`<div style="display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap">${canPD?(tAdmin?`<button onclick="demoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--yellow);background:#FEF9C3;color:#B45309;cursor:pointer;font-weight:700">⬇️ Membro</button>`:`<button onclick="promoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--blue);background:var(--blue-light);color:var(--blue);cursor:pointer;font-weight:700">⬆️ Admin</button>`):''}  <button onclick="removeMember('${m.id}','${m.name.replace(/'/g,"\\'")}','${m.email}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--red);background:#FEE2E2;color:var(--red);cursor:pointer;font-weight:700">🗑️</button></div>`;}
+    return`<div class="member-card"><div class="member-avatar">${initials(m.name)}</div><h4>${m.name}${isMe?' <span style="font-size:9px;color:var(--gray)">(você)</span>':''}</h4><p>${tAdmin?'Admin':'Membro'}</p><div class="member-roles">${(m.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')}</div><span class="badge available">Ativo</span>${actions}</div>`;
   }).join('');
 }
 async function promoteMember(id){if(!confirm('Tornar Admin?'))return;try{await sb('members','PATCH',{is_admin:true},`?id=eq.${id}`);await loadMembers();showToast('⬆️ Promovido!','success');}catch(e){showToast('Erro','error');}}
@@ -940,39 +1128,23 @@ function findSubstitute(scale){
   });
   if(!candidates.length)return null;
   const cnt={};allScales.forEach(s=>{cnt[s.member_name]=(cnt[s.member_name]||0)+1;});
-  candidates.sort((a,b)=>(cnt[a.name]||0)-(cnt[b.name]||0));
-  return candidates[0];
+  candidates.sort((a,b)=>(cnt[a.name]||0)-(cnt[b.name]||0));return candidates[0];
 }
 
 async function confirmScale(id,status){
   const sc=allScales.find(s=>s.id===id);if(!sc)return;
-  const prevStatus=sc.status;
-  sc.status=status;
-  renderScaleOutput();renderMyScales();renderDashboard();
-  if(status==='confirmed'){
-    showToast('✅ Presença confirmada!','success');
-    try{await sb('scales','PATCH',{status:'confirmed'},`?id=eq.${id}`);}
-    catch(e){sc.status=prevStatus;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao salvar. Tente novamente.','error');}
-    pollNow();return;
-  }
-  const substitute=findSubstitute(sc);
-  const refusedName=sc.member_name;
-  const refusedRole=sc.role;
+  const prevStatus=sc.status;sc.status=status;renderScaleOutput();renderMyScales();renderDashboard();
+  if(status==='confirmed'){showToast('✅ Presença confirmada!','success');try{await sb('scales','PATCH',{status:'confirmed'},`?id=eq.${id}`);}catch(e){sc.status=prevStatus;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao salvar.','error');}pollNow();return;}
+  const substitute=findSubstitute(sc),refusedName=sc.member_name,refusedRole=sc.role;
   try{
     if(substitute){
       await sb('scales','PATCH',{member_name:substitute.name,member_init:initials(substitute.name),status:'pending',refused_by:refusedName},`?id=eq.${id}`);
       sc.member_name=substitute.name;sc.member_init=initials(substitute.name);sc.status='pending';sc._autoSwapped=true;sc._refusedBy=refusedName;
-      renderScaleOutput();renderMyScales();renderDashboard();
-      showToast(`🔄 ${substitute.name} assumiu a vaga de ${refusedRole}!`,'success');
+      renderScaleOutput();renderMyScales();renderDashboard();showToast(`🔄 ${substitute.name} assumiu a vaga de ${refusedRole}!`,'success');
     }else{
-      await sb('scales','PATCH',{status:'refused'},`?id=eq.${id}`);
-      showToast('❌ Recusado · Nenhum substituto disponível — admin notificado.','error');
+      await sb('scales','PATCH',{status:'refused'},`?id=eq.${id}`);showToast('❌ Recusado · Nenhum substituto disponível.','error');
     }
-  }catch(e){
-    sc.status=prevStatus;sc.member_name=refusedName;
-    renderScaleOutput();renderMyScales();renderDashboard();
-    showToast('Erro ao processar substituição. Tente novamente.','error');
-  }
+  }catch(e){sc.status=prevStatus;sc.member_name=refusedName;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao processar.','error');}
   pollNow();
 }
 
@@ -980,60 +1152,32 @@ let scaleFilter={name:'',from:'',to:''};
 function applyScaleFilter(){scaleFilter.name=document.getElementById('filter-event-name').value.trim().toLowerCase();scaleFilter.from=document.getElementById('filter-date-from').value;scaleFilter.to=document.getElementById('filter-date-to').value;renderScaleOutput();}
 function clearScaleFilter(){document.getElementById('filter-event-name').value='';document.getElementById('filter-date-from').value='';document.getElementById('filter-date-to').value='';scaleFilter={name:'',from:'',to:''};renderScaleOutput();}
 function getFilteredEventIds(){
-  const hasFilter=scaleFilter.name||scaleFilter.from||scaleFilter.to;if(!hasFilter)return null;
+  const has=scaleFilter.name||scaleFilter.from||scaleFilter.to;if(!has)return null;
   return allEvents.filter(ev=>{if(scaleFilter.name&&!ev.name.toLowerCase().includes(scaleFilter.name))return false;if(scaleFilter.from&&ev.date<scaleFilter.from)return false;if(scaleFilter.to&&ev.date>scaleFilter.to)return false;return true;}).map(ev=>ev.id);
 }
 
 function renderScaleOutput(){
-  renderScalesConfirmPanel(); // ← atualiza painel de confirmações junto
+  renderScalesConfirmPanel();
   const out=document.getElementById('scale-output');if(!out)return;
   if(!allScales.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhuma escala gerada ainda.</p></div>';return;}
-  const filteredIds=getFilteredEventIds();
-  const infoEl=document.getElementById('scale-filter-info');
-  const byEvent={};
-  allScales.forEach(s=>{if(!byEvent[s.event_id])byEvent[s.event_id]=[];byEvent[s.event_id].push(s);});
-  let eventIds=Object.keys(byEvent);
-  if(filteredIds!==null)eventIds=eventIds.filter(id=>filteredIds.includes(id));
+  const filteredIds=getFilteredEventIds(),infoEl=document.getElementById('scale-filter-info');
+  const byEvent={};allScales.forEach(s=>{if(!byEvent[s.event_id])byEvent[s.event_id]=[];byEvent[s.event_id].push(s);});
+  let eventIds=Object.keys(byEvent);if(filteredIds!==null)eventIds=eventIds.filter(id=>filteredIds.includes(id));
   const hasFilter=scaleFilter.name||scaleFilter.from||scaleFilter.to;
-  if(hasFilter&&infoEl){const total=Object.keys(byEvent).length;infoEl.className='scale-filter-info visible';infoEl.textContent=`Exibindo ${eventIds.length} de ${total} eventos`;}
-  else if(infoEl)infoEl.className='scale-filter-info';
-  if(!eventIds.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhum evento encontrado com esse filtro.</p></div>';return;}
-  const isMobile=window.innerWidth<=600;
-  let html='';
+  if(hasFilter&&infoEl){infoEl.className='scale-filter-info visible';infoEl.textContent=`Exibindo ${eventIds.length} de ${Object.keys(byEvent).length} eventos`;}else if(infoEl)infoEl.className='scale-filter-info';
+  if(!eventIds.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhum evento encontrado.</p></div>';return;}
+  const isMobile=window.innerWidth<=600;let html='';
   eventIds.forEach(eid=>{
-    const rows=byEvent[eid];
-    const ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
+    const rows=byEvent[eid],ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
     const{day,mon,week}=dateLabel(ev.date);
-    html+=`<div class="scale-day-block">
-      <div class="scale-day-header">
-        <div class="scale-day-date"><span class="sdh-day">${String(day).padStart(2,'0')}</span><span class="sdh-week">${week.toUpperCase()}</span></div>
-        <div><div class="scale-day-event">${ev.name}</div><span style="font-size:10px;color:var(--gray)">${mon} · ${ev.time}</span></div>
-        <button onclick="shareScaleWhatsApp('${eid}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-          Enviar
-        </button>
-      </div>`;
+    html+=`<div class="scale-day-block"><div class="scale-day-header"><div class="scale-day-date"><span class="sdh-day">${String(day).padStart(2,'0')}</span><span class="sdh-week">${week.toUpperCase()}</span></div><div><div class="scale-day-event">${ev.name}</div><span style="font-size:10px;color:var(--gray)">${mon} · ${ev.time}</span></div><button onclick="shareScaleWhatsApp('${eid}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>Enviar</button></div>`;
     if(isMobile){
       html+=`<div class="scale-cards-list">`;
-      rows.forEach((r,i)=>{
-        const isMe=r.member_name===currentUser.name;
-        const wasSwapped=r._autoSwapped&&r._refusedBy;
-        const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped">🔄</span>':'<span class="badge pending">⏳</span>';
-        const subNote=wasSwapped?`<div style="font-size:9px;color:#C2410C;margin-top:2px">🔄 substituiu ${r._refusedBy}</div>`:'';
-        const confirmBtns=isMe&&r.status==='pending'?`<div class="scale-row-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌</button></div>`:'';
-        html+=`<div class="scale-row-card"><div class="scale-row-num">${String(i+1).padStart(2,'0')}</div><div style="flex:2;min-width:0"><div class="scale-row-role">${r.role}</div><div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div></div><div class="scale-row-status">${statusBadge}</div>${confirmBtns}</div>`;
-      });
+      rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped">🔄</span>':'<span class="badge pending">⏳</span>';const subNote=wasSwapped?`<div style="font-size:9px;color:#C2410C;margin-top:2px">🔄 substituiu ${r._refusedBy}</div>`:'';const cb=isMe&&r.status==='pending'?`<div class="scale-row-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌</button></div>`:'';html+=`<div class="scale-row-card"><div class="scale-row-num">${String(i+1).padStart(2,'0')}</div><div style="flex:2;min-width:0"><div class="scale-row-role">${r.role}</div><div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div></div><div class="scale-row-status">${sb2}</div>${cb}</div>`;});
       html+=`</div>`;
     }else{
       html+=`<div class="table-wrap"><table><thead><tr><th>#</th><th>Função</th><th>Membro</th><th>Status</th></tr></thead><tbody>`;
-      rows.forEach((r,i)=>{
-        const isMe=r.member_name===currentUser.name;
-        const wasSwapped=r._autoSwapped&&r._refusedBy;
-        const statusBadge=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':wasSwapped?`<span class="badge swapped">🔄 Trocado auto</span>`:'<span class="badge pending">⏳ Pendente</span>';
-        const subNote=wasSwapped?`<br><span style="font-size:9px;color:#C2410C">substituiu ${r._refusedBy}</span>`:'';
-        const confirmBtns=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';
-        html+=`<tr><td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td><td>${r.role}</td><td><strong>${r.member_name}</strong>${subNote}${confirmBtns}</td><td>${statusBadge}</td></tr>`;
-      });
+      rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':wasSwapped?`<span class="badge swapped">🔄 Trocado auto</span>`:'<span class="badge pending">⏳ Pendente</span>';const subNote=wasSwapped?`<br><span style="font-size:9px;color:#C2410C">substituiu ${r._refusedBy}</span>`:'';const cb=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';html+=`<tr><td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td><td>${r.role}</td><td><strong>${r.member_name}</strong>${subNote}${cb}</td><td>${sb2}</td></tr>`;});
       html+=`</tbody></table></div>`;
     }
     html+=`</div>`;
@@ -1050,36 +1194,23 @@ function shareScaleWhatsApp(eventId){
   const mn=currentMinistry?.name||'Ministério';
   let msg=`*${mn}*\n *${ev.name}*\n ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${ev.time}\n Tipo: ${ev.type}\n\n Equipe Escalada:\n`;
   rows.forEach((r,i)=>{const st=r.status==='confirmed'?'✅':r.status==='refused'?'❌':'⏳';msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}* ${st}\n`;});
-  msg+=`\n_Gerado pelo LouvorFlow_`;
-  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+  msg+=`\n_Gerado pelo LouvorFlow_`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
 
 function renderMyScales(){
   const out=document.getElementById('my-scales-output');if(!out)return;
   const mine=allScales.filter(s=>s.member_name===currentUser.name);
   const confirmed=mine.filter(s=>s.status==='confirmed').length;
-  document.getElementById('my-scale-count').textContent=mine.length;
-  document.getElementById('my-confirm-count').textContent=confirmed;
+  document.getElementById('my-scale-count').textContent=mine.length;document.getElementById('my-confirm-count').textContent=confirmed;
   if(!mine.length){out.innerHTML='<p style="color:var(--gray);font-size:13px">Você não está escalado ainda.</p>';return;}
   const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
   let html='';
   Object.keys(byEv).forEach(eid=>{
-    const rows=byEv[eid];
-    const ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
+    const rows=byEv[eid],ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
     const{day,mon,week}=dateLabel(ev.date);
-    const allConfirmed=rows.every(r=>r.status==='confirmed');
-    const hasPending=rows.some(r=>r.status==='pending');
-    const statusColor=allConfirmed?'#16A34A':hasPending?'#B45309':'#B91C1C';
-    const statusText=allConfirmed?'✅ Confirmado':hasPending?'⏳ Pendente':'❌ Recusado';
-    html+=`<div style="border:1.5px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
-        <div style="background:var(--blue);color:#fff;border-radius:7px;padding:3px 8px;font-size:12px;font-weight:800">${String(day).padStart(2,'0')} ${mon}</div>
-        <div><strong style="font-size:13px">${ev.name}</strong><br><span style="font-size:10px;color:var(--gray)">${week} · ${ev.time}</span></div>
-        <span style="margin-left:auto;font-size:11px;font-weight:700;color:${statusColor}">${statusText}</span>
-      </div>
-      ${rows.map(r=>`<span class="role-tag" style="font-size:11px;padding:3px 9px">${r.role}</span>`).join(' ')}
-      ${hasPending?`<div style="display:flex;gap:6px;margin-top:8px">${rows.filter(r=>r.status==='pending').map(r=>`<button onclick="confirmScale('${r.id}','confirmed')" class="btn-confirm yes">✅ Confirmar ${r.role}</button><button onclick="confirmScale('${r.id}','refused')" class="btn-confirm no">❌ Recusar</button>`).join('')}</div>`:''}
-    </div>`;
+    const allConf=rows.every(r=>r.status==='confirmed'),hasPend=rows.some(r=>r.status==='pending');
+    const sc=allConf?'#16A34A':hasPend?'#B45309':'#B91C1C',st=allConf?'✅ Confirmado':hasPend?'⏳ Pendente':'❌ Recusado';
+    html+=`<div style="border:1.5px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="background:var(--blue);color:#fff;border-radius:7px;padding:3px 8px;font-size:12px;font-weight:800">${String(day).padStart(2,'0')} ${mon}</div><div><strong style="font-size:13px">${ev.name}</strong><br><span style="font-size:10px;color:var(--gray)">${week} · ${ev.time}</span></div><span style="margin-left:auto;font-size:11px;font-weight:700;color:${sc}">${st}</span></div>${rows.map(r=>`<span class="role-tag" style="font-size:11px;padding:3px 9px">${r.role}</span>`).join(' ')}${hasPend?`<div style="display:flex;gap:6px;margin-top:8px">${rows.filter(r=>r.status==='pending').map(r=>`<button onclick="confirmScale('${r.id}','confirmed')" class="btn-confirm yes">✅ Confirmar ${r.role}</button><button onclick="confirmScale('${r.id}','refused')" class="btn-confirm no">❌ Recusar</button>`).join('')}</div>`:''}</div>`;
   });
   out.innerHTML=html;
 }
@@ -1118,6 +1249,7 @@ function navigate(p){
   localStorage.setItem('lastPage',p);
   if(p==='config')updateInviteDisplay();
   if(p==='scales')renderScalesConfirmPanel();
+  if(p==='dashboard'){renderDashboard();}
 }
 function toggleDropdown(){document.getElementById('dropdown').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('.user-menu'))document.getElementById('dropdown').classList.remove('open');});
