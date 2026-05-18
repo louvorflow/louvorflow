@@ -27,6 +27,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-primary:hover{background:#3a63f0}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 .btn-link{background:none;border:none;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;display:block;text-align:center;width:100%}
+.btn-reset{background:none;border:none;color:#B0B8CC;font-size:11px;cursor:pointer;margin-top:6px;display:block;text-align:center;width:100%;padding:4px;transition:.2s}
+.btn-reset:hover{color:var(--red)}
 .roles-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .rp-item{padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);font-size:11px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;user-select:none}
 .rp-item.selected{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
@@ -63,12 +65,8 @@ aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:1
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
-
-/* ── DASHBOARD NOVO ── */
 .dash-section-label{font-size:10px;font-weight:800;color:#B0B8CC;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;display:flex;align-items:center;gap:6px}
 .dash-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* Hero card — próximo evento */
 .hero-event-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:16px;padding:18px;color:#fff;margin-bottom:6px;position:relative;overflow:hidden}
 .hero-event-card::before{content:'🎵';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.08}
 .hero-ev-label{font-size:10px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
@@ -76,8 +74,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:14px}
 .no-event-card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:2px dashed var(--border);margin-bottom:6px}
 .no-event-card p{color:var(--gray);font-size:13px;margin-bottom:10px}
-
-/* Stats com contexto */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
 .stat-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .stat-card .sc-icon{font-size:20px;margin-bottom:6px}
@@ -89,8 +85,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .sc-trend.down{background:#FEE2E2;color:#B91C1C}
 .stat-card .sc-bar{height:3px;border-radius:20px;background:var(--border);margin-top:8px;overflow:hidden}
 .stat-card .sc-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--blue),var(--purple))}
-
-/* Semana cards */
 .week-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
 .week-event-card{background:#fff;border-radius:12px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.04);border-left:4px solid var(--blue)}
 .week-event-card.ensaio{border-left-color:var(--purple)}
@@ -102,11 +96,7 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .wec-name{font-size:13px;font-weight:700}
 .wec-sub{font-size:11px;color:var(--gray);margin-top:2px}
 .wec-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue);white-space:nowrap}
-
-/* Alerta membro */
 .member-alert-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;color:#fff;margin-bottom:6px}
-
-/* gen box */
 .gen-box{background:var(--blue-light);border-radius:14px;padding:18px;margin-bottom:14px}
 .gen-box h3{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:3px}
 .gen-box p{font-size:12px;color:var(--gray);margin-bottom:12px}
@@ -120,7 +110,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .gen-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .btn-gen{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
 .btn-gen:hover{background:#3a63f0}
-
 .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
 .card h3{font-size:14px;font-weight:700;margin-bottom:12px}
 .greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px}
@@ -231,7 +220,9 @@ tr:last-child td{border-bottom:none}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:#16A34A}
 .toast.error{background:var(--red)}
-footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px}
+footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:10px;min-height:36px;flex-wrap:wrap}
+.btn-download{padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s}
+.btn-download:hover{background:var(--blue);color:#fff}
 .btn-edit-roles{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
 .btn-edit-roles:hover{background:var(--blue);color:#fff}
 .autoswap-log{background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid #F97316;line-height:1.6}
@@ -274,6 +265,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <div class="form-group"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••"></div>
       <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar →</button>
       <button class="btn-link" onclick="switchTab('forgot')">Esqueci minha senha</button>
+      <button class="btn-reset" onclick="resetApp()">🔄 App travado? Clique aqui para resetar</button>
     </div>
     <div id="register-form" style="display:none">
       <div id="reg-step-1">
@@ -373,26 +365,17 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
     <main>
       <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
-        <!-- Saudação -->
         <div class="greeting-row">
           <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p id="dash-subtitle">Resumo do ministério.</p></div>
           <span id="role-badge" class="badge admin">Admin</span>
         </div>
-
-        <!-- Alerta membro (confirmações pendentes) -->
         <div id="member-scale-alert" style="display:none" class="member-alert-card">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
           <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
         </div>
-
-        <!-- SEÇÃO: AGORA -->
         <div class="dash-section-label">🔴 Agora</div>
-
-        <!-- Hero: próximo evento (sem countdown) -->
         <div id="dash-hero-event"></div>
-
-        <!-- Stats com contexto -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="sc-icon">🎵</div>
@@ -416,12 +399,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div>
           </div>
         </div>
-
-        <!-- SEÇÃO: ESTA SEMANA -->
         <div class="dash-section-label">📅 Esta semana</div>
         <div id="dash-week-events" class="week-cards"></div>
-
-        <!-- Gerador de escala (admin) -->
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -537,635 +516,5 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <button onclick="copyInviteLink()">📋 Copiar</button>
           </div>
           <button class="btn-wa-invite" onclick="shareInviteWhatsApp()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-            Compartilhar no WhatsApp
-          </button>
-        </div>
-        <div class="card">
-          <div class="config-section">
-            <h4>Nome do Ministério</h4>
-            <div class="config-row"><input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor"><button class="btn-save" onclick="saveMinistryName()">Salvar</button></div>
-          </div>
-          <div class="config-section">
-            <h4>Meu Nome</h4>
-            <div class="config-row"><input type="text" id="cfg-my-name" placeholder="Seu nome"><button class="btn-save" onclick="saveMyName()">Salvar</button></div>
-          </div>
-          <div class="config-section">
-            <h4>Minha Senha</h4>
-            <div class="config-row"><input type="password" id="cfg-my-pass" placeholder="Nova senha"><button class="btn-save" onclick="saveMyPass()">Salvar</button></div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-  <footer>LouvorFlow © 2025 · Gestão de Ministérios</footer>
-</div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 
 
-<!-- MODALS -->
-<div class="modal-overlay" id="add-event-modal">
-  <div class="modal">
-    <h3>📅 Novo Evento</h3>
-    <div class="form-group"><label>Nome</label><input type="text" id="new-ev-name" placeholder="Culto Dominical"></div>
-    <div class="form-group"><label>Data</label><input type="date" id="new-ev-date" min=""></div>
-    <div class="form-group"><label>Horário</label><input type="time" id="new-ev-time" value="09:00"></div>
-    <div class="form-group"><label>Tipo</label>
-      <select id="new-ev-type"><option>Culto</option><option>Ensaio</option><option>Vigília</option><option>Conferência</option></select>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('add-event-modal')">Cancelar</button>
-      <button class="btn-primary" onclick="addEvent()">Criar →</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="edit-roles-modal">
-  <div class="modal">
-    <h3>✏️ Editar minhas funções</h3>
-    <p style="font-size:12px;color:var(--gray);margin-bottom:14px">Selecione todas as funções que você desempenha no ministério.</p>
-    <div class="roles-picker" id="edit-roles-picker">
-      <div class="rp-item" onclick="toggleRolePick(this)">🎸 Violão</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎸 Guitarra</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎹 Teclado</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎤 Voz Principal</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎤 Back Vocal</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🥁 Bateria</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎸 Baixo</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎺 Trompete</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎷 Saxofone</div>
-      <div class="rp-item" onclick="toggleRolePick(this)">🎻 Violino</div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('edit-roles-modal')">Cancelar</button>
-      <button class="btn-primary" id="btn-save-roles" onclick="saveEditedRoles()">Salvar funções →</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
-
-let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false;
-function hashScales(s){return s.map(x=>x.id+'|'+x.status+'|'+x.member_name).join(',');}
-
-async function pollScales(){
-  if(_isSyncing||!currentUser)return;_isSyncing=true;
-  try{
-    const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
-    const seen=new Set(),fresh=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
-    const newHash=hashScales(fresh);
-    if(newHash!==_lastScalesHash){
-      _lastScalesHash=newHash;
-      fresh.forEach(s=>{const p=allScales.find(x=>x.id===s.id);if(p){s._autoSwapped=p._autoSwapped;s._refusedBy=p._refusedBy;}});
-      allScales=fresh;renderScaleOutput();renderMyScales();renderDashboard();
-      document.getElementById('dash-scale-count').textContent=allScales.length;
-      updateScaleTrend();
-    }
-  }catch(e){}
-  _isSyncing=false;
-}
-function pollNow(){_isSyncing=false;pollScales();}
-async function fullSync(){if(!currentUser)return;await Promise.all([loadEvents(),loadMembers()]);await pollScales();}
-function startSync(){stopSync();pollNow();_syncInterval=setInterval(pollScales,5000);_fullSyncInterval=setInterval(fullSync,30000);}
-function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}}
-
-function saveSession(u,m){localStorage.setItem('lf_session',JSON.stringify({user:u,ministry:m}));}
-function clearSession(){localStorage.removeItem('lf_session');}
-async function tryAutoLogin(){
-  try{const raw=localStorage.getItem('lf_session');if(!raw)return false;const{user,ministry}=JSON.parse(raw);if(!user?.id)return false;currentUser=user;currentMinistry=ministry;
-    sb('members','GET',null,`?id=eq.${user.id}`).then(rows=>{if(!rows.length){clearSession();doLogout();return;}currentUser=rows[0];sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`).then(mins=>{if(mins.length){currentMinistry=mins[0];updateUserUI();}});}).catch(()=>{});
-    return true;
-  }catch(e){clearSession();return false;}
-}
-async function sb(table,method='GET',body=null,query=''){
-  const r=await fetch(`${SB_URL}/rest/v1/${table}${query}`,{method,headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:body?JSON.stringify(body):null});
-  if(!r.ok){const e=await r.json();throw new Error(e.message||r.statusText);}
-  const t=await r.text();return t?JSON.parse(t):[];
-}
-
-let currentUser=null,currentMinistry=null,allEvents=[],allMembers=[],allScales=[];
-let availState={},availMonth={y:new Date().getFullYear(),m:new Date().getMonth()};
-const rqState={};
-const ROLES_DEFS=[
-  {icon:'🎤',name:'Voz Principal',key:'voz'},{icon:'🎤',name:'Back Vocal',key:'back'},
-  {icon:'🎸',name:'Violão',key:'violao'},{icon:'🎸',name:'Guitarra',key:'guitarra'},
-  {icon:'🎹',name:'Teclado',key:'teclado'},{icon:'🥁',name:'Bateria',key:'bateria'},{icon:'🎸',name:'Baixo',key:'baixo'},
-];
-const MONTHS=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const WEEKS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-function fmt(dt){return`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;}
-function initials(n){return(n||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
-function genCode(){const L='ABCDEFGHJKLMNPQRSTUVWXYZ',N='0123456789';return[...Array(4)].map(()=>L[Math.floor(Math.random()*L.length)]).join('')+[...Array(4)].map(()=>N[Math.floor(Math.random()*N.length)]).join('');}
-function getCodeFromURL(){return new URLSearchParams(window.location.search).get('code')||'';}
-
-let selectedMinistryType=null;
-function switchTab(t){
-  ['login-form','register-form','forgot-form'].forEach(f=>document.getElementById(f).style.display='none');
-  document.getElementById(t+'-form').style.display='block';
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.classList.toggle('active',(t==='login'&&i===0)||(t==='register'&&i===1));});
-  if(t==='forgot')document.getElementById('forgot-result').style.display='none';
-  if(t==='register'){goRegStep1();const code=getCodeFromURL();if(code){selectMinistryType('join');document.getElementById('reg-code-j').value=code.toUpperCase();previewMinistry(code.toUpperCase());}}
-}
-function selectMinistryType(t){selectedMinistryType=t;document.getElementById('mtp-create').classList.toggle('selected',t==='create');document.getElementById('mtp-join').classList.toggle('selected',t==='join');document.getElementById('reg-type-warning').style.display='none';}
-function goRegStep1(){document.getElementById('reg-step-1').style.display='block';document.getElementById('reg-step-2').style.display='none';}
-function goRegStep2(){if(!selectedMinistryType){document.getElementById('reg-type-warning').style.display='block';document.getElementById('reg-type-warning').textContent='Escolha uma das opções acima.';return;}document.getElementById('reg-step-1').style.display='none';document.getElementById('reg-step-2').style.display='block';if(selectedMinistryType==='create'){document.getElementById('reg-create-fields').style.display='block';document.getElementById('reg-join-fields').style.display='none';}else{document.getElementById('reg-create-fields').style.display='none';document.getElementById('reg-join-fields').style.display='block';const code=getCodeFromURL();if(code)document.getElementById('reg-code-j').value=code.toUpperCase();}}
-function toggleRolePick(el){el.classList.toggle('selected');}
-
-let previewTimeout=null;
-document.addEventListener('DOMContentLoaded',async()=>{
-  const loggedIn=await tryAutoLogin();
-  if(loggedIn){await launchApp();return;}
-  const ci=document.getElementById('reg-code-j');
-  if(ci){ci.addEventListener('input',()=>{clearTimeout(previewTimeout);const v=ci.value.trim().toUpperCase();ci.value=v;if(v.length>=6)previewTimeout=setTimeout(()=>previewMinistry(v),500);else document.getElementById('ministry-preview').style.display='none';});}
-  const code=getCodeFromURL();if(code)switchTab('register');
-});
-
-async function previewMinistry(code){
-  try{const rows=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);const prev=document.getElementById('ministry-preview');if(rows.length){prev.style.display='block';prev.style.background='var(--blue-light)';prev.innerHTML=`✅ Ministério encontrado: <strong>${rows[0].name}</strong>`;}else{prev.style.display='block';prev.style.background='#FEE2E2';prev.innerHTML='❌ Código não encontrado.';}}catch(e){}
-}
-async function doLogin(){
-  const email=document.getElementById('login-email').value.trim().toLowerCase(),pass=document.getElementById('login-pass').value;
-  if(!email||!pass){showToast('Preencha e-mail e senha','error');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  setLoading('btn-login',true,'Entrar →');
-  try{
-    const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}`);
-    if(!rows.length){const ec=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);showToast(ec.length?'Senha incorreta':'E-mail não cadastrado','error');return;}
-    currentUser=rows[0];const mins=await sb('ministries','GET',null,`?id=eq.${currentUser.ministry_id}`);currentMinistry=mins[0]||null;saveSession(currentUser,currentMinistry);await launchApp();
-  }catch(e){showToast('Erro: '+e.message,'error');}
-  finally{setLoading('btn-login',false,'Entrar →');}
-}
-async function doRegisterCreate(){
-  const name=document.getElementById('reg-name-c').value.trim(),email=document.getElementById('reg-email-c').value.trim().toLowerCase(),pass=document.getElementById('reg-pass-c').value,ministryName=document.getElementById('reg-ministry-name').value.trim();
-  const roles=[...document.querySelectorAll('#roles-picker-c .rp-item.selected')].map(e=>e.textContent.trim());
-  if(!name||!email||!pass||!ministryName){showToast('Preencha todos os campos','error');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<6){showToast('Senha com ao menos 6 caracteres','error');return;}
-  if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
-  setLoading('btn-register-c',true,'Criar conta →');
-  try{
-    let code=genCode();for(let i=0;i<3;i++){const ex=await sb('ministries','GET',null,`?invite_code=eq.${code}`);if(!ex.length)break;code=genCode();}
-    const ministry=await sb('ministries','POST',{name:ministryName,invite_code:code});
-    const rows=await sb('members','POST',{name,email,password:pass,is_admin:true,roles,ministry_id:ministry[0].id});
-    currentUser=rows[0];currentMinistry=ministry[0];saveSession(currentUser,currentMinistry);await launchApp();showToast('🎉 Ministério criado!','success');
-  }catch(e){showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');}
-  finally{setLoading('btn-register-c',false,'Criar conta →');}
-}
-async function doRegisterJoin(){
-  const name=document.getElementById('reg-name-j').value.trim(),email=document.getElementById('reg-email-j').value.trim().toLowerCase(),pass=document.getElementById('reg-pass-j').value,code=document.getElementById('reg-code-j').value.trim().toUpperCase();
-  const roles=[...document.querySelectorAll('#roles-picker-j .rp-item.selected')].map(e=>e.textContent.trim());
-  if(!name||!email||!pass||!code){showToast('Preencha todos os campos','error');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('E-mail inválido','error');return;}
-  if(pass.length<6){showToast('Senha com ao menos 6 caracteres','error');return;}
-  if(!roles.length){showToast('Selecione pelo menos uma função','error');return;}
-  setLoading('btn-register-j',true,'Entrar na equipe →');
-  try{
-    const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
-    if(!mins.length){showToast('Código de ministério inválido','error');return;}
-    const rows=await sb('members','POST',{name,email,password:pass,is_admin:false,roles,ministry_id:mins[0].id});
-    currentUser=rows[0];currentMinistry=mins[0];saveSession(currentUser,currentMinistry);await launchApp();showToast(`🎉 Bem-vindo ao ${mins[0].name}!`,'success');
-  }catch(e){showToast(e.message.includes('unique')?'E-mail já cadastrado':'Erro: '+e.message,'error');}
-  finally{setLoading('btn-register-j',false,'Entrar na equipe →');}
-}
-async function joinMinistryFromProfile(){
-  const code=document.getElementById('join-code-input').value.trim().toUpperCase();if(!code){showToast('Digite o código','error');return;}
-  try{
-    const mins=await sb('ministries','GET',null,`?invite_code=eq.${encodeURIComponent(code)}`);
-    if(!mins.length){showToast('Código não encontrado','error');return;}
-    if(mins[0].id===currentMinistry?.id){showToast('Você já está neste ministério','error');return;}
-    if(!confirm(`⚠️ Entrar em "${mins[0].name}" e sair de "${currentMinistry?.name||'ministério atual'}"?`))return;
-    await sb('members','PATCH',{ministry_id:mins[0].id,is_admin:false},`?id=eq.${currentUser.id}`);
-    currentUser.ministry_id=mins[0].id;currentMinistry=mins[0];document.getElementById('join-code-input').value='';
-    await fullSync();updateUserUI();navigate('dashboard');showToast(`✅ Entrou em ${mins[0].name}!`,'success');
-  }catch(e){showToast('Erro: '+e.message,'error');}
-}
-async function doForgot(){
-  const email=document.getElementById('forgot-email').value.trim();if(!email){showToast('Digite seu e-mail','error');return;}
-  setLoading('btn-forgot',true,'Buscar →');
-  try{
-    const rows=await sb('members','GET',null,`?email=eq.${encodeURIComponent(email)}`);const res=document.getElementById('forgot-result');
-    if(!rows.length){res.style.display='block';res.style.background='#FEE2E2';res.innerHTML='<strong>❌ E-mail não encontrado.</strong>';}
-    else{res.style.display='block';res.style.background='var(--blue-light)';res.innerHTML=`<strong>✅ Conta encontrada!</strong><br>Nome: <strong>${rows[0].name}</strong><br><small style="color:var(--gray)">Entre em contato com o administrador para redefinir sua senha.</small>`;}
-  }catch(e){showToast('Erro: '+e.message,'error');}
-  finally{setLoading('btn-forgot',false,'Buscar senha →');}
-}
-async function deleteSelfProfile(){
-  if(currentUser.is_admin){showToast('Admin não pode se apagar. Transfira o admin primeiro.','error');return;}
-  if(!confirm('Tem certeza? Seus dados serão apagados permanentemente.'))return;
-  try{
-    await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}`);
-    await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(currentUser.name)}`);
-    await sb('members','DELETE',null,`?id=eq.${currentUser.id}`);
-    clearSession();showToast('Perfil apagado. Até mais! 👋','');setTimeout(()=>doLogout(),1500);
-  }catch(e){showToast('Erro: '+e.message,'error');}
-}
-function doLogout(){
-  currentUser=null;currentMinistry=null;allEvents=[];allMembers=[];allScales=[];
-  stopSync();clearSession();localStorage.removeItem('lastPage');
-  document.getElementById('app').style.display='none';document.getElementById('auth-screen').style.display='flex';
-}
-function setLoading(id,on,label){const b=document.getElementById(id);if(!b)return;b.disabled=on;b.innerHTML=on?'<span class="spinner"></span> Aguarde...':label;}
-
-function getInviteLink(){return`${window.location.href.split('?')[0]}?code=${currentMinistry?.invite_code||''}`;}
-function copyInviteLink(){const link=getInviteLink();if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(link).then(()=>showToast('✅ Link copiado!','success')).catch(()=>fallbackCopy(link));else fallbackCopy(link);}
-function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('✅ Link copiado!','success');}catch(e){showToast('Copie manualmente','error');}document.body.removeChild(ta);}
-function shareInviteWhatsApp(){const mn=currentMinistry?.name||'nosso ministério';const msg=`🎵 *LouvorFlow - ${mn}*\n\nOlá! Você foi convidado para entrar na nossa equipe de louvor.\n\nClique no link para se cadastrar:\n${getInviteLink()}\n\n_O código já vem preenchido automaticamente!_ ✅`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
-function updateInviteDisplay(){if(!currentMinistry)return;document.getElementById('invite-code-display').textContent=currentMinistry.invite_code||'---';document.getElementById('invite-link-display').value=getInviteLink();}
-
-async function launchApp(){
-  document.getElementById('auth-screen').style.display='none';document.getElementById('app').style.display='flex';
-  updateUserUI();buildRqGrid();
-  await Promise.all([loadEvents(),loadMembers(),loadAvailability()]);
-  await loadScales();buildAvailGrid();
-  document.getElementById('cfg-my-name').value=currentUser.name||'';
-  document.getElementById('cfg-ministry-name').value=currentMinistry?.name||'Ministério';
-  updateInviteDisplay();navigate(localStorage.getItem('lastPage')||'dashboard');startSync();
-}
-function updateUserUI(){
-  if(!currentUser)return;
-  const ini=initials(currentUser.name);
-  document.getElementById('user-avatar').textContent=ini;
-  document.getElementById('greet-name').textContent=currentUser.name.split(' ')[0];
-  document.getElementById('profile-av').textContent=ini;
-  document.getElementById('profile-name').textContent=currentUser.name;
-  document.getElementById('profile-sub').textContent=currentUser.is_admin?`Líder · ${currentMinistry?.name||'Admin'}`:`Membro · ${currentMinistry?.name||''}`;
-  document.getElementById('role-badge').textContent=currentUser.is_admin?'Admin':'Membro';
-  const rc=document.getElementById('profile-roles-chips');
-  rc.innerHTML=(currentUser.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')||'<span style="font-size:11px;color:var(--gray)">Sem funções</span>';
-  document.getElementById('ministry-name').textContent=currentMinistry?.name||'LouvorFlow';
-  const isAdmin=currentUser.is_admin;
-  document.querySelectorAll('.admin-only').forEach(el=>el.style.display=isAdmin?'':'none');
-  document.getElementById('admin-gen-dash').style.display=isAdmin?'block':'none';
-  document.getElementById('nav-config').style.display=isAdmin?'flex':'none';
-  document.getElementById('admin-config-link').style.display=isAdmin?'block':'none';
-  document.getElementById('join-another-box').style.display=isAdmin?'none':'block';
-}
-
-async function saveMinistryName(){const v=document.getElementById('cfg-ministry-name').value.trim();if(!v){showToast('Digite um nome','error');return;}try{await sb('ministries','PATCH',{name:v},`?id=eq.${currentMinistry.id}`);currentMinistry.name=v;document.getElementById('ministry-name').textContent=v;document.getElementById('profile-sub').textContent=`Líder · ${v}`;updateInviteDisplay();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
-async function saveMyName(){const v=document.getElementById('cfg-my-name').value.trim();if(!v){showToast('Digite seu nome','error');return;}try{await sb('members','PATCH',{name:v},`?id=eq.${currentUser.id}`);currentUser.name=v;updateUserUI();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
-async function saveMyPass(){const v=document.getElementById('cfg-my-pass').value;if(!v||v.length<4){showToast('Senha com ao menos 4 caracteres','error');return;}try{await sb('members','PATCH',{password:v},`?id=eq.${currentUser.id}`);currentUser.password=v;document.getElementById('cfg-my-pass').value='';showToast('✅ Senha atualizada!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
-function openEditRolesModal(){
-  const ur=currentUser.roles||[];document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>item.classList.toggle('selected',ur.includes(item.textContent.trim())));showModal('edit-roles-modal');
-}
-async function saveEditedRoles(){
-  const newRoles=[...document.querySelectorAll('#edit-roles-picker .rp-item.selected')].map(e=>e.textContent.trim());
-  if(!newRoles.length){showToast('Selecione pelo menos uma função','error');return;}
-  setLoading('btn-save-roles',true,'Salvar funções →');
-  try{await sb('members','PATCH',{roles:newRoles},`?id=eq.${currentUser.id}`);currentUser.roles=newRoles;updateUserUI();closeModal('edit-roles-modal');showToast('✅ Funções atualizadas!','success');}
-  catch(e){showToast('Erro: '+e.message,'error');}
-  finally{setLoading('btn-save-roles',false,'Salvar funções →');}
-}
-
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebar-overlay').classList.toggle('open');}
-
-async function loadEvents(){
-  if(!currentUser?.ministry_id)return;
-  try{allEvents=await sb('events','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=date.asc`);renderEventsList();renderDashboard();document.getElementById('dash-ev-count').textContent=allEvents.length;updateEventTrend();}catch(e){console.error(e);}
-}
-async function loadMembers(){
-  if(!currentUser?.ministry_id)return;
-  try{allMembers=await sb('members','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=name.asc`);renderMembersGrid();document.getElementById('dash-member-count').textContent=allMembers.length;document.getElementById('member-count-label').textContent=`${allMembers.length} membros ativos.`;updateMemberTrend();}catch(e){console.error(e);}
-}
-async function loadScales(){
-  if(!currentUser?.ministry_id)return;
-  try{
-    const raw=await sb('scales','GET',null,`?ministry_id=eq.${currentUser.ministry_id}&order=created_at.desc`);
-    const seen=new Set();allScales=raw.filter(s=>{const k=s.event_id+'|'+s.role+'|'+s.member_name;if(seen.has(k))return false;seen.add(k);return true;});
-    _lastScalesHash=hashScales(allScales);renderScaleOutput();renderMyScales();renderDashboard();
-    document.getElementById('dash-scale-count').textContent=allScales.length;updateScaleTrend();
-  }catch(e){console.error(e);}
-}
-async function loadAvailability(){
-  if(!currentUser)return;
-  try{const rows=await sb('availability','GET',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}&ministry_id=eq.${currentUser.ministry_id}`);availState={};rows.forEach(r=>{availState[r.date]=r.available;});}catch(e){console.error(e);}
-}
-
-// ── TREND HELPERS ──────────────────────────────────────────────
-function updateEventTrend(){
-  const now=new Date(),thisMonth=allEvents.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}).length;
-  const lastM=now.getMonth()===0?11:now.getMonth()-1,lastY=now.getMonth()===0?now.getFullYear()-1:now.getFullYear();
-  const lastMonth=allEvents.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getMonth()===lastM&&d.getFullYear()===lastY;}).length;
-  const el=document.getElementById('dash-ev-trend'),bar=document.getElementById('dash-ev-bar');
-  const diff=thisMonth-lastMonth;
-  el.className='sc-trend'+(diff>0?' up':diff<0?' down':' neutral');
-  el.textContent=diff>0?`+${diff} este mês`:diff<0?`${diff} este mês`:`Estável`;
-  if(bar)bar.style.width=`${Math.min(100,allEvents.length*10)}%`;
-}
-function updateMemberTrend(){
-  const el=document.getElementById('dash-mem-trend'),bar=document.getElementById('dash-mem-bar');
-  const admins=allMembers.filter(m=>m.is_admin).length;
-  el.className='sc-trend neutral';
-  el.textContent=`${admins} admin${admins!==1?'s':''}`;
-  if(bar)bar.style.width=`${Math.min(100,allMembers.length*8)}%`;
-}
-function updateScaleTrend(){
-  const confirmed=allScales.filter(s=>s.status==='confirmed').length;
-  const pct=allScales.length?Math.round(confirmed/allScales.length*100):0;
-  const el=document.getElementById('dash-sc-trend'),bar=document.getElementById('dash-sc-bar');
-  el.className='sc-trend'+(pct>=70?' up':pct>=40?' neutral':' down');
-  el.textContent=`${pct}% confirmado`;
-  if(bar)bar.style.width=`${pct}%`;
-}
-
-// ── DASHBOARD PRINCIPAL ────────────────────────────────────────
-function getNextEvent(){
-  const today=fmt(new Date());return allEvents.find(e=>e.date>=today)||null;
-}
-function getDaysUntil(dateStr){
-  const now=new Date();now.setHours(0,0,0,0);const ev=new Date(dateStr+'T12:00:00');return Math.round((ev-now)/(1000*60*60*24));}
-
-function renderDashboard(){
-  document.getElementById('new-ev-date').min=fmt(new Date());
-  // Saudação dinâmica
-  const h=new Date().getHours();
-  const sub=h<12?'Bom dia! Que a música abençoe hoje.':h<18?'Boa tarde! Seu ministério está aqui.':'Boa noite! Tudo pronto para louvar.';
-  const subEl=document.getElementById('dash-subtitle');if(subEl)subEl.textContent=sub;
-
-  renderHeroEvent();
-  renderWeekEvents();
-
-  // Alerta membro
-  const memberAlert=document.getElementById('member-scale-alert');
-  if(currentUser.is_admin){memberAlert.style.display='none';return;}
-  if(!allScales.length){memberAlert.style.display='none';return;}
-  const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
-  if(!mine.length){memberAlert.style.display='none';return;}
-  const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
-  const evIds=Object.keys(byEv),firstEv=allEvents.find(e=>e.id===evIds[0]);
-  if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
-  memberAlert.style.display='block';
-  const{day,mon,week}=dateLabel(firstEv.date),total=evIds.length;
-  document.getElementById('member-scale-alert-text').textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
-  document.getElementById('member-scale-alert-btns').innerHTML=byEv[evIds[0]].map(s=>`<button onclick="confirmScale('${s.id}','confirmed')" style="padding:8px 14px;background:#fff;color:#16A34A;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">✅ Confirmar</button><button onclick="confirmScale('${s.id}','refused')" style="padding:8px 14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">❌ Recusar</button>`).join('')+(total>1?`<button onclick="navigate('scales')" style="padding:8px 14px;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver todos (${total}) →</button>`:'');
-}
-
-function renderHeroEvent(){
-  const container=document.getElementById('dash-hero-event');if(!container)return;
-  const next=getNextEvent();
-  if(!next){
-    container.innerHTML=currentUser.is_admin
-      ?`<div class="no-event-card"><p>Nenhum evento agendado ainda.</p><button onclick="showModal('add-event-modal')" class="btn-gen" style="margin:0 auto">+ Criar evento</button></div>`
-      :`<div class="no-event-card"><p>📅 Nenhum evento próximo.</p></div>`;
-    return;
-  }
-  const{day,mon,week}=dateLabel(next.date),days=getDaysUntil(next.date);
-  const urgency=days===0?'🔴 Hoje!':days===1?'🟡 Amanhã':days<=7?`🟢 Em ${days} dias`:`Em ${days} dias`;
-  const escalados=allScales.filter(s=>s.event_id===next.id);
-  const confirmed=escalados.filter(s=>s.status==='confirmed').length;
-  const pctConf=escalados.length?Math.round(confirmed/escalados.length*100):0;
-
-  container.innerHTML=`
-    <div class="hero-event-card">
-      <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
-      <div class="hero-ev-name">${next.name}</div>
-      <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
-      ${escalados.length?`<div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;opacity:.9">👥 ${escalados.length} escalados · ${pctConf}% confirmado</span><button onclick="navigate('scales')" style="background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">Ver →</button></div>`:''}
-    </div>`;
-}
-
-function renderWeekEvents(){
-  const container=document.getElementById('dash-week-events');if(!container)return;
-  const now=new Date(),today=fmt(now);
-  const weekEnd=new Date(now);weekEnd.setDate(weekEnd.getDate()+7);const weekEndStr=fmt(weekEnd);
-  const weekEvs=allEvents.filter(e=>e.date>=today&&e.date<=weekEndStr);
-  if(!weekEvs.length){container.innerHTML=`<div style="background:#fff;border-radius:12px;padding:16px;text-align:center;color:var(--gray);font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,.04)">Nenhum evento esta semana 🎉</div>`;return;}
-  container.innerHTML=weekEvs.map(ev=>{
-    const{day,mon,week}=dateLabel(ev.date);
-    const sc=allScales.filter(s=>s.event_id===ev.id);
-    const conf=sc.filter(s=>s.status==='confirmed').length;
-    const badge=sc.length?`<span class="wec-badge">${conf}/${sc.length} ✅</span>`:'<span class="wec-badge" style="background:#FEF9C3;color:#B45309">Sem escala</span>';
-    return`<div class="week-event-card ${typeClass(ev.type)}">
-      <div class="wec-date"><div class="wec-day">${day}</div><div class="wec-mon">${mon}</div></div>
-      <div class="wec-info"><div class="wec-name">${ev.name}</div><div class="wec-sub">${week} · ${ev.time} · ${ev.type}</div></div>
-      ${badge}
-    </div>`;
-  }).join('');
-}
-
-function dateLabel(s){const d=new Date(s+'T12:00:00');return{day:d.getDate(),mon:MONTHS[d.getMonth()].slice(0,3),week:WEEKS[d.getDay()]};}
-function typeClass(t){return t==='Ensaio'?'ensaio':t==='Vigília'?'vigilia':'';}
-
-function renderEventsList(){
-  const el=document.getElementById('events-list');if(!el)return;
-  if(!allEvents.length){el.innerHTML='<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado.</p>';return;}
-  el.innerHTML=allEvents.map(ev=>{
-    const{day,mon,week}=dateLabel(ev.date);
-    const del=currentUser.is_admin?`<div class="event-item-actions"><button class="btn-icon btn-del" onclick="removeEvent('${ev.id}')">🗑️</button></div>`:'';
-    return`<div class="event-item ${typeClass(ev.type)}"><div class="event-date-box"><div class="day">${day}</div><div class="mon">${mon}</div></div><div class="event-info"><h4>${ev.name}</h4><p>${week} · ${ev.time} · ${ev.type}</p></div>${del}</div>`;
-  }).join('');
-}
-
-function renderScalesConfirmPanel(){
-  const panel=document.getElementById('scales-confirm-panel'),summary=document.getElementById('scales-confirm-summary');
-  if(!currentUser.is_admin||!allScales.length){panel.style.display='none';return;}
-  const total=allScales.length,confirmed=allScales.filter(s=>s.status==='confirmed').length,refused=allScales.filter(s=>s.status==='refused').length,pending=total-confirmed-refused;
-  const pct=total?Math.round(confirmed/total*100):0;
-  const autoSwapped=allScales.filter(s=>s._autoSwapped&&s._refusedBy),noSubRefused=allScales.filter(s=>s.status==='refused'&&!s._autoSwapped);
-  const autoSwapLogs=autoSwapped.map(s=>{const ev=allEvents.find(e=>e.id===s.event_id);return`<div class="autoswap-log">🔄 <strong>Troca automática</strong>${ev?` em <em>${ev.name}</em>`:''}<br><span style="color:var(--gray)">${s._refusedBy} recusou → <strong style="color:var(--blue)">${s.member_name}</strong> assumiu <em>${s.role}</em></span></div>`;}).join('');
-  const noSubAlerts=noSubRefused.map(s=>{const ev=allEvents.find(e=>e.id===s.event_id);return`<div style="background:#FEE2E2;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid var(--red)"><strong>⚠️ ${s.member_name}</strong> recusou <em>${s.role}</em>${ev?` · <em>${ev.name}</em>`:''}<br><span style="color:var(--red)">Nenhum substituto encontrado.</span></div>`;}).join('');
-  panel.style.display='block';
-  summary.innerHTML=(autoSwapLogs+noSubAlerts?`<div style="margin-bottom:10px">${autoSwapLogs+noSubAlerts}</div>`:'')+
-    `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-      <div style="flex:1;min-width:80px;background:#DCFCE7;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#16A34A">${confirmed}</div><div style="font-size:10px;color:#16A34A;font-weight:600">✅ Confirmados</div></div>
-      <div style="flex:1;min-width:80px;background:#FEF9C3;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B45309">${pending}</div><div style="font-size:10px;color:#B45309;font-weight:600">⏳ Pendentes</div></div>
-      <div style="flex:1;min-width:80px;background:#FEE2E2;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#B91C1C">${refused}</div><div style="font-size:10px;color:#B91C1C;font-weight:600">❌ Sem sub</div></div>
-    </div>
-    <div style="background:var(--bg);border-radius:8px;height:8px;overflow:hidden"><div style="background:#22C55E;height:100%;width:${pct}%;transition:.5s;border-radius:8px"></div></div>
-    <p style="font-size:11px;color:var(--gray);margin-top:6px;text-align:right">${pct}% confirmado</p>`;
-}
-
-async function removeEvent(id){
-  if(!confirm('🗑️ Apagar este evento? As escalas vinculadas também serão removidas.'))return;
-  try{await sb('scales','DELETE',null,`?event_id=eq.${id}`);await sb('events','DELETE',null,`?id=eq.${id}`);await loadEvents();await loadScales();showToast('🗑️ Evento removido','');}catch(e){showToast('Erro: '+e.message,'error');}
-}
-async function addEvent(){
-  const name=document.getElementById('new-ev-name').value.trim(),date=document.getElementById('new-ev-date').value;
-  if(!name||!date){showToast('Preencha nome e data','error');return;}
-  try{await sb('events','POST',{name,date,time:document.getElementById('new-ev-time').value||'09:00',type:document.getElementById('new-ev-type').value,ministry_id:currentUser.ministry_id});closeModal('add-event-modal');document.getElementById('new-ev-name').value='';await loadEvents();showToast('📅 Evento criado!','success');}catch(e){showToast('Erro: '+e.message,'error');}
-}
-
-function isPrincipalAdmin(){if(!currentUser.is_admin)return false;const admins=allMembers.filter(m=>m.is_admin);if(!admins.length)return false;return currentUser.id===admins.reduce((a,b)=>a.id<b.id?a:b).id;}
-function renderMembersGrid(){
-  const g=document.getElementById('members-grid');if(!g)return;
-  const isSuperAdmin=isPrincipalAdmin(),isAnyAdmin=currentUser.is_admin;
-  g.innerHTML=allMembers.map(m=>{
-    const isMe=m.id===currentUser.id,tAdmin=m.is_admin,canAct=isAnyAdmin&&!isMe,canPD=isSuperAdmin&&canAct;
-    let actions='';
-    if(canAct){actions=`<div style="display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap">${canPD?(tAdmin?`<button onclick="demoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--yellow);background:#FEF9C3;color:#B45309;cursor:pointer;font-weight:700">⬇️ Membro</button>`:`<button onclick="promoteMember('${m.id}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--blue);background:var(--blue-light);color:var(--blue);cursor:pointer;font-weight:700">⬆️ Admin</button>`):''}  <button onclick="removeMember('${m.id}','${m.name.replace(/'/g,"\\'")}','${m.email}')" style="font-size:10px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--red);background:#FEE2E2;color:var(--red);cursor:pointer;font-weight:700">🗑️</button></div>`;}
-    return`<div class="member-card"><div class="member-avatar">${initials(m.name)}</div><h4>${m.name}${isMe?' <span style="font-size:9px;color:var(--gray)">(você)</span>':''}</h4><p>${tAdmin?'Admin':'Membro'}</p><div class="member-roles">${(m.roles||[]).map(r=>`<span class="role-tag">${r}</span>`).join('')}</div><span class="badge available">Ativo</span>${actions}</div>`;
-  }).join('');
-}
-async function promoteMember(id){if(!confirm('Tornar Admin?'))return;try{await sb('members','PATCH',{is_admin:true},`?id=eq.${id}`);await loadMembers();showToast('⬆️ Promovido!','success');}catch(e){showToast('Erro','error');}}
-async function demoteMember(id){if(!confirm('Tornar Membro?'))return;try{await sb('members','PATCH',{is_admin:false},`?id=eq.${id}`);await loadMembers();showToast('⬇️ Rebaixado!','');}catch(e){showToast('Erro','error');}}
-async function removeMember(id,name,email){
-  if(!confirm(`Remover "${name}"?`))return;
-  try{await sb('availability','DELETE',null,`?member_email=eq.${encodeURIComponent(email)}&ministry_id=eq.${currentUser.ministry_id}`);await sb('scales','DELETE',null,`?member_name=eq.${encodeURIComponent(name)}&ministry_id=eq.${currentUser.ministry_id}`);await sb('members','DELETE',null,`?id=eq.${id}`);await loadMembers();await loadScales();showToast('🗑️ Removido!','');}catch(e){showToast('Erro','error');}
-}
-
-function buildRqGrid(){
-  const g=document.getElementById('rq-dash');if(!g)return;
-  ROLES_DEFS.forEach(r=>rqState[r.key]=0);
-  g.innerHTML=ROLES_DEFS.map(r=>`<div class="rq-card"><div class="rq-label">${r.icon} ${r.name}</div><div class="rq-controls"><button onclick="changeQty('${r.key}',false)">−</button><span id="qty-${r.key}">0</span><button onclick="changeQty('${r.key}',true)">+</button></div></div>`).join('');
-}
-function changeQty(key,inc){rqState[key]=Math.max(0,(rqState[key]||0)+(inc?1:-1));document.getElementById(`qty-${key}`).textContent=rqState[key];const tot=Object.values(rqState).reduce((a,b)=>a+b,0);document.getElementById('total-dash').innerHTML=`Total: <strong>${tot}</strong>`;}
-function membersForRole(label){return allMembers.filter(m=>(m.roles||[]).includes(label));}
-const usageCnt={};
-function pickMember(role,usedToday){const pool=membersForRole(role).filter(m=>!usedToday.includes(m.name));const src=pool.length?pool:membersForRole(role);if(!src.length)return{name:'⚠️ Sem membro',roles:[]};src.sort((a,b)=>(usageCnt[a.name]||0)-(usageCnt[b.name]||0));usageCnt[src[0].name]=(usageCnt[src[0].name]||0)+1;return src[0];}
-async function generateScale(){
-  const comp=[];ROLES_DEFS.forEach(r=>{for(let i=0;i<(rqState[r.key]||0);i++)comp.push(`${r.icon} ${r.name}`);});
-  if(!comp.length){showToast('Adicione pelo menos uma função','error');return;}
-  if(!allEvents.length){showToast('Cadastre eventos primeiro','error');return;}
-  if(allScales.length>0&&!confirm('⚠️ Isso vai apagar as escalas e confirmações atuais. Continuar?'))return;
-  showToast('⚡ Gerando escalas...','');Object.keys(usageCnt).forEach(k=>delete usageCnt[k]);
-  try{
-    await sb('scales','DELETE',null,`?ministry_id=eq.${currentUser.ministry_id}`);
-    const inserts=[];
-    allEvents.forEach(ev=>{const usedToday=[];comp.forEach(role=>{const m=pickMember(role,usedToday);if(m.name==='⚠️ Sem membro')return;usedToday.push(m.name);inserts.push({event_id:ev.id,member_name:m.name,member_init:initials(m.name),role,status:'pending',ministry_id:currentUser.ministry_id});});});
-    await sb('scales','POST',inserts);await loadScales();navigate('scales');showToast('⚡ Escalas geradas!','success');
-  }catch(e){showToast('Erro: '+e.message,'error');}
-}
-
-function findSubstitute(scale){
-  const roleLabel=scale.role.replace(/^[\p{Emoji}\s]+/u,'').trim();
-  const candidates=allMembers.filter(m=>{
-    if(m.name===scale.member_name)return false;
-    const alreadyInEvent=allScales.some(s=>s.event_id===scale.event_id&&s.member_name===m.name&&s.id!==scale.id);
-    if(alreadyInEvent)return false;
-    return(m.roles||[]).some(r=>r.replace(/^[\p{Emoji}\s]+/u,'').trim()===roleLabel||(m.roles||[]).includes(scale.role));
-  });
-  if(!candidates.length)return null;
-  const cnt={};allScales.forEach(s=>{cnt[s.member_name]=(cnt[s.member_name]||0)+1;});
-  candidates.sort((a,b)=>(cnt[a.name]||0)-(cnt[b.name]||0));return candidates[0];
-}
-
-async function confirmScale(id,status){
-  const sc=allScales.find(s=>s.id===id);if(!sc)return;
-  const prevStatus=sc.status;sc.status=status;renderScaleOutput();renderMyScales();renderDashboard();
-  if(status==='confirmed'){showToast('✅ Presença confirmada!','success');try{await sb('scales','PATCH',{status:'confirmed'},`?id=eq.${id}`);}catch(e){sc.status=prevStatus;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao salvar.','error');}pollNow();return;}
-  const substitute=findSubstitute(sc),refusedName=sc.member_name,refusedRole=sc.role;
-  try{
-    if(substitute){
-      await sb('scales','PATCH',{member_name:substitute.name,member_init:initials(substitute.name),status:'pending',refused_by:refusedName},`?id=eq.${id}`);
-      sc.member_name=substitute.name;sc.member_init=initials(substitute.name);sc.status='pending';sc._autoSwapped=true;sc._refusedBy=refusedName;
-      renderScaleOutput();renderMyScales();renderDashboard();showToast(`🔄 ${substitute.name} assumiu a vaga de ${refusedRole}!`,'success');
-    }else{
-      await sb('scales','PATCH',{status:'refused'},`?id=eq.${id}`);showToast('❌ Recusado · Nenhum substituto disponível.','error');
-    }
-  }catch(e){sc.status=prevStatus;sc.member_name=refusedName;renderScaleOutput();renderMyScales();renderDashboard();showToast('Erro ao processar.','error');}
-  pollNow();
-}
-
-let scaleFilter={name:'',from:'',to:''};
-function applyScaleFilter(){scaleFilter.name=document.getElementById('filter-event-name').value.trim().toLowerCase();scaleFilter.from=document.getElementById('filter-date-from').value;scaleFilter.to=document.getElementById('filter-date-to').value;renderScaleOutput();}
-function clearScaleFilter(){document.getElementById('filter-event-name').value='';document.getElementById('filter-date-from').value='';document.getElementById('filter-date-to').value='';scaleFilter={name:'',from:'',to:''};renderScaleOutput();}
-function getFilteredEventIds(){
-  const has=scaleFilter.name||scaleFilter.from||scaleFilter.to;if(!has)return null;
-  return allEvents.filter(ev=>{if(scaleFilter.name&&!ev.name.toLowerCase().includes(scaleFilter.name))return false;if(scaleFilter.from&&ev.date<scaleFilter.from)return false;if(scaleFilter.to&&ev.date>scaleFilter.to)return false;return true;}).map(ev=>ev.id);
-}
-
-function renderScaleOutput(){
-  renderScalesConfirmPanel();
-  const out=document.getElementById('scale-output');if(!out)return;
-  if(!allScales.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhuma escala gerada ainda.</p></div>';return;}
-  const filteredIds=getFilteredEventIds(),infoEl=document.getElementById('scale-filter-info');
-  const byEvent={};allScales.forEach(s=>{if(!byEvent[s.event_id])byEvent[s.event_id]=[];byEvent[s.event_id].push(s);});
-  let eventIds=Object.keys(byEvent);if(filteredIds!==null)eventIds=eventIds.filter(id=>filteredIds.includes(id));
-  const hasFilter=scaleFilter.name||scaleFilter.from||scaleFilter.to;
-  if(hasFilter&&infoEl){infoEl.className='scale-filter-info visible';infoEl.textContent=`Exibindo ${eventIds.length} de ${Object.keys(byEvent).length} eventos`;}else if(infoEl)infoEl.className='scale-filter-info';
-  if(!eventIds.length){out.innerHTML='<div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhum evento encontrado.</p></div>';return;}
-  const isMobile=window.innerWidth<=600;let html='';
-  eventIds.forEach(eid=>{
-    const rows=byEvent[eid],ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
-    const{day,mon,week}=dateLabel(ev.date);
-    html+=`<div class="scale-day-block"><div class="scale-day-header"><div class="scale-day-date"><span class="sdh-day">${String(day).padStart(2,'0')}</span><span class="sdh-week">${week.toUpperCase()}</span></div><div><div class="scale-day-event">${ev.name}</div><span style="font-size:10px;color:var(--gray)">${mon} · ${ev.time}</span></div><button onclick="shareScaleWhatsApp('${eid}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>Enviar</button></div>`;
-    if(isMobile){
-      html+=`<div class="scale-cards-list">`;
-      rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped">🔄</span>':'<span class="badge pending">⏳</span>';const subNote=wasSwapped?`<div style="font-size:9px;color:#C2410C;margin-top:2px">🔄 substituiu ${r._refusedBy}</div>`:'';const cb=isMe&&r.status==='pending'?`<div class="scale-row-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌</button></div>`:'';html+=`<div class="scale-row-card"><div class="scale-row-num">${String(i+1).padStart(2,'0')}</div><div style="flex:2;min-width:0"><div class="scale-row-role">${r.role}</div><div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div></div><div class="scale-row-status">${sb2}</div>${cb}</div>`;});
-      html+=`</div>`;
-    }else{
-      html+=`<div class="table-wrap"><table><thead><tr><th>#</th><th>Função</th><th>Membro</th><th>Status</th></tr></thead><tbody>`;
-      rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':wasSwapped?`<span class="badge swapped">🔄 Trocado auto</span>`:'<span class="badge pending">⏳ Pendente</span>';const subNote=wasSwapped?`<br><span style="font-size:9px;color:#C2410C">substituiu ${r._refusedBy}</span>`:'';const cb=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';html+=`<tr><td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td><td>${r.role}</td><td><strong>${r.member_name}</strong>${subNote}${cb}</td><td>${sb2}</td></tr>`;});
-      html+=`</tbody></table></div>`;
-    }
-    html+=`</div>`;
-  });
-  out.innerHTML=html;
-}
-
-window.addEventListener('resize',()=>renderScaleOutput());
-
-function shareScaleWhatsApp(eventId){
-  const ev=allEvents.find(e=>e.id===eventId)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
-  const rows=allScales.filter(s=>s.event_id===eventId);
-  const{day,mon,week}=dateLabel(ev.date);
-  const mn=currentMinistry?.name||'Ministério';
-  let msg=`*${mn}*\n *${ev.name}*\n ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${ev.time}\n Tipo: ${ev.type}\n\n Equipe Escalada:\n`;
-  rows.forEach((r,i)=>{const st=r.status==='confirmed'?'✅':r.status==='refused'?'❌':'⏳';msg+=`${String(i+1).padStart(2,'0')}. ${r.role} → *${r.member_name}* ${st}\n`;});
-  msg+=`\n_Gerado pelo LouvorFlow_`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
-}
-
-function renderMyScales(){
-  const out=document.getElementById('my-scales-output');if(!out)return;
-  const mine=allScales.filter(s=>s.member_name===currentUser.name);
-  const confirmed=mine.filter(s=>s.status==='confirmed').length;
-  document.getElementById('my-scale-count').textContent=mine.length;document.getElementById('my-confirm-count').textContent=confirmed;
-  if(!mine.length){out.innerHTML='<p style="color:var(--gray);font-size:13px">Você não está escalado ainda.</p>';return;}
-  const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
-  let html='';
-  Object.keys(byEv).forEach(eid=>{
-    const rows=byEv[eid],ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
-    const{day,mon,week}=dateLabel(ev.date);
-    const allConf=rows.every(r=>r.status==='confirmed'),hasPend=rows.some(r=>r.status==='pending');
-    const sc=allConf?'#16A34A':hasPend?'#B45309':'#B91C1C',st=allConf?'✅ Confirmado':hasPend?'⏳ Pendente':'❌ Recusado';
-    html+=`<div style="border:1.5px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="background:var(--blue);color:#fff;border-radius:7px;padding:3px 8px;font-size:12px;font-weight:800">${String(day).padStart(2,'0')} ${mon}</div><div><strong style="font-size:13px">${ev.name}</strong><br><span style="font-size:10px;color:var(--gray)">${week} · ${ev.time}</span></div><span style="margin-left:auto;font-size:11px;font-weight:700;color:${sc}">${st}</span></div>${rows.map(r=>`<span class="role-tag" style="font-size:11px;padding:3px 9px">${r.role}</span>`).join(' ')}${hasPend?`<div style="display:flex;gap:6px;margin-top:8px">${rows.filter(r=>r.status==='pending').map(r=>`<button onclick="confirmScale('${r.id}','confirmed')" class="btn-confirm yes">✅ Confirmar ${r.role}</button><button onclick="confirmScale('${r.id}','refused')" class="btn-confirm no">❌ Recusar</button>`).join('')}</div>`:''}</div>`;
-  });
-  out.innerHTML=html;
-}
-
-function changeAvailMonth(d){availMonth.m+=d;if(availMonth.m>11){availMonth.m=0;availMonth.y++;}if(availMonth.m<0){availMonth.m=11;availMonth.y--;}buildAvailGrid();}
-function buildAvailGrid(){
-  const{y,m}=availMonth;document.getElementById('avail-month-title').textContent=`${MONTHS[m]} ${y}`;
-  const firstDay=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),todayStr=fmt(new Date()),eventDays=new Set(allEvents.map(e=>e.date));
-  const grid=document.getElementById('avail-grid');grid.innerHTML='';
-  for(let i=0;i<firstDay;i++){const b=document.createElement('div');b.className='day-cell empty';grid.appendChild(b);}
-  for(let d=1;d<=dim;d++){
-    const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const cell=document.createElement('div');
-    cell.className='day-cell'+(availState[ds]===false?' unavail':' avail');
-    if(ds===todayStr)cell.classList.add('today');if(eventDays.has(ds))cell.classList.add('has-event');
-    cell.textContent=d;cell.onclick=()=>{if(availState[ds]===false)delete availState[ds];else availState[ds]=false;buildAvailGrid();};
-    grid.appendChild(cell);
-  }
-}
-async function saveAvailability(){
-  try{
-    const{y,m}=availMonth,dim=new Date(y,m+1,0).getDate(),rows=[];
-    for(let d=1;d<=dim;d++){const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;rows.push({member_email:currentUser.email,date:ds,available:availState[ds]!==false,ministry_id:currentUser.ministry_id});}
-    await fetch(`${SB_URL}/rest/v1/availability`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(rows)});
-    showToast('✅ Disponibilidade salva!','success');
-  }catch(e){showToast('Erro: '+e.message,'error');}
-}
-
-function navigate(p){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
-  const map={dashboard:0,events:1,members:2,scales:3,availability:4,profile:6,config:7};
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  const idx=map[p];if(idx!==undefined)document.querySelectorAll('.nav-item')[idx]?.classList.add('active');
-  document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('open');
-  localStorage.setItem('lastPage',p);
-  if(p==='config')updateInviteDisplay();
-  if(p==='scales')renderScalesConfirmPanel();
-  if(p==='dashboard'){renderDashboard();}
-}
-function toggleDropdown(){document.getElementById('dropdown').classList.toggle('open');}
-document.addEventListener('click',e=>{if(!e.target.closest('.user-menu'))document.getElementById('dropdown').classList.remove('open');});
-function showModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
-function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
-</script>
-</body>
-</html>
