@@ -63,21 +63,15 @@ aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:1
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
-
-/* ── DASHBOARD NOVO ── */
 .dash-section-label{font-size:10px;font-weight:800;color:#B0B8CC;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;display:flex;align-items:center;gap:6px}
 .dash-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* Hero card — próximo evento */
 .hero-event-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:16px;padding:18px;color:#fff;margin-bottom:6px;position:relative;overflow:hidden}
 .hero-event-card::before{content:'🎵';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.08}
 .hero-ev-label{font-size:10px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .hero-ev-name{font-size:18px;font-weight:800;margin-bottom:2px}
-.hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:14px}
+.hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:4px}
 .no-event-card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:2px dashed var(--border);margin-bottom:6px}
 .no-event-card p{color:var(--gray);font-size:13px;margin-bottom:10px}
-
-/* Stats com contexto */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
 .stat-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .stat-card .sc-icon{font-size:20px;margin-bottom:6px}
@@ -89,8 +83,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .sc-trend.down{background:#FEE2E2;color:#B91C1C}
 .stat-card .sc-bar{height:3px;border-radius:20px;background:var(--border);margin-top:8px;overflow:hidden}
 .stat-card .sc-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--blue),var(--purple))}
-
-/* Semana cards */
 .week-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
 .week-event-card{background:#fff;border-radius:12px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.04);border-left:4px solid var(--blue)}
 .week-event-card.ensaio{border-left-color:var(--purple)}
@@ -102,12 +94,364 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .wec-name{font-size:13px;font-weight:700}
 .wec-sub{font-size:11px;color:var(--gray);margin-top:2px}
 .wec-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue);white-space:nowrap}
-
-/* Alerta membro */
 .member-alert-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;color:#fff;margin-bottom:6px}
-
-/* gen box */
 .gen-box{background:var(--blue-light);border-radius:14px;padding:18px;margin-bottom:14px}
 .gen-box h3{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:3px}
-.
+.gen-box p{font-size:12px;color:var(--gray);margin-bottom:12px}
+.rq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.rq-card{background:#fff;border-radius:10px;padding:9px 11px;border:1.5px solid var(--border)}
+.rq-label{font-size:11px;font-weight:600;margin-bottom:6px}
+.rq-controls{display:flex;align-items:center;gap:7px}
+.rq-controls button{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--border);background:var(--bg);font-size:15px;font-weight:700;cursor:pointer;color:var(--dark);transition:.15s;line-height:1}
+.rq-controls button:hover{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+.rq-controls span{font-size:16px;font-weight:800;min-width:16px;text-align:center;color:var(--blue)}
+.gen-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.btn-gen{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
+.btn-gen:hover{background:#3a63f0}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
+.card h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px}
+.greeting h2{font-size:20px;font-weight:800}
+.greeting p{color:var(--gray);font-size:13px;margin-top:2px}
+.scale-day-block{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.scale-day-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--blue-light);border-bottom:1.5px solid var(--border);flex-wrap:wrap}
+.scale-day-date{display:flex;flex-direction:column;align-items:center;min-width:44px;background:var(--blue);color:#fff;border-radius:8px;padding:4px 8px}
+.sdh-day{font-size:13px;font-weight:800}
+.sdh-week{font-size:8px;font-weight:600;opacity:.85;text-transform:uppercase}
+.scale-day-event{font-size:13px;font-weight:700;color:var(--blue);flex:1}
+.scale-cards-list{display:flex;flex-direction:column;gap:6px;padding:10px}
+.scale-row-card{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:9px;padding:9px 11px;border:1.5px solid var(--border)}
+.scale-row-num{font-size:10px;font-weight:800;color:var(--gray);min-width:20px;text-align:center}
+.scale-row-role{font-size:11px;font-weight:700;color:var(--dark);flex:1;min-width:0}
+.scale-row-member{font-size:11px;color:var(--gray);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scale-row-member strong{color:var(--dark);display:block;font-size:12px}
+.scale-row-status{flex-shrink:0}
+.scale-row-btns{display:flex;gap:4px;flex-shrink:0}
+table{width:100%;border-collapse:collapse}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+th{text-align:left;font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;border-bottom:2px solid var(--border)}
+td{padding:10px;border-bottom:1px solid var(--border);font-size:12px}
+tr:last-child td{border-bottom:none}
+.scale-filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.scale-filter-bar input[type=text]{flex:1;min-width:140px;padding:9px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:#fff;transition:.2s}
+.scale-filter-bar input[type=text]:focus{border-color:var(--blue)}
+.scale-filter-bar input[type=date]{padding:8px 11px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:#fff;color:var(--dark);transition:.2s;min-width:130px}
+.scale-filter-bar input[type=date]:focus{border-color:var(--blue)}
+.scale-filter-bar .btn-clear{padding:8px 12px;background:var(--bg);border:1.5px solid var(--border);border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;color:var(--gray);white-space:nowrap;transition:.2s}
+.scale-filter-bar .btn-clear:hover{border-color:var(--blue);color:var(--blue)}
+.scale-filter-info{font-size:11px;color:var(--gray);margin-bottom:10px;padding:6px 10px;background:var(--blue-light);border-radius:8px;display:none}
+.scale-filter-info.visible{display:block}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.badge.confirmed{background:#DCFCE7;color:#16A34A}
+.badge.pending{background:#FEF9C3;color:#B45309}
+.badge.refused{background:#FEE2E2;color:#B91C1C}
+.badge.available{background:#DCFCE7;color:#16A34A}
+.badge.admin{background:#EDE9FE;color:#7C3AED}
+.badge.swapped{background:#FFF7ED;color:#C2410C}
+.confirm-btns{display:flex;gap:4px;margin-top:4px}
+.btn-confirm{padding:4px 10px;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
+.btn-confirm.yes{background:#DCFCE7;color:#16A34A}
+.btn-confirm.no{background:#FEE2E2;color:#B91C1C}
+.members-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.member-card{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.member-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;margin:0 auto 8px}
+.member-card h4{font-size:12px;font-weight:700}
+.member-card p{font-size:10px;color:var(--gray);margin-top:2px}
+.member-roles{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin:6px 0}
+.role-tag{background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:600;padding:2px 6px;border-radius:20px}
+.events-list{display:flex;flex-direction:column;gap:8px}
+.event-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--bg);border-radius:10px;border-left:4px solid var(--blue)}
+.event-date-box{text-align:center;min-width:36px}
+.event-date-box .day{font-size:18px;font-weight:800;color:var(--blue)}
+.event-date-box .mon{font-size:9px;font-weight:600;color:var(--gray);text-transform:uppercase}
+.event-info{flex:1}
+.event-info h4{font-size:12px;font-weight:700}
+.event-info p{font-size:10px;color:var(--gray);margin-top:2px}
+.event-item.ensaio{border-left-color:var(--purple)}
+.event-item.vigilia{border-left-color:var(--yellow)}
+.event-item-actions{display:flex;gap:4px}
+.avail-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.avail-nav h3{font-size:15px;font-weight:700}
+.avail-nav button{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:5px 11px;cursor:pointer;font-size:14px;font-weight:700;color:var(--dark)}
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px}
+.cal-header span{text-align:center;font-size:10px;font-weight:700;color:var(--gray);padding:3px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.day-cell{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1.5px solid var(--border);transition:.2s;font-size:12px;font-weight:700;color:var(--dark);background:var(--bg);position:relative}
+.day-cell:hover{border-color:var(--blue)}
+.day-cell.empty{background:transparent;border-color:transparent;cursor:default;pointer-events:none}
+.day-cell.avail{background:#DCFCE7;border-color:#22C55E;color:#16A34A}
+.day-cell.unavail{background:#FEE2E2;border-color:var(--red);color:#B91C1C}
+.day-cell.today{box-shadow:0 0 0 2px var(--blue)}
+.day-cell.has-event::after{content:'●';position:absolute;bottom:2px;font-size:6px;color:var(--blue)}
+.avail-legend{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.avail-legend div{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray)}
+.avail-legend .dot{width:11px;height:11px;border-radius:3px;border:1.5px solid}
+.profile-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700;flex-shrink:0}
+.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
+.config-section{margin-bottom:18px}
+.config-section h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.config-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.config-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:16px;outline:none;background:var(--bg)}
+.config-row input:focus{border-color:var(--blue);background:#fff}
+.btn-save{padding:9px 18px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.invite-card{background:linear-gradient(135deg,var(--blue),var(--purple));border-radius:14px;padding:18px;color:#fff;margin-bottom:14px}
+.invite-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.invite-card p{font-size:11px;opacity:.8;margin-bottom:12px}
+.invite-code-big{background:rgba(255,255,255,.2);border-radius:10px;padding:10px 14px;font-size:20px;font-weight:800;letter-spacing:3px;text-align:center;margin-bottom:10px;font-family:monospace}
+.invite-link-row{display:flex;gap:6px}
+.invite-link-row input{flex:1;padding:8px 10px;border-radius:8px;border:none;font-size:11px;color:var(--dark);background:#fff}
+.invite-link-row button{padding:8px 12px;background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-wa-invite{width:100%;padding:10px;background:#25D366;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto}
+.modal h3{font-size:16px;font-weight:800;margin-bottom:16px}
+.modal-actions{display:flex;gap:8px;margin-top:16px}
+.modal-actions .btn-primary{flex:1}
+.btn-cancel{flex:1;padding:11px;background:var(--bg);color:var(--dark);border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-icon{width:28px;height:28px;border:none;border-radius:7px;cursor:pointer;font-size:12px;transition:.2s}
+.btn-del{background:#FEE2E2;color:var(--red)}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:16px;right:16px;left:16px;background:var(--dark);color:#fff;padding:11px 16px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;transform:translateY(100px);opacity:0;transition:.3s;text-align:center}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:#16A34A}
+.toast.error{background:var(--red)}
+footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px}
+.btn-edit-roles{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
+.btn-edit-roles:hover{background:var(--blue);color:#fff}
+.autoswap-log{background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:9px;padding:9px 11px;margin-bottom:6px;font-size:11px;border-left:3px solid #F97316;line-height:1.6}
+@media(max-width:768px){
+  aside{position:fixed;left:-260px;top:58px;bottom:0;height:auto;z-index:250;width:240px;padding:16px 12px;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease}
+  aside.open{left:0}
+  .hamburger{display:block}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .members-grid{grid-template-columns:repeat(2,1fr)}
+  .profile-grid{grid-template-columns:1fr}
+  .rq-grid{grid-template-columns:repeat(2,1fr)}
+  main{padding:14px 12px}
+  .scale-filter-bar input[type=date]{min-width:100px}
+  .header-left h4{max-width:130px}
+}
+@media(max-width:400px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .members-grid{grid-template-columns:1fr 1fr}
+  .rq-grid{grid-template-columns:1fr 1fr}
+  .gen-footer{flex-direction:column;align-items:stretch}
+  .btn-gen{justify-content:center}
+  .ministry-type-picker{flex-direction:column}
+  .scale-filter-bar{flex-direction:column;align-items:stretch}
+  .scale-filter-bar input[type=date]{min-width:unset}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo"><div class="icon">🎵</div><h2>LouvorFlow</h2><p>Gestão inteligente do ministério</p></div>
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('login')">Entrar</button>
+      <button class="tab-btn" onclick="switchTab('register')">Cadastrar</button>
+    </div>
+    <div id="login-form">
+      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"></div>
+      <div class="form-group"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+      <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar →</button>
+      <button class="btn-link" onclick="switchTab('forgot')">Esqueci minha senha</button>
+    </div>
+    <div id="register-form" style="display:none">
+      <div id="reg-step-1">
+        <p style="font-size:13px;color:var(--gray);margin-bottom:12px">O que você quer fazer?</p>
+        <div class="ministry-type-picker">
+          <div class="mtp-item" id="mtp-create" onclick="selectMinistryType('create')"><span class="mtp-icon">🏛️</span>Criar meu ministério</div>
+          <div class="mtp-item" id="mtp-join" onclick="selectMinistryType('join')"><span class="mtp-icon">🔗</span>Entrar em um ministério</div>
+        </div>
+        <div id="reg-type-warning" style="display:none;margin-top:10px;background:#FEF9C3;border-radius:8px;padding:10px;font-size:11px;color:#B45309"></div>
+        <button class="btn-primary" style="margin-top:14px" onclick="goRegStep2()">Continuar →</button>
+      </div>
+      <div id="reg-step-2" style="display:none">
+        <button onclick="goRegStep1()" style="background:none;border:none;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;display:flex;align-items:center;gap:4px">← Voltar</button>
+        <div id="reg-create-fields">
+          <div class="form-group"><label>Nome completo</label><input type="text" id="reg-name-c" placeholder="João Silva"></div>
+          <div class="form-group"><label>E-mail</label><input type="email" id="reg-email-c" placeholder="seu@email.com"></div>
+          <div class="form-group"><label>Senha</label><input type="password" id="reg-pass-c" placeholder="••••••••"></div>
+          <div class="form-group"><label>Nome do ministério</label><input type="text" id="reg-ministry-name" placeholder="Ministério Graça Eterna"></div>
+          <div class="form-group"><label>Minhas funções</label>
+            <div class="roles-picker" id="roles-picker-c">
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Violão</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Guitarra</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎹 Teclado</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎤 Voz Principal</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎤 Back Vocal</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🥁 Bateria</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Baixo</div>
+            </div>
+          </div>
+          <button class="btn-primary" id="btn-register-c" onclick="doRegisterCreate()">Criar ministério →</button>
+        </div>
+        <div id="reg-join-fields" style="display:none">
+          <div class="form-group"><label>Nome completo</label><input type="text" id="reg-name-j" placeholder="João Silva"></div>
+          <div class="form-group"><label>E-mail</label><input type="email" id="reg-email-j" placeholder="seu@email.com"></div>
+          <div class="form-group"><label>Senha</label><input type="password" id="reg-pass-j" placeholder="••••••••"></div>
+          <div class="form-group"><label>Código do ministério</label>
+            <input type="text" id="reg-code-j" placeholder="Ex: GRACA2025" style="text-transform:uppercase;letter-spacing:2px;font-weight:700">
+          </div>
+          <div id="ministry-preview" style="display:none;background:var(--blue-light);border-radius:10px;padding:10px;margin-bottom:10px;font-size:13px"></div>
+          <div class="form-group"><label>Minhas funções</label>
+            <div class="roles-picker" id="roles-picker-j">
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Violão</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Guitarra</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎹 Teclado</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎤 Voz Principal</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎤 Back Vocal</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🥁 Bateria</div>
+              <div class="rp-item" onclick="toggleRolePick(this)">🎸 Baixo</div>
+            </div>
+          </div>
+          <button class="btn-primary" id="btn-register-j" onclick="doRegisterJoin()">Entrar na equipe →</button>
+        </div>
+      </div>
+    </div>
+    <div id="forgot-form" style="display:none">
+      <p style="font-size:13px;color:var(--gray);margin-bottom:14px">Digite seu e-mail e mostraremos sua senha cadastrada.</p>
+      <div class="form-group"><label>E-mail</label><input type="email" id="forgot-email" placeholder="seu@email.com"></div>
+      <div id="forgot-result" style="display:none;background:var(--blue-light);border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px"></div>
+      <button class="btn-primary" id="btn-forgot" onclick="doForgot()">Buscar senha →</button>
+      <button class="btn-link" onclick="switchTab('login')">← Voltar ao login</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div class="header-left">
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+      <div class="logo-img">🎵</div>
+      <h4 id="ministry-name">LouvorFlow</h4>
+    </div>
+    <div class="header-right">
+      <div class="user-menu">
+        <div class="avatar" id="user-avatar" onclick="toggleDropdown()">JS</div>
+        <div class="dropdown" id="dropdown">
+          <a onclick="navigate('profile');toggleDropdown()">👤 Perfil</a>
+          <a id="admin-config-link" onclick="navigate('config');toggleDropdown()" style="display:none">⚙️ Configurações</a>
+          <a class="danger" onclick="doLogout()">🚪 Sair</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div class="main-area">
+    <aside id="sidebar">
+      <div class="nav-section">Menu</div>
+      <button class="nav-item active" onclick="navigate('dashboard')"><span class="ni">⊞</span> Dashboard</button>
+      <button class="nav-item" onclick="navigate('events')"><span class="ni">📅</span> Eventos</button>
+      <button class="nav-item" onclick="navigate('members')"><span class="ni">👥</span> Equipe</button>
+      <button class="nav-item" onclick="navigate('scales')"><span class="ni">📋</span> Escalas</button>
+      <button class="nav-item" onclick="navigate('availability')"><span class="ni">🕐</span> Disponibilidade</button>
+      <div class="nav-section">Conta</div>
+      <button class="nav-item" onclick="navigate('profile')"><span class="ni">👤</span> Meu Perfil</button>
+      <button class="nav-item admin-only" id="nav-config" style="display:none" onclick="navigate('config')"><span class="ni">⚙️</span> Configurações</button>
+    </aside>
+    <main>
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="greeting-row">
+          <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p id="dash-subtitle">Resumo do ministério.</p></div>
+          <span id="role-badge" class="badge admin">Admin</span>
+        </div>
+
+        <div id="member-scale-alert" style="display:none" class="member-alert-card">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
+          <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
+          <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+
+        <div class="dash-section-label">🔴 Agora</div>
+        <div id="dash-hero-event"></div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="sc-icon">🎵</div>
+            <div class="sc-num" id="dash-ev-count">—</div>
+            <div class="sc-label">Eventos</div>
+            <div id="dash-ev-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-ev-bar" style="width:0%"></div></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-icon">👥</div>
+            <div class="sc-num" id="dash-member-count">—</div>
+            <div class="sc-label">Membros</div>
+            <div id="dash-mem-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-mem-bar" style="width:0%"></div></div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-icon">📋</div>
+            <div class="sc-num" id="dash-scale-count">—</div>
+            <div class="sc-label">Escalas</div>
+            <div id="dash-sc-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
+            <div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-section-label">📅 Esta semana</div>
+        <div id="dash-week-events" class="week-cards"></div>
+
+        <div id="admin-gen-dash" class="gen-box" style="display:none">
+          <h3>⚡ Montar Equipe para a Escala</h3>
+          <p>Defina quantos de cada função e clique em Gerar.</p>
+          <div class="rq-grid" id="rq-dash"></div>
+          <div class="gen-footer">
+            <span id="total-dash" style="font-size:12px;color:var(--gray)">Total: <strong>0</strong></span>
+            <button class="btn-gen" onclick="generateScale()">⚡ GERAR</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="page" id="page-events">
+        <div class="greeting-row">
+          <div class="greeting"><h2>📅 Eventos</h2></div>
+          <button class="btn-gen admin-only" style="display:none" onclick="showModal('add-event-modal')">+ Novo</button>
+        </div>
+        <div class="card">
+          <div class="events-list" id="events-list"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
+        </div>
+      </div>
+
+      <!-- MEMBERS -->
+      <div class="page" id="page-members">
+        <div class="greeting-row">
+          <div class="greeting"><h2>👥 Equipe</h2><p id="member-count-label"></p></div>
+        </div>
+        <div class="members-grid" id="members-grid"></div>
+      </div>
+
+      <!-- SCALES -->
+      <div class="page" id="page-scales">
+        <div class="greeting-row">
+          <div class="greeting"><h2>📋 Escalas</h2></div>
+          <button class="btn-gen admin-only" style="display:none" onclick="navigate('dashboard')">⚡ Gerar</button>
+        </div>
+        <div id="scales-confirm-panel" style="display:none" class="card">
+          <h3>📊 Confirmações da Escala</h3>
+          <div id="scales-confirm-summary"></div>
+        </div>
+        <div class="scale-filter-bar">
+          <input type="text" id="filter-event-name" placeholder="🔍 Buscar evento..." oninput="applyScaleFilter()" />
+          <input type="date" id="filter-date-from" onchange="applyScaleFilter()" title="De">
+          <input type="date" id="filter-date-to" onchange="applyScaleFilter()" title="Até">
+          <button class="btn-clear" onclick="clearScaleFilter()">✕ Limpar</button>
+        </div>
+        <div class="scale-filter-info" id="scale-filter-info"></div>
+        <div id="scale-output"><div class="card"><p style="color:var(--gray);font-size:13px;text-align:center;padding:20px">Nenhuma escala gerada ainda.</p></div></div>
+      </div>
+
+      <!-- AVAILABILITY -->
+      <div class="page" id="page-availability">
+        <div class="greeting">
 
