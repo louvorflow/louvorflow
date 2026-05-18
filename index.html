@@ -27,6 +27,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-primary:hover{background:#3a63f0}
 .btn-primary:disabled{opacity:.6;cursor:not-allowed}
 .btn-link{background:none;border:none;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;display:block;text-align:center;width:100%}
+.btn-reset{background:none;border:none;color:#B0B8CC;font-size:11px;cursor:pointer;margin-top:6px;display:block;text-align:center;width:100%;padding:4px}
+.btn-reset:hover{color:var(--red)}
 .roles-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .rp-item{padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);font-size:11px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--gray);transition:.2s;user-select:none}
 .rp-item.selected{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
@@ -218,8 +220,8 @@ tr:last-child td{border-bottom:none}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:#16A34A}
 .toast.error{background:var(--red)}
-footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:10px;min-height:36px}
-.btn-download{padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
+footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:10px;min-height:36px;flex-wrap:wrap}
+.btn-download{padding:5px 14px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
 .btn-download:hover{background:var(--blue);color:#fff}
 .btn-edit-roles{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
 .btn-edit-roles:hover{background:var(--blue);color:#fff}
@@ -263,6 +265,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <div class="form-group"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••"></div>
       <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar →</button>
       <button class="btn-link" onclick="switchTab('forgot')">Esqueci minha senha</button>
+      <button class="btn-reset" onclick="resetApp()">🔄 App travado? Clique aqui para resetar</button>
     </div>
     <div id="register-form" style="display:none">
       <div id="reg-step-1">
@@ -366,16 +369,13 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p id="dash-subtitle">Resumo do ministério.</p></div>
           <span id="role-badge" class="badge admin">Admin</span>
         </div>
-
         <div id="member-scale-alert" style="display:none" class="member-alert-card">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
           <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
         </div>
-
         <div class="dash-section-label">🔴 Agora</div>
         <div id="dash-hero-event"></div>
-
         <div class="stats-grid">
           <div class="stat-card">
             <div class="sc-icon">🎵</div>
@@ -399,10 +399,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
             <div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div>
           </div>
         </div>
-
         <div class="dash-section-label">📅 Esta semana</div>
         <div id="dash-week-events" class="week-cards"></div>
-
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -484,5 +482,72 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           </div>
         </div>
         <div class="profile-grid">
-          <div class="stat-card"><div class="sc-icon">📋</div>
+          <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="my-scale-count">0</div><div class="sc-label">Escalas</div></div>
+          <div class="stat-card"><div class="sc-icon">✅</div><div class="sc-num" id="my-confirm-count">—</div><div class="sc-label">Confirmações</div></div>
+        </div>
+        <div class="card">
+          <h3>📋 Minhas Escalas</h3>
+          <div id="my-scales-output"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
+        </div>
+        <button class="btn-gen" style="background:var(--purple);margin-top:4px" onclick="navigate('availability')">📅 Disponibilidade</button>
+        <div id="join-another-box" class="join-ministry-box" style="display:none;margin-top:18px">
+          <h4>🔗 Entrar em outro ministério</h4>
+          <p>Tem o código de outro ministério? Cole aqui para entrar.</p>
+          <div class="form-group" style="margin-bottom:8px">
+            <input type="text" id="join-code-input" placeholder="Ex: GRACA2025" style="text-transform:uppercase;letter-spacing:2px;font-weight:700;width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;outline:none;background:#fff">
+          </div>
+          <button onclick="joinMinistryFromProfile()" style="width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">Entrar na equipe →</button>
+        </div>
+        <div style="margin-top:24px;padding-top:18px;border-top:1.5px solid var(--border)">
+          <p style="font-size:12px;color:var(--gray);margin-bottom:10px">⚠️ Ao apagar seu perfil, todos os seus dados serão removidos permanentemente.</p>
+          <button onclick="deleteSelfProfile()" style="width:100%;padding:11px;background:#FEE2E2;color:var(--red);border:1.5px solid var(--red);border-radius:12px;font-size:13px;font-weight:700;cursor:pointer">🗑️ Apagar meu perfil</button>
+        </div>
+      </div>
+
+      <!-- CONFIG -->
+      <div class="page" id="page-config">
+        <div class="greeting"><h2>⚙️ Configurações</h2><p style="color:var(--gray);font-size:13px;margin-top:2px">Personalize o ministério.</p></div>
+        <div class="invite-card" style="margin-top:14px">
+          <h4>🔗 Link de Convite</h4>
+          <p>Compartilhe com sua equipe para eles entrarem no ministério</p>
+          <div class="invite-code-big" id="invite-code-display">...</div>
+          <div class="invite-link-row">
+            <input type="text" id="invite-link-display" readonly>
+            <button onclick="copyInviteLink()">📋 Copiar</button>
+          </div>
+          <button class="btn-wa-invite" onclick="shareInviteWhatsApp()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+            Compartilhar no WhatsApp
+          </button>
+        </div>
+        <div class="card">
+          <div class="config-section">
+            <h4>Nome do Ministério</h4>
+            <div class="config-row"><input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor"><button class="btn-save" onclick="saveMinistryName()">Salvar</button></div>
+          </div>
+          <div class="config-section">
+            <h4>Meu Nome</h4>
+            <div class="config-row"><input type="text" id="cfg-my-name" placeholder="Seu nome"><button class="btn-save" onclick="saveMyName()">Salvar</button></div>
+          </div>
+          <div class="config-section">
+            <h4>Minha Senha</h4>
+            <div class="config-row"><input type="password" id="cfg-my-pass" placeholder="Nova senha"><button class="btn-save" onclick="saveMyPass()">Salvar</button></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <span>LouvorFlow © 2025 · Gestão de Ministérios</span>
+    <button class="btn-download" onclick="downloadApp()">⬇️ Baixar arquivo</button>
+  </footer>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="add-event-modal">
+  <div class="modal">
+    <h3>📅 Novo Evento</h3>
+    <div class="form-group"><label>Nome</label><input type="text" id="new-ev-name" placeholder="Culto Dominical"></div>
+    <div class="form-group"><label>Data</label><input type="date" id="new-ev-date" min=""></div>
+    <div class="form-group"><label>Horário</label><input type="time" id="new-ev-time" value="09:
 
