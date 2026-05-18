@@ -426,7 +426,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
         <div class="dropdown" id="dropdown">
           <a onclick="navigate('profile');toggleDropdown()">👤 Perfil</a>
           <a id="admin-config-link" onclick="navigate('config');toggleDropdown()" style="display:none">⚙️ Configurações</a>
-          <a onclick="openOnboarding();toggleDropdown()">💡 Como usar o app</a>
+          <a onclick="toggleDropdown();setTimeout(openOnboarding,50)">💡 Como usar o app</a>
           <a class="danger" onclick="doLogout()">🚪 Sair</a>
         </div>
       </div>
@@ -1230,19 +1230,18 @@ document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click
 // ── ONBOARDING ──────────────────────────────────────────────
 let _obSlide=0;
 function showOnboarding(){_obSlide=0;updateSlide();document.getElementById('onboarding').style.display='flex';}
-function openOnboarding(){showOnboarding();}
+function openOnboarding(){_obSlide=0;updateSlide();const el=document.getElementById('onboarding');el.style.display='flex';}
 function skipOnboarding(){document.getElementById('onboarding').style.display='none';_obSlide=0;}
-function nextSlide(){
-  const slides=document.querySelectorAll('.ob-slide');
-  if(_obSlide<slides.length-1){_obSlide++;updateSlide();}
-}
+function nextSlide(){if(_obSlide<3){_obSlide++;updateSlide();}}
 function updateSlide(){
   document.getElementById('ob-slides').style.transform=`translateX(-${_obSlide*100}%)`;
   const lbl=document.getElementById('ob-step-lbl');
   if(lbl)lbl.textContent=`Passo ${_obSlide+1} de 4`;
 }
-// fechar clicando no fundo
-document.getElementById('onboarding').addEventListener('click',function(e){if(e.target===this)skipOnboarding();});
+document.addEventListener('DOMContentLoaded',()=>{
+  const ob=document.getElementById('onboarding');
+  if(ob)ob.addEventListener('click',function(e){if(e.target===this)skipOnboarding();});
+});
 
 function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
 </script>
