@@ -63,21 +63,19 @@ aside{width:240px;background:#fff;border-right:1px solid var(--border);padding:1
 main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scrolling:touch}
 .page{display:none}
 .page.active{display:block}
-
-/* ── DASHBOARD NOVO ── */
 .dash-section-label{font-size:10px;font-weight:800;color:#B0B8CC;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;display:flex;align-items:center;gap:6px}
 .dash-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* Hero card — próximo evento */
 .hero-event-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:16px;padding:18px;color:#fff;margin-bottom:6px;position:relative;overflow:hidden}
 .hero-event-card::before{content:'🎵';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.08}
 .hero-ev-label{font-size:10px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .hero-ev-name{font-size:18px;font-weight:800;margin-bottom:2px}
-.hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:14px}
+.hero-ev-sub{font-size:12px;opacity:.8;margin-bottom:10px}
+.countdown-row{display:flex;gap:8px;margin-bottom:10px}
+.cd-block{background:rgba(255,255,255,.18);border-radius:10px;padding:8px 10px;text-align:center;min-width:52px;flex:1}
+.cd-num{font-size:20px;font-weight:800;line-height:1}
+.cd-lbl{font-size:9px;font-weight:600;opacity:.75;text-transform:uppercase;margin-top:2px}
 .no-event-card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:2px dashed var(--border);margin-bottom:6px}
 .no-event-card p{color:var(--gray);font-size:13px;margin-bottom:10px}
-
-/* Stats com contexto */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
 .stat-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .stat-card .sc-icon{font-size:20px;margin-bottom:6px}
@@ -89,8 +87,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .sc-trend.down{background:#FEE2E2;color:#B91C1C}
 .stat-card .sc-bar{height:3px;border-radius:20px;background:var(--border);margin-top:8px;overflow:hidden}
 .stat-card .sc-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--blue),var(--purple))}
-
-/* Semana cards */
 .week-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
 .week-event-card{background:#fff;border-radius:12px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.04);border-left:4px solid var(--blue)}
 .week-event-card.ensaio{border-left-color:var(--purple)}
@@ -102,11 +98,7 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .wec-name{font-size:13px;font-weight:700}
 .wec-sub{font-size:11px;color:var(--gray);margin-top:2px}
 .wec-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue);white-space:nowrap}
-
-/* Alerta membro */
 .member-alert-card{background:linear-gradient(135deg,#4A74FF,#6A5CFF);border-radius:14px;padding:18px;color:#fff;margin-bottom:6px}
-
-/* gen box */
 .gen-box{background:var(--blue-light);border-radius:14px;padding:18px;margin-bottom:14px}
 .gen-box h3{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:3px}
 .gen-box p{font-size:12px;color:var(--gray);margin-bottom:12px}
@@ -120,7 +112,6 @@ main{flex:1;overflow-y:auto;padding:20px 16px;min-height:0;-webkit-overflow-scro
 .gen-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .btn-gen{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
 .btn-gen:hover{background:#3a63f0}
-
 .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:14px;overflow:hidden}
 .card h3{font-size:14px;font-weight:700;margin-bottom:12px}
 .greeting-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px}
@@ -260,8 +251,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 </style>
 </head>
 <body>
-
-<!-- AUTH -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo"><div class="icon">🎵</div><h2>LouvorFlow</h2><p>Gestão inteligente do ministério</p></div>
@@ -338,7 +327,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <header>
     <div class="header-left">
@@ -373,55 +361,31 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
     <main>
       <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
-        <!-- Saudação -->
         <div class="greeting-row">
           <div class="greeting"><h2>Olá, <span id="greet-name">João</span>! 👋</h2><p id="dash-subtitle">Resumo do ministério.</p></div>
           <span id="role-badge" class="badge admin">Admin</span>
         </div>
-
-        <!-- Alerta membro (confirmações pendentes) -->
+        <!-- Alerta membro (só membros) -->
         <div id="member-scale-alert" style="display:none" class="member-alert-card">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">⚡ Você está escalado!</div>
           <div id="member-scale-alert-text" style="font-size:12px;opacity:.85;margin-bottom:12px"></div>
           <div id="member-scale-alert-btns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
         </div>
-
-        <!-- SEÇÃO: AGORA -->
         <div class="dash-section-label">🔴 Agora</div>
-
-        <!-- Hero: próximo evento (sem countdown) -->
+        <!-- Hero próximo evento -->
         <div id="dash-hero-event"></div>
-
-        <!-- Stats com contexto -->
+        <!-- Stats -->
         <div class="stats-grid">
-          <div class="stat-card">
-            <div class="sc-icon">🎵</div>
-            <div class="sc-num" id="dash-ev-count">—</div>
-            <div class="sc-label">Eventos</div>
-            <div id="dash-ev-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
-            <div class="sc-bar"><div class="sc-bar-fill" id="dash-ev-bar" style="width:0%"></div></div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-icon">👥</div>
-            <div class="sc-num" id="dash-member-count">—</div>
-            <div class="sc-label">Membros</div>
-            <div id="dash-mem-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
-            <div class="sc-bar"><div class="sc-bar-fill" id="dash-mem-bar" style="width:0%"></div></div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-icon">📋</div>
-            <div class="sc-num" id="dash-scale-count">—</div>
-            <div class="sc-label">Escalas</div>
-            <div id="dash-sc-trend" class="sc-trend neutral" style="margin-top:4px">—</div>
-            <div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div>
-          </div>
+          <div class="stat-card"><div class="sc-icon">🎵</div><div class="sc-num" id="dash-ev-count">—</div><div class="sc-label">Eventos</div><div id="dash-ev-trend" class="sc-trend neutral" style="margin-top:4px">—</div><div class="sc-bar"><div class="sc-bar-fill" id="dash-ev-bar" style="width:0%"></div></div></div>
+          <div class="stat-card"><div class="sc-icon">👥</div><div class="sc-num" id="dash-member-count">—</div><div class="sc-label">Membros</div><div id="dash-mem-trend" class="sc-trend neutral" style="margin-top:4px">—</div><div class="sc-bar"><div class="sc-bar-fill" id="dash-mem-bar" style="width:0%"></div></div></div>
+          <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="dash-scale-count">—</div><div class="sc-label">Escalas</div><div id="dash-sc-trend" class="sc-trend neutral" style="margin-top:4px">—</div><div class="sc-bar"><div class="sc-bar-fill" id="dash-sc-bar" style="width:0%"></div></div></div>
         </div>
-
-        <!-- SEÇÃO: ESTA SEMANA -->
-        <div class="dash-section-label">📅 Esta semana</div>
-        <div id="dash-week-events" class="week-cards"></div>
-
-        <!-- Gerador de escala (admin) -->
+        <!-- Esta semana — só membros veem -->
+        <div id="member-week-section" style="display:none">
+          <div class="dash-section-label">📅 Esta semana</div>
+          <div id="dash-week-events" class="week-cards"></div>
+        </div>
+        <!-- Gerador (admin) -->
         <div id="admin-gen-dash" class="gen-box" style="display:none">
           <h3>⚡ Montar Equipe para a Escala</h3>
           <p>Defina quantos de cada função e clique em Gerar.</p>
@@ -435,33 +399,20 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 
       <!-- EVENTS -->
       <div class="page" id="page-events">
-        <div class="greeting-row">
-          <div class="greeting"><h2>📅 Eventos</h2></div>
-          <button class="btn-gen admin-only" style="display:none" onclick="showModal('add-event-modal')">+ Novo</button>
-        </div>
-        <div class="card">
-          <div class="events-list" id="events-list"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
-        </div>
+        <div class="greeting-row"><div class="greeting"><h2>📅 Eventos</h2></div><button class="btn-gen admin-only" style="display:none" onclick="showModal('add-event-modal')">+ Novo</button></div>
+        <div class="card"><div class="events-list" id="events-list"><p style="color:var(--gray);font-size:13px">Carregando...</p></div></div>
       </div>
 
       <!-- MEMBERS -->
       <div class="page" id="page-members">
-        <div class="greeting-row">
-          <div class="greeting"><h2>👥 Equipe</h2><p id="member-count-label"></p></div>
-        </div>
+        <div class="greeting-row"><div class="greeting"><h2>👥 Equipe</h2><p id="member-count-label"></p></div></div>
         <div class="members-grid" id="members-grid"></div>
       </div>
 
       <!-- SCALES -->
       <div class="page" id="page-scales">
-        <div class="greeting-row">
-          <div class="greeting"><h2>📋 Escalas</h2></div>
-          <button class="btn-gen admin-only" style="display:none" onclick="navigate('dashboard')">⚡ Gerar</button>
-        </div>
-        <div id="scales-confirm-panel" style="display:none" class="card">
-          <h3>📊 Confirmações da Escala</h3>
-          <div id="scales-confirm-summary"></div>
-        </div>
+        <div class="greeting-row"><div class="greeting"><h2>📋 Escalas</h2></div><button class="btn-gen admin-only" style="display:none" onclick="navigate('dashboard')">⚡ Gerar</button></div>
+        <div id="scales-confirm-panel" style="display:none" class="card"><h3>📊 Confirmações da Escala</h3><div id="scales-confirm-summary"></div></div>
         <div class="scale-filter-bar">
           <input type="text" id="filter-event-name" placeholder="🔍 Buscar evento..." oninput="applyScaleFilter()" />
           <input type="date" id="filter-date-from" onchange="applyScaleFilter()" title="De">
@@ -474,17 +425,13 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
 
       <!-- AVAILABILITY -->
       <div class="page" id="page-availability">
-        <div class="greeting"><h2>🕐 Disponibilidade</h2><p style="color:var(--gray);font-size:13px;margin-top:2px">Toque para marcar seus dias.</p></div>
+        <div class="greeting"><h2>🕐 Disponibilidade</h2><p style="color:var(--gray);font-size:13px;margin-top:2px">Toque nos dias que você <strong>não</strong> pode ir.</p></div>
         <div class="card" style="margin-top:14px">
-          <div class="avail-nav">
-            <button onclick="changeAvailMonth(-1)">‹</button>
-            <h3 id="avail-month-title"></h3>
-            <button onclick="changeAvailMonth(1)">›</button>
-          </div>
+          <div class="avail-nav"><button onclick="changeAvailMonth(-1)">‹</button><h3 id="avail-month-title"></h3><button onclick="changeAvailMonth(1)">›</button></div>
           <div class="cal-header"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
           <div class="cal-grid" id="avail-grid"></div>
           <div class="avail-legend">
-            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível</div>
+            <div><div class="dot" style="background:#DCFCE7;border-color:#22C55E"></div>Disponível (padrão)</div>
             <div><div class="dot" style="background:#FEE2E2;border-color:var(--red)"></div>Indisponível</div>
           </div>
           <button class="btn-primary" style="margin-top:14px;width:auto;padding:10px 22px" onclick="saveAvailability()">Salvar</button>
@@ -506,17 +453,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-num" id="my-scale-count">0</div><div class="sc-label">Escalas</div></div>
           <div class="stat-card"><div class="sc-icon">✅</div><div class="sc-num" id="my-confirm-count">—</div><div class="sc-label">Confirmações</div></div>
         </div>
-        <div class="card">
-          <h3>📋 Minhas Escalas</h3>
-          <div id="my-scales-output"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
-        </div>
+        <div class="card"><h3>📋 Minhas Escalas</h3><div id="my-scales-output"><p style="color:var(--gray);font-size:13px">Carregando...</p></div></div>
         <button class="btn-gen" style="background:var(--purple);margin-top:4px" onclick="navigate('availability')">📅 Disponibilidade</button>
         <div id="join-another-box" class="join-ministry-box" style="display:none;margin-top:18px">
           <h4>🔗 Entrar em outro ministério</h4>
           <p>Tem o código de outro ministério? Cole aqui para entrar.</p>
-          <div class="form-group" style="margin-bottom:8px">
-            <input type="text" id="join-code-input" placeholder="Ex: GRACA2025" style="text-transform:uppercase;letter-spacing:2px;font-weight:700;width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;outline:none;background:#fff">
-          </div>
+          <div class="form-group" style="margin-bottom:8px"><input type="text" id="join-code-input" placeholder="Ex: GRACA2025" style="text-transform:uppercase;letter-spacing:2px;font-weight:700;width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;outline:none;background:#fff"></div>
           <button onclick="joinMinistryFromProfile()" style="width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">Entrar na equipe →</button>
         </div>
         <div style="margin-top:24px;padding-top:18px;border-top:1.5px solid var(--border)">
@@ -532,28 +474,16 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <h4>🔗 Link de Convite</h4>
           <p>Compartilhe com sua equipe para eles entrarem no ministério</p>
           <div class="invite-code-big" id="invite-code-display">...</div>
-          <div class="invite-link-row">
-            <input type="text" id="invite-link-display" readonly>
-            <button onclick="copyInviteLink()">📋 Copiar</button>
-          </div>
+          <div class="invite-link-row"><input type="text" id="invite-link-display" readonly><button onclick="copyInviteLink()">📋 Copiar</button></div>
           <button class="btn-wa-invite" onclick="shareInviteWhatsApp()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
             Compartilhar no WhatsApp
           </button>
         </div>
         <div class="card">
-          <div class="config-section">
-            <h4>Nome do Ministério</h4>
-            <div class="config-row"><input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor"><button class="btn-save" onclick="saveMinistryName()">Salvar</button></div>
-          </div>
-          <div class="config-section">
-            <h4>Meu Nome</h4>
-            <div class="config-row"><input type="text" id="cfg-my-name" placeholder="Seu nome"><button class="btn-save" onclick="saveMyName()">Salvar</button></div>
-          </div>
-          <div class="config-section">
-            <h4>Minha Senha</h4>
-            <div class="config-row"><input type="password" id="cfg-my-pass" placeholder="Nova senha"><button class="btn-save" onclick="saveMyPass()">Salvar</button></div>
-          </div>
+          <div class="config-section"><h4>Nome do Ministério</h4><div class="config-row"><input type="text" id="cfg-ministry-name" placeholder="Ex: Ministério de Louvor"><button class="btn-save" onclick="saveMinistryName()">Salvar</button></div></div>
+          <div class="config-section"><h4>Meu Nome</h4><div class="config-row"><input type="text" id="cfg-my-name" placeholder="Seu nome"><button class="btn-save" onclick="saveMyName()">Salvar</button></div></div>
+          <div class="config-section"><h4>Minha Senha</h4><div class="config-row"><input type="password" id="cfg-my-pass" placeholder="Nova senha"><button class="btn-save" onclick="saveMyPass()">Salvar</button></div></div>
         </div>
       </div>
     </main>
@@ -568,16 +498,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
     <div class="form-group"><label>Nome</label><input type="text" id="new-ev-name" placeholder="Culto Dominical"></div>
     <div class="form-group"><label>Data</label><input type="date" id="new-ev-date" min=""></div>
     <div class="form-group"><label>Horário</label><input type="time" id="new-ev-time" value="09:00"></div>
-    <div class="form-group"><label>Tipo</label>
-      <select id="new-ev-type"><option>Culto</option><option>Ensaio</option><option>Vigília</option><option>Conferência</option></select>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('add-event-modal')">Cancelar</button>
-      <button class="btn-primary" onclick="addEvent()">Criar →</button>
-    </div>
+    <div class="form-group"><label>Tipo</label><select id="new-ev-type"><option>Culto</option><option>Ensaio</option><option>Vigília</option><option>Conferência</option></select></div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="closeModal('add-event-modal')">Cancelar</button><button class="btn-primary" onclick="addEvent()">Criar →</button></div>
   </div>
 </div>
-
 <div class="modal-overlay" id="edit-roles-modal">
   <div class="modal">
     <h3>✏️ Editar minhas funções</h3>
@@ -594,20 +518,16 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <div class="rp-item" onclick="toggleRolePick(this)">🎷 Saxofone</div>
       <div class="rp-item" onclick="toggleRolePick(this)">🎻 Violino</div>
     </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('edit-roles-modal')">Cancelar</button>
-      <button class="btn-primary" id="btn-save-roles" onclick="saveEditedRoles()">Salvar funções →</button>
-    </div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="closeModal('edit-roles-modal')">Cancelar</button><button class="btn-primary" id="btn-save-roles" onclick="saveEditedRoles()">Salvar funções →</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 const SB_URL='https://jkjfewvfevdblmcqjszg.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpramZld3ZmZXZkYmxtY3Fqc3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDA0MjIsImV4cCI6MjA5NDQ3NjQyMn0.KBiIbKltcQ5YIUUUEY_zJqa6_CAxU3uhbIzPh6K1HP4';
 
-let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false;
+let _syncInterval=null,_fullSyncInterval=null,_lastScalesHash='',_isSyncing=false,_cdInterval=null;
 function hashScales(s){return s.map(x=>x.id+'|'+x.status+'|'+x.member_name).join(',');}
 
 async function pollScales(){
@@ -629,7 +549,7 @@ async function pollScales(){
 function pollNow(){_isSyncing=false;pollScales();}
 async function fullSync(){if(!currentUser)return;await Promise.all([loadEvents(),loadMembers()]);await pollScales();}
 function startSync(){stopSync();pollNow();_syncInterval=setInterval(pollScales,5000);_fullSyncInterval=setInterval(fullSync,30000);}
-function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}}
+function stopSync(){if(_syncInterval){clearInterval(_syncInterval);_syncInterval=null;}if(_fullSyncInterval){clearInterval(_fullSyncInterval);_fullSyncInterval=null;}if(_cdInterval){clearInterval(_cdInterval);_cdInterval=null;}}
 
 function saveSession(u,m){localStorage.setItem('lf_session',JSON.stringify({user:u,ministry:m}));}
 function clearSession(){localStorage.removeItem('lf_session');}
@@ -781,6 +701,7 @@ async function launchApp(){
   await loadScales();buildAvailGrid();
   document.getElementById('cfg-my-name').value=currentUser.name||'';
   document.getElementById('cfg-ministry-name').value=currentMinistry?.name||'Ministério';
+  document.getElementById('new-ev-date').min=fmt(new Date());
   updateInviteDisplay();navigate(localStorage.getItem('lastPage')||'dashboard');startSync();
 }
 function updateUserUI(){
@@ -801,14 +722,14 @@ function updateUserUI(){
   document.getElementById('nav-config').style.display=isAdmin?'flex':'none';
   document.getElementById('admin-config-link').style.display=isAdmin?'block':'none';
   document.getElementById('join-another-box').style.display=isAdmin?'none':'block';
+  // seção "Esta semana" só para membros
+  const ws=document.getElementById('member-week-section');if(ws)ws.style.display=isAdmin?'none':'block';
 }
 
 async function saveMinistryName(){const v=document.getElementById('cfg-ministry-name').value.trim();if(!v){showToast('Digite um nome','error');return;}try{await sb('ministries','PATCH',{name:v},`?id=eq.${currentMinistry.id}`);currentMinistry.name=v;document.getElementById('ministry-name').textContent=v;document.getElementById('profile-sub').textContent=`Líder · ${v}`;updateInviteDisplay();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyName(){const v=document.getElementById('cfg-my-name').value.trim();if(!v){showToast('Digite seu nome','error');return;}try{await sb('members','PATCH',{name:v},`?id=eq.${currentUser.id}`);currentUser.name=v;updateUserUI();showToast('✅ Nome atualizado!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
 async function saveMyPass(){const v=document.getElementById('cfg-my-pass').value;if(!v||v.length<4){showToast('Senha com ao menos 4 caracteres','error');return;}try{await sb('members','PATCH',{password:v},`?id=eq.${currentUser.id}`);currentUser.password=v;document.getElementById('cfg-my-pass').value='';showToast('✅ Senha atualizada!','success');}catch(e){showToast('Erro: '+e.message,'error');}}
-function openEditRolesModal(){
-  const ur=currentUser.roles||[];document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>item.classList.toggle('selected',ur.includes(item.textContent.trim())));showModal('edit-roles-modal');
-}
+function openEditRolesModal(){const ur=currentUser.roles||[];document.querySelectorAll('#edit-roles-picker .rp-item').forEach(item=>item.classList.toggle('selected',ur.includes(item.textContent.trim())));showModal('edit-roles-modal');}
 async function saveEditedRoles(){
   const newRoles=[...document.querySelectorAll('#edit-roles-picker .rp-item.selected')].map(e=>e.textContent.trim());
   if(!newRoles.length){showToast('Selecione pelo menos uma função','error');return;}
@@ -817,7 +738,6 @@ async function saveEditedRoles(){
   catch(e){showToast('Erro: '+e.message,'error');}
   finally{setLoading('btn-save-roles',false,'Salvar funções →');}
 }
-
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebar-overlay').classList.toggle('open');}
 
 async function loadEvents(){
@@ -842,7 +762,6 @@ async function loadAvailability(){
   try{const rows=await sb('availability','GET',null,`?member_email=eq.${encodeURIComponent(currentUser.email)}&ministry_id=eq.${currentUser.ministry_id}`);availState={};rows.forEach(r=>{availState[r.date]=r.available;});}catch(e){console.error(e);}
 }
 
-// ── TREND HELPERS ──────────────────────────────────────────────
 function updateEventTrend(){
   const now=new Date(),thisMonth=allEvents.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}).length;
   const lastM=now.getMonth()===0?11:now.getMonth()-1,lastY=now.getMonth()===0?now.getFullYear()-1:now.getFullYear();
@@ -856,8 +775,7 @@ function updateEventTrend(){
 function updateMemberTrend(){
   const el=document.getElementById('dash-mem-trend'),bar=document.getElementById('dash-mem-bar');
   const admins=allMembers.filter(m=>m.is_admin).length;
-  el.className='sc-trend neutral';
-  el.textContent=`${admins} admin${admins!==1?'s':''}`;
+  el.className='sc-trend neutral';el.textContent=`${admins} admin${admins!==1?'s':''}`;
   if(bar)bar.style.width=`${Math.min(100,allMembers.length*8)}%`;
 }
 function updateScaleTrend(){
@@ -869,32 +787,42 @@ function updateScaleTrend(){
   if(bar)bar.style.width=`${pct}%`;
 }
 
-// ── DASHBOARD PRINCIPAL ────────────────────────────────────────
-function getNextEvent(){
-  const today=fmt(new Date());return allEvents.find(e=>e.date>=today)||null;
+function getNextEvent(){const today=fmt(new Date());return allEvents.find(e=>e.date>=today)||null;}
+function getDaysUntil(dateStr){const now=new Date();now.setHours(0,0,0,0);const ev=new Date(dateStr+'T12:00:00');return Math.round((ev-now)/(1000*60*60*24));}
+function startCountdown(dateStr,timeStr){
+  if(_cdInterval)clearInterval(_cdInterval);
+  function tick(){
+    const el=document.getElementById('cd-days'),eh=document.getElementById('cd-hours'),em=document.getElementById('cd-mins'),es=document.getElementById('cd-secs');
+    if(!el)return clearInterval(_cdInterval);
+    const now=new Date(),target=new Date(`${dateStr}T${timeStr||'00:00'}:00`);
+    const diff=Math.max(0,target-now);
+    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    el.textContent=String(d).padStart(2,'0');eh.textContent=String(h).padStart(2,'0');em.textContent=String(m).padStart(2,'0');es.textContent=String(s).padStart(2,'0');
+  }
+  tick();_cdInterval=setInterval(tick,1000);
 }
-function getDaysUntil(dateStr){
-  const now=new Date();now.setHours(0,0,0,0);const ev=new Date(dateStr+'T12:00:00');return Math.round((ev-now)/(1000*60*60*24));}
 
+// ── DASHBOARD ────────────────────────────────────────────────
 function renderDashboard(){
-  document.getElementById('new-ev-date').min=fmt(new Date());
-  // Saudação dinâmica
+  const isAdmin=currentUser.is_admin;
   const h=new Date().getHours();
   const sub=h<12?'Bom dia! Que a música abençoe hoje.':h<18?'Boa tarde! Seu ministério está aqui.':'Boa noite! Tudo pronto para louvar.';
   const subEl=document.getElementById('dash-subtitle');if(subEl)subEl.textContent=sub;
 
+  // Hero: admin vê card simples, membro vê countdown
   renderHeroEvent();
-  renderWeekEvents();
+  // Esta semana: só membro (admin já tem o gerador de escalas)
+  if(!isAdmin)renderWeekEvents();
 
   // Alerta membro
   const memberAlert=document.getElementById('member-scale-alert');
-  if(currentUser.is_admin){memberAlert.style.display='none';return;}
+  if(isAdmin){memberAlert.style.display='none';return;}
   if(!allScales.length){memberAlert.style.display='none';return;}
   const mine=allScales.filter(s=>s.member_name===currentUser.name&&s.status==='pending');
   if(!mine.length){memberAlert.style.display='none';return;}
   const byEv={};mine.forEach(s=>{if(!byEv[s.event_id])byEv[s.event_id]=[];byEv[s.event_id].push(s);});
   const evIds=Object.keys(byEv),firstEv=allEvents.find(e=>e.id===evIds[0]);
-  if(!firstEv){memberAlert.style.display='none';setTimeout(renderDashboard,1000);return;}
+  if(!firstEv){memberAlert.style.display='none';return;}
   memberAlert.style.display='block';
   const{day,mon,week}=dateLabel(firstEv.date),total=evIds.length;
   document.getElementById('member-scale-alert-text').textContent=total>1?`Você tem ${total} eventos com presença pendente. Próximo: ${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week})`:`${firstEv.name} · ${String(day).padStart(2,'0')} de ${mon} (${week}) · ${byEv[evIds[0]].map(s=>s.role).join(', ')}`;
@@ -904,8 +832,9 @@ function renderDashboard(){
 function renderHeroEvent(){
   const container=document.getElementById('dash-hero-event');if(!container)return;
   const next=getNextEvent();
+  const isAdmin=currentUser.is_admin;
   if(!next){
-    container.innerHTML=currentUser.is_admin
+    container.innerHTML=isAdmin
       ?`<div class="no-event-card"><p>Nenhum evento agendado ainda.</p><button onclick="showModal('add-event-modal')" class="btn-gen" style="margin:0 auto">+ Criar evento</button></div>`
       :`<div class="no-event-card"><p>📅 Nenhum evento próximo.</p></div>`;
     return;
@@ -915,14 +844,35 @@ function renderHeroEvent(){
   const escalados=allScales.filter(s=>s.event_id===next.id);
   const confirmed=escalados.filter(s=>s.status==='confirmed').length;
   const pctConf=escalados.length?Math.round(confirmed/escalados.length*100):0;
+  const confBar=escalados.length?`<div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;opacity:.9">👥 ${escalados.length} escalados · ${pctConf}% confirmado</span><button onclick="navigate('scales')" style="background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">Ver →</button></div>`:'';
 
-  container.innerHTML=`
-    <div class="hero-event-card">
-      <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
-      <div class="hero-ev-name">${next.name}</div>
-      <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
-      ${escalados.length?`<div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;opacity:.9">👥 ${escalados.length} escalados · ${pctConf}% confirmado</span><button onclick="navigate('scales')" style="background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">Ver →</button></div>`:''}
-    </div>`;
+  if(isAdmin){
+    // ADMIN: card simples sem countdown
+    if(_cdInterval){clearInterval(_cdInterval);_cdInterval=null;}
+    container.innerHTML=`
+      <div class="hero-event-card">
+        <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
+        <div class="hero-ev-name">${next.name}</div>
+        <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
+        ${confBar}
+      </div>`;
+  } else {
+    // MEMBRO: card com countdown
+    container.innerHTML=`
+      <div class="hero-event-card">
+        <div class="hero-ev-label">⚡ Próximo evento · ${urgency}</div>
+        <div class="hero-ev-name">${next.name}</div>
+        <div class="hero-ev-sub">${String(day).padStart(2,'0')} de ${mon} (${week}) · ${next.time} · ${next.type}</div>
+        <div class="countdown-row">
+          <div class="cd-block"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Dias</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Horas</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-secs">--</div><div class="cd-lbl">Seg</div></div>
+        </div>
+        ${confBar}
+      </div>`;
+    startCountdown(next.date,next.time);
+  }
 }
 
 function renderWeekEvents(){
@@ -936,11 +886,7 @@ function renderWeekEvents(){
     const sc=allScales.filter(s=>s.event_id===ev.id);
     const conf=sc.filter(s=>s.status==='confirmed').length;
     const badge=sc.length?`<span class="wec-badge">${conf}/${sc.length} ✅</span>`:'<span class="wec-badge" style="background:#FEF9C3;color:#B45309">Sem escala</span>';
-    return`<div class="week-event-card ${typeClass(ev.type)}">
-      <div class="wec-date"><div class="wec-day">${day}</div><div class="wec-mon">${mon}</div></div>
-      <div class="wec-info"><div class="wec-name">${ev.name}</div><div class="wec-sub">${week} · ${ev.time} · ${ev.type}</div></div>
-      ${badge}
-    </div>`;
+    return`<div class="week-event-card ${typeClass(ev.type)}"><div class="wec-date"><div class="wec-day">${day}</div><div class="wec-mon">${mon}</div></div><div class="wec-info"><div class="wec-name">${ev.name}</div><div class="wec-sub">${week} · ${ev.time} · ${ev.type}</div></div>${badge}</div>`;
   }).join('');
 }
 
@@ -949,7 +895,7 @@ function typeClass(t){return t==='Ensaio'?'ensaio':t==='Vigília'?'vigilia':'';}
 
 function renderEventsList(){
   const el=document.getElementById('events-list');if(!el)return;
-  if(!allEvents.length){el.innerHTML='<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado.</p>';return;}
+  if(!allEvents.length){el.innerHTML=currentUser.is_admin?'<p style="color:var(--gray);font-size:13px">Nenhum evento. <button onclick="showModal(\'add-event-modal\')" style="background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;font-size:13px">+ Criar →</button></p>':'<p style="color:var(--gray);font-size:13px">Nenhum evento cadastrado.</p>';return;}
   el.innerHTML=allEvents.map(ev=>{
     const{day,mon,week}=dateLabel(ev.date);
     const del=currentUser.is_admin?`<div class="event-item-actions"><button class="btn-icon btn-del" onclick="removeEvent('${ev.id}')">🗑️</button></div>`:'';
@@ -1158,7 +1104,7 @@ function navigate(p){
   localStorage.setItem('lastPage',p);
   if(p==='config')updateInviteDisplay();
   if(p==='scales')renderScalesConfirmPanel();
-  if(p==='dashboard'){renderDashboard();}
+  if(p==='dashboard')renderDashboard();
 }
 function toggleDropdown(){document.getElementById('dropdown').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('.user-menu'))document.getElementById('dropdown').classList.remove('open');});
