@@ -255,84 +255,86 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <div class="ob-header-title">💡 Como usar o app</div>
       <div class="ob-step-counter" id="ob-step-lbl">Passo 1 de 4</div>
     </div>
-    <div class="ob-slides" id="ob-slides">
+    <div class="ob-slides">
+      <div class="ob-slides-inner" id="ob-slides">
 
-      <!-- Passo 1 -->
-      <div class="ob-slide">
-        <div class="ob-step-num">🎵</div>
-        <div class="ob-title">Crie seu ministério</div>
-        <div class="ob-desc">Cadastre-se e crie o espaço do seu ministério em segundos.</div>
-        <div class="ob-tips">
-          <div class="ob-tip"><div class="ob-tip-icon">🏛️</div><div class="ob-tip-text">Escolha "Criar ministério" no cadastro e defina o nome da sua equipe</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">🔗</div><div class="ob-tip-text">Um código de convite é gerado automaticamente para você compartilhar</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">🎸</div><div class="ob-tip-text">Selecione suas funções (violão, teclado, voz…) no momento do cadastro</div></div>
+        <!-- Passo 1 -->
+        <div class="ob-slide">
+          <div class="ob-step-num">🎵</div>
+          <div class="ob-title">Crie seu ministério</div>
+          <div class="ob-desc">Cadastre-se e crie o espaço do seu ministério em segundos.</div>
+          <div class="ob-tips">
+            <div class="ob-tip"><div class="ob-tip-icon">🏛️</div><div class="ob-tip-text">Escolha "Criar ministério" no cadastro e defina o nome da sua equipe</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">🔗</div><div class="ob-tip-text">Um código de convite é gerado automaticamente para compartilhar</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">🎸</div><div class="ob-tip-text">Selecione suas funções (violão, teclado, voz…) no cadastro</div></div>
+          </div>
+          <div class="ob-progress">
+            <div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div>
+          </div>
+          <div class="ob-actions">
+            <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
+            <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+          </div>
         </div>
-        <div class="ob-progress">
-          <div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div>
+
+        <!-- Passo 2 -->
+        <div class="ob-slide">
+          <div class="ob-step-num">📅</div>
+          <div class="ob-title">Crie eventos e escalas</div>
+          <div class="ob-desc">O líder cadastra os eventos e gera a escala da equipe em poucos cliques.</div>
+          <div class="ob-tips">
+            <div class="ob-tip"><div class="ob-tip-icon">➕</div><div class="ob-tip-text">Vá em "Eventos" e crie um culto, ensaio ou vigília com data e horário</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">⚡</div><div class="ob-tip-text">No Dashboard, defina quantos de cada função e clique em "Gerar"</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">🔄</div><div class="ob-tip-text">Se alguém recusar, o sistema encontra um substituto automaticamente</div></div>
+          </div>
+          <div class="ob-progress">
+            <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div>
+          </div>
+          <div class="ob-actions">
+            <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
+            <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+          </div>
         </div>
-        <div class="ob-actions">
-          <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
-          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+
+        <!-- Passo 3 -->
+        <div class="ob-slide">
+          <div class="ob-step-num">✅</div>
+          <div class="ob-title">Confirme sua presença</div>
+          <div class="ob-desc">Membros recebem o alerta e confirmam com 1 toque — em tempo real.</div>
+          <div class="ob-tips">
+            <div class="ob-tip"><div class="ob-tip-icon">🔔</div><div class="ob-tip-text">O alerta aparece no Dashboard assim que a escala for gerada</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">✅</div><div class="ob-tip-text">Toque em "Confirmar" ou "Recusar" — o líder vê tudo em tempo real</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">🕐</div><div class="ob-tip-text">Em "Disponibilidade" marque os dias que não pode comparecer</div></div>
+          </div>
+          <div class="ob-progress">
+            <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div>
+          </div>
+          <div class="ob-actions">
+            <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
+            <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+          </div>
         </div>
+
+        <!-- Passo 4 -->
+        <div class="ob-slide">
+          <div class="ob-step-num">🔗</div>
+          <div class="ob-title">Convide sua equipe</div>
+          <div class="ob-desc">Compartilhe o link e toda a equipe entra em segundos.</div>
+          <div class="ob-tips">
+            <div class="ob-tip"><div class="ob-tip-icon">⚙️</div><div class="ob-tip-text">Vá em "Configurações" e copie o link ou envie direto pelo WhatsApp</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">📲</div><div class="ob-tip-text">O código já vem preenchido no link — é só entrar e se cadastrar</div></div>
+            <div class="ob-tip"><div class="ob-tip-icon">👥</div><div class="ob-tip-text">Cada ministério é privado — só quem tem o código consegue entrar</div></div>
+          </div>
+          <div class="ob-progress">
+            <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div>
+          </div>
+          <div class="ob-actions">
+            <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
+            <button class="ob-btn-finish" onclick="skipOnboarding()">🚀 Pronto!</button>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Passo 2 -->
-      <div class="ob-slide">
-        <div class="ob-step-num">📅</div>
-        <div class="ob-title">Crie eventos e escalas</div>
-        <div class="ob-desc">O líder cadastra os eventos e gera a escala da equipe em poucos cliques.</div>
-        <div class="ob-tips">
-          <div class="ob-tip"><div class="ob-tip-icon">➕</div><div class="ob-tip-text">Vá em "Eventos" e crie um culto, ensaio ou vigília com data e horário</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">⚡</div><div class="ob-tip-text">No Dashboard, defina quantos de cada função e clique em "Gerar" para criar a escala</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">🔄</div><div class="ob-tip-text">Se alguém recusar, o sistema encontra um substituto automaticamente</div></div>
-        </div>
-        <div class="ob-progress">
-          <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div><div class="ob-prog-bar"></div>
-        </div>
-        <div class="ob-actions">
-          <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
-          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
-        </div>
-      </div>
-
-      <!-- Passo 3 -->
-      <div class="ob-slide">
-        <div class="ob-step-num">✅</div>
-        <div class="ob-title">Confirme sua presença</div>
-        <div class="ob-desc">Membros recebem o alerta e confirmam com 1 toque — tudo em tempo real.</div>
-        <div class="ob-tips">
-          <div class="ob-tip"><div class="ob-tip-icon">🔔</div><div class="ob-tip-text">O alerta aparece no Dashboard assim que a escala for gerada</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">✅</div><div class="ob-tip-text">Toque em "Confirmar" ou "Recusar" — o líder vê tudo em tempo real</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">🕐</div><div class="ob-tip-text">Em "Disponibilidade" marque os dias que você não pode comparecer</div></div>
-        </div>
-        <div class="ob-progress">
-          <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar"></div>
-        </div>
-        <div class="ob-actions">
-          <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
-          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
-        </div>
-      </div>
-
-      <!-- Passo 4 -->
-      <div class="ob-slide">
-        <div class="ob-step-num">🔗</div>
-        <div class="ob-title">Convide sua equipe</div>
-        <div class="ob-desc">Compartilhe o link e toda a equipe entra em segundos, já no ministério certo.</div>
-        <div class="ob-tips">
-          <div class="ob-tip"><div class="ob-tip-icon">⚙️</div><div class="ob-tip-text">Vá em "Configurações" e copie o link de convite ou envie direto pelo WhatsApp</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">📲</div><div class="ob-tip-text">O código já vem preenchido no link — é só entrar e se cadastrar</div></div>
-          <div class="ob-tip"><div class="ob-tip-icon">👥</div><div class="ob-tip-text">Cada ministério é privado — só quem tem o código consegue entrar</div></div>
-        </div>
-        <div class="ob-progress">
-          <div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div><div class="ob-prog-bar done"></div>
-        </div>
-        <div class="ob-actions">
-          <button class="ob-btn-skip" onclick="skipOnboarding()">Fechar</button>
-          <button class="ob-btn-finish" onclick="skipOnboarding()">🚀 Pronto!</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
@@ -1229,18 +1231,26 @@ function closeModal(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
 // ── ONBOARDING ──────────────────────────────────────────────
 let _obSlide=0;
-function showOnboarding(){_obSlide=0;updateSlide();document.getElementById('onboarding').style.display='flex';}
-function openOnboarding(){_obSlide=0;updateSlide();const el=document.getElementById('onboarding');el.style.display='flex';}
-function skipOnboarding(){document.getElementById('onboarding').style.display='none';_obSlide=0;}
+function openOnboarding(){
+  _obSlide=0;
+  const el=document.getElementById('onboarding');
+  el.style.display='flex';
+  updateSlide();
+}
+function skipOnboarding(){
+  document.getElementById('onboarding').style.display='none';
+  _obSlide=0;
+}
 function nextSlide(){if(_obSlide<3){_obSlide++;updateSlide();}}
 function updateSlide(){
-  document.getElementById('ob-slides').style.transform=`translateX(-${_obSlide*100}%)`;
+  const inner=document.getElementById('ob-slides');
+  if(inner)inner.style.transform=`translateX(-${_obSlide*25}%)`;
   const lbl=document.getElementById('ob-step-lbl');
   if(lbl)lbl.textContent=`Passo ${_obSlide+1} de 4`;
 }
 document.addEventListener('DOMContentLoaded',()=>{
   const ob=document.getElementById('onboarding');
-  if(ob)ob.addEventListener('click',function(e){if(e.target===this)skipOnboarding();});
+  if(ob)ob.addEventListener('click',e=>{if(e.target===ob)skipOnboarding();});
 });
 
 function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
