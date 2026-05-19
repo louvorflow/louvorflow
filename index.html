@@ -279,6 +279,36 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   .scale-filter-bar{flex-direction:column;align-items:stretch}
   .scale-filter-bar input[type=date]{min-width:unset}
 }
+
+/* ── ABA MÚSICAS ── */
+.ev-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:0;background:#fff}
+.ev-tab{padding:10px 16px;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s;display:flex;align-items:center;gap:6px}
+.ev-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.ev-tab-panel{display:none}
+.ev-tab-panel.active{display:block}
+.music-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--border);transition:.15s}
+.music-row:last-child{border-bottom:none}
+.music-row:hover{background:#FAFBFF}
+.music-drag{color:#CBD5E1;font-size:16px;cursor:grab;padding:2px 4px;flex-shrink:0}
+.music-num{font-size:12px;font-weight:800;color:#B0B8CC;min-width:18px;text-align:center;flex-shrink:0}
+.music-info{flex:1;min-width:0}
+.music-name{font-size:13px;font-weight:700;color:var(--dark)}
+.music-meta{font-size:11px;color:var(--gray);margin-top:2px}
+.music-cat{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0}
+.music-cat.entrada{background:#EDE9FE;color:#7C3AED}
+.music-cat.louvor{background:#DBEAFE;color:#1D4ED8}
+.music-cat.adoracao{background:#FCE7F3;color:#BE185D}
+.music-cat.encerramento{background:#F0FDF4;color:#15803D}
+.music-del{width:24px;height:24px;border:none;background:#FEE2E2;border-radius:6px;color:var(--red);cursor:pointer;font-size:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.15s}
+.music-del:hover{background:var(--red);color:#fff}
+.music-add-row{padding:10px 14px;display:flex;align-items:center;gap:8px;border-top:1px dashed var(--border);flex-wrap:wrap}
+.music-add-row input{flex:1;min-width:100px;padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;background:var(--bg)}
+.music-add-row input:focus{border-color:var(--blue);background:#fff}
+.music-add-row select{padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;outline:none;background:var(--bg);color:var(--dark)}
+.music-add-row .btn-add-music{padding:7px 12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s}
+.music-add-row .btn-add-music:hover{background:#3a63f0}
+.music-empty{padding:20px;text-align:center;color:var(--gray);font-size:12px}
+
 </style>
 </head>
 <body>
@@ -1172,7 +1202,13 @@ function renderScaleOutput(){
   eventIds.forEach(eid=>{
     const rows=byEvent[eid],ev=allEvents.find(e=>e.id===eid)||{name:'Evento',date:fmt(new Date()),time:'',type:'Culto'};
     const{day,mon,week}=dateLabel(ev.date);
+    const songs=getSongs(eid);
+    const songCount=songs.length;
     html+=`<div class="scale-day-block"><div class="scale-day-header"><div class="scale-day-date"><span class="sdh-day">${String(day).padStart(2,'0')}</span><span class="sdh-week">${week.toUpperCase()}</span></div><div><div class="scale-day-event">${ev.name}</div><span style="font-size:10px;color:var(--gray)">${mon} · ${ev.time}</span></div><button onclick="shareScaleWhatsApp('${eid}')" style="margin-left:auto;background:#25D366;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.054 23.454a.75.75 0 0 0 .918.926l5.478-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.732 9.732 0 0 1-4.964-1.357l-.358-.213-3.706 1.026 1.001-3.617-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>Enviar</button></div>`;
+    // Tabs Escala / Músicas
+    html+=`<div class="ev-tabs"><button class="ev-tab active" onclick="switchEvTab(this,'scale-tab-${eid}','${eid}')">📋 Escala</button><button class="ev-tab" onclick="switchEvTab(this,'music-tab-${eid}','${eid}')">🎵 Músicas${songCount?` <span style='background:var(--blue);color:#fff;border-radius:20px;padding:1px 6px;font-size:9px'>${songCount}</span>`:''}</button></div>`;
+    // Painel Escala
+    html+=`<div class="ev-tab-panel active" id="scale-tab-${eid}">`;
     if(isMobile){
       html+=`<div class="scale-cards-list">`;
       rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅</span>':r.status==='refused'?'<span class="badge refused">❌</span>':wasSwapped?'<span class="badge swapped">🔄</span>':'<span class="badge pending">⏳</span>';const subNote=wasSwapped?`<div style="font-size:9px;color:#C2410C;margin-top:2px">🔄 substituiu ${r._refusedBy}</div>`:'';const cb=isMe&&r.status==='pending'?`<div class="scale-row-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌</button></div>`:'';html+=`<div class="scale-row-card"><div class="scale-row-num">${String(i+1).padStart(2,'0')}</div><div style="flex:2;min-width:0"><div class="scale-row-role">${r.role}</div><div class="scale-row-member"><strong>${r.member_name}</strong>${subNote}</div></div><div class="scale-row-status">${sb2}</div>${cb}</div>`;});
@@ -1182,6 +1218,9 @@ function renderScaleOutput(){
       rows.forEach((r,i)=>{const isMe=r.member_name===currentUser.name,wasSwapped=r._autoSwapped&&r._refusedBy;const sb2=r.status==='confirmed'?'<span class="badge confirmed">✅ Confirmado</span>':r.status==='refused'?'<span class="badge refused">❌ Recusado</span>':wasSwapped?`<span class="badge swapped">🔄 Trocado auto</span>`:'<span class="badge pending">⏳ Pendente</span>';const subNote=wasSwapped?`<br><span style="font-size:9px;color:#C2410C">substituiu ${r._refusedBy}</span>`:'';const cb=isMe&&r.status==='pending'?`<div class="confirm-btns"><button class="btn-confirm yes" onclick="confirmScale('${r.id}','confirmed')">✅ Confirmar</button><button class="btn-confirm no" onclick="confirmScale('${r.id}','refused')">❌ Recusar</button></div>`:'';html+=`<tr><td style="color:var(--gray);font-size:10px;font-weight:700">${String(i+1).padStart(2,'0')}</td><td>${r.role}</td><td><strong>${r.member_name}</strong>${subNote}${cb}</td><td>${sb2}</td></tr>`;});
       html+=`</tbody></table></div>`;
     }
+    html+=`</div>`;
+    // Painel Músicas
+    html+=`<div class="ev-tab-panel" id="music-tab-${eid}">${renderMusicPanel(eid,songs)}</div>`;
     html+=`</div>`;
   });
   out.innerHTML=html;
@@ -1259,6 +1298,84 @@ function showModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
 function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');setTimeout(()=>t.classList.add('show'),10);setTimeout(()=>t.classList.remove('show'),3200);}
+
+// ── MÚSICAS ──────────────────────────────────────────────────────────────────
+const SONG_CATS=['Entrada','Louvor','Adoração','Encerramento'];
+const CAT_KEYS={'Entrada':'entrada','Louvor':'louvor','Adoração':'adoracao','Encerramento':'encerramento'};
+
+function songsKey(eid){return`lf_songs_${eid}`;}
+function getSongs(eid){try{return JSON.parse(localStorage.getItem(songsKey(eid))||'[]');}catch{return[];}}
+function saveSongs(eid,songs){localStorage.setItem(songsKey(eid),JSON.stringify(songs));}
+
+function renderMusicPanel(eid,songs){
+  const isAdmin=currentUser?.is_admin;
+  let html='';
+  if(!songs.length){
+    html+=`<div class="music-empty">🎵 Nenhuma música adicionada.<br><span style="font-size:10px">Clique em "+ Música" para começar.</span></div>`;
+  }else{
+    songs.forEach((s,i)=>{
+      const catKey=CAT_KEYS[s.cat]||'louvor';
+      const delBtn=isAdmin?`<button class="music-del" onclick="deleteSong('${eid}',${i})" title="Remover">✕</button>`:'';
+      html+=`<div class="music-row"><span class="music-drag">⠿</span><span class="music-num">${i+1}</span><div class="music-info"><div class="music-name">${s.name}</div><div class="music-meta">Tom: ${s.key||'—'} · BPM: ${s.bpm||'—'}</div></div><span class="music-cat ${catKey}">${s.cat}</span>${delBtn}</div>`;
+    });
+  }
+  if(isAdmin){
+    html+=`<div class="music-add-row">
+      <input type="text" id="song-name-${eid}" placeholder="Nome da música" style="flex:2">
+      <input type="text" id="song-key-${eid}" placeholder="Tom" style="max-width:56px">
+      <input type="number" id="song-bpm-${eid}" placeholder="BPM" style="max-width:60px" min="40" max="240">
+      <select id="song-cat-${eid}">${SONG_CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+      <button class="btn-add-music" onclick="addSong('${eid}')">+ Música</button>
+    </div>`;
+  }
+  return html;
+}
+
+function addSong(eid){
+  const nameEl=document.getElementById(`song-name-${eid}`);
+  const name=nameEl?.value.trim();
+  if(!name){showToast('Digite o nome da música','error');return;}
+  const key=document.getElementById(`song-key-${eid}`)?.value.trim()||'';
+  const bpm=document.getElementById(`song-bpm-${eid}`)?.value.trim()||'';
+  const cat=document.getElementById(`song-cat-${eid}`)?.value||'Louvor';
+  const songs=getSongs(eid);
+  songs.push({name,key,bpm,cat});
+  saveSongs(eid,songs);
+  // Re-render just the music panel
+  const panel=document.getElementById(`music-tab-${eid}`);
+  if(panel){panel.innerHTML=renderMusicPanel(eid,songs);}
+  // Update badge count on tab button
+  refreshMusicTabBadge(eid,songs.length);
+  showToast('🎵 Música adicionada!','success');
+}
+
+function deleteSong(eid,idx){
+  const songs=getSongs(eid);
+  songs.splice(idx,1);
+  saveSongs(eid,songs);
+  const panel=document.getElementById(`music-tab-${eid}`);
+  if(panel){panel.innerHTML=renderMusicPanel(eid,songs);}
+  refreshMusicTabBadge(eid,songs.length);
+  showToast('🗑️ Música removida','');
+}
+
+function refreshMusicTabBadge(eid,count){
+  // Find the music tab button for this event and update its text
+  const tabBtn=document.querySelector(`[onclick="switchEvTab(this,'music-tab-${eid}','${eid}')"]`);
+  if(tabBtn)tabBtn.innerHTML=`🎵 Músicas${count?`<span style='background:var(--blue);color:#fff;border-radius:20px;padding:1px 6px;font-size:9px;margin-left:4px'>${count}</span>`:''}`;
+}
+
+function switchEvTab(btn,panelId,eid){
+  // Find parent scale-day-block
+  const block=btn.closest('.scale-day-block');
+  if(!block)return;
+  block.querySelectorAll('.ev-tab').forEach(t=>t.classList.remove('active'));
+  block.querySelectorAll('.ev-tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const panel=document.getElementById(panelId);
+  if(panel)panel.classList.add('active');
+}
+
 </script>
 </body>
 </html>
