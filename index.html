@@ -254,25 +254,28 @@ tr:last-child td{border-bottom:none}
 .ob-btn-finish:hover{opacity:.9}
 
 
-/* ── ONBOARDING ── */
-#onboarding{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4A74FF,#6A5CFF);padding:20px}
-.ob-card{background:#fff;border-radius:24px;width:100%;max-width:360px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.2)}
+/* ── ONBOARDING DARK ── */
+#onboarding{position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:0}
+.ob-card{background:#111;border-radius:28px 28px 0 0;width:100%;max-width:480px;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.6);padding-bottom:env(safe-area-inset-bottom)}
+.ob-top-bar{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:20px;margin:12px auto 0}
 .ob-slides{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.ob-slide{min-width:100%;padding:36px 28px 28px;text-align:center}
-.ob-emoji{font-size:64px;margin-bottom:16px;display:block;animation:ob-bounce .6s ease}
-@keyframes ob-bounce{0%{transform:scale(.7);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
-.ob-title{font-size:22px;font-weight:800;color:#1A1A1A;margin-bottom:10px;line-height:1.2}
-.ob-desc{font-size:14px;color:#6B7280;line-height:1.6;margin-bottom:20px}
-.ob-highlight{background:#E9EDFF;color:#4A74FF;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:8px}
-.ob-dots{display:flex;justify-content:center;gap:6px;margin-bottom:20px}
-.ob-dot{width:8px;height:8px;border-radius:50%;background:#E7EAF3;transition:.3s}
-.ob-dot.active{background:#4A74FF;width:22px;border-radius:20px}
-.ob-actions{display:flex;gap:10px;padding:0 0 4px}
-.ob-btn-skip{flex:1;padding:12px;background:#F3F4F6;color:#6B7280;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
-.ob-btn-skip:hover{background:#E7EAF3}
-.ob-btn-next{flex:2;padding:12px;background:#4A74FF;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
-.ob-btn-next:hover{background:#3a63f0}
-.ob-btn-finish{width:100%;padding:13px;background:linear-gradient(135deg,#4A74FF,#6A5CFF);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer}
+.ob-slide{min-width:100%;padding:28px 28px 24px;text-align:center}
+.ob-icon-wrap{width:80px;height:80px;border-radius:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:38px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+.ob-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.25}
+.ob-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:18px}
+.ob-highlight{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-radius:12px;padding:10px 14px;font-size:12px;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:8px;text-align:left}
+.ob-dots{display:flex;justify-content:center;gap:5px;margin-bottom:20px}
+.ob-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:.3s}
+.ob-dot.active{background:#fff;width:20px;border-radius:20px}
+.ob-actions{display:flex;gap:10px;padding:0 0 6px}
+.ob-btn-skip{flex:1;padding:13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1);border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.ob-btn-skip:hover{background:rgba(255,255,255,.12)}
+.ob-btn-next{flex:2;padding:13px;background:#fff;color:#111;border:none;border-radius:14px;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;letter-spacing:.2px}
+.ob-btn-next:hover{background:#f0f0f0}
+.ob-btn-finish{width:100%;padding:14px;background:#fff;color:#111;border:none;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.2px}
+.ob-btn-finish:hover{background:#f0f0f0}
+@keyframes ob-slide-up{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.ob-card{animation:ob-slide-up .4s cubic-bezier(.2,.8,.3,1) both}
 
 footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-size:11px;color:var(--gray);text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px}
 .btn-edit-roles{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(74,116,255,.3);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
@@ -373,42 +376,63 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   </div>
 </div>
 
-<!-- ONBOARDING -->
+<!-- ONBOARDING DARK -->
 <div id="onboarding" style="display:none">
   <div class="ob-card">
+    <div class="ob-top-bar"></div>
     <div class="ob-slides" id="ob-slides">
+
+      <!-- Slide 1 -->
       <div class="ob-slide">
-        <span class="ob-emoji">🎵</span>
+        <div class="ob-icon-wrap">🎵</div>
         <div class="ob-title">Bem-vindo ao LouvorFlow</div>
-        <div class="ob-desc">O app completo para gerenciar seu ministério de louvor — escalas, equipe e eventos em um só lugar.</div>
+        <div class="ob-desc">O app completo para gerenciar seu ministério — escalas, equipe e eventos em um só lugar.</div>
         <div class="ob-highlight">✨ Feito para líderes e músicos de ministério</div>
         <div class="ob-dots"><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
-        <div class="ob-actions"><button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button><button class="ob-btn-next" onclick="nextSlide()">Próximo →</button></div>
+        <div class="ob-actions">
+          <button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button>
+          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+        </div>
       </div>
+
+      <!-- Slide 2 -->
       <div class="ob-slide">
-        <span class="ob-emoji">⚡</span>
+        <div class="ob-icon-wrap">⚡</div>
         <div class="ob-title">Escalas automáticas</div>
-        <div class="ob-desc">O líder define a equipe e gera a escala em segundos. Cada membro recebe notificação na hora — sem WhatsApp, sem confusão.</div>
+        <div class="ob-desc">O líder define a equipe e gera a escala em segundos. Cada membro recebe notificação na hora.</div>
         <div class="ob-highlight">🔔 Notificação push automática para todos</div>
         <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
-        <div class="ob-actions"><button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button><button class="ob-btn-next" onclick="nextSlide()">Próximo →</button></div>
+        <div class="ob-actions">
+          <button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button>
+          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+        </div>
       </div>
+
+      <!-- Slide 3 -->
       <div class="ob-slide">
-        <span class="ob-emoji">✅</span>
+        <div class="ob-icon-wrap">✅</div>
         <div class="ob-title">Confirme sua presença</div>
-        <div class="ob-desc">Com 1 toque você confirma ou recusa uma escala. Se recusar, o sistema encontra um substituto automaticamente.</div>
+        <div class="ob-desc">Com 1 toque você confirma ou recusa. Se recusar, o sistema encontra um substituto automaticamente.</div>
         <div class="ob-highlight">🔄 Substituição automática ao recusar</div>
         <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div></div>
-        <div class="ob-actions"><button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button><button class="ob-btn-next" onclick="nextSlide()">Próximo →</button></div>
+        <div class="ob-actions">
+          <button class="ob-btn-skip" onclick="skipOnboarding()">Pular</button>
+          <button class="ob-btn-next" onclick="nextSlide()">Próximo →</button>
+        </div>
       </div>
+
+      <!-- Slide 4 -->
       <div class="ob-slide">
-        <span class="ob-emoji">🔗</span>
+        <div class="ob-icon-wrap">🔗</div>
         <div class="ob-title">Convide sua equipe</div>
-        <div class="ob-desc">Compartilhe o link de convite pelo WhatsApp. Todos entram em segundos, o código já vem preenchido automaticamente.</div>
+        <div class="ob-desc">Compartilhe o link pelo WhatsApp. Todos entram em segundos, o código já vem preenchido.</div>
         <div class="ob-highlight">👥 Cada ministério tem seu espaço privado</div>
         <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div></div>
-        <div style="padding:0 0 4px"><button class="ob-btn-finish" onclick="skipOnboarding()">🚀 Começar agora!</button></div>
+        <div style="padding:0 0 6px">
+          <button class="ob-btn-finish" onclick="skipOnboarding()">Começar agora →</button>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -663,7 +687,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
           <div id="my-scales-output"><p style="color:var(--gray);font-size:13px">Carregando...</p></div>
         </div>
         <button class="btn-gen" style="background:var(--purple);margin-top:4px" onclick="navigate('availability')">📅 Disponibilidade</button>
-        <button class="btn-gen" style="background:#fff;color:var(--blue);border:1.5px solid var(--blue);margin-top:8px" onclick="openOnboarding()">💡 Como usar o app</button>
+        <button class="btn-gen" style="background:#111;color:#fff;border:1.5px solid #333;margin-top:8px" onclick="openOnboarding()">💡 Como usar o app</button>
         <div id="join-another-box" class="join-ministry-box" style="display:none;margin-top:18px">
           <h4>🔗 Entrar em outro ministério</h4>
           <p>Tem o código de outro ministério? Cole aqui para entrar.</p>
