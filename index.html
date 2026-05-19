@@ -521,7 +521,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
       <div class="nav-section">Conta</div>
       <button class="nav-item" onclick="navigate('profile')"><span class="ni">👤</span> Meu Perfil</button>
       <button class="nav-item admin-only" id="nav-config" style="display:none" onclick="navigate('config')"><span class="ni">⚙️</span> Configurações</button>
-      <button class="nav-item" onclick="openOnboarding()"><span class="ni">💡</span> Como usar</button>
     </aside>
     <main>
       <!-- DASHBOARD -->
@@ -714,8 +713,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:8px 16px;font-
   </div>
   <footer>LouvorFlow © 2025 · Gestão de Ministérios</footer>
 </div>
-
-<!-- MODALS -->
+      <!-- MODALS -->
 <div class="modal-overlay" id="add-event-modal">
   <div class="modal">
     <h3>📅 Novo Evento</h3>
@@ -1318,6 +1316,8 @@ function openOnboarding(){
   slides.style.transition='none';
   slides.style.transform='translateX(0)';
   setTimeout(()=>{slides.style.transition='transform .4s cubic-bezier(.4,0,.2,1)';},50);
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
   const ob=document.getElementById('onboarding');
   ob.style.opacity='0';
   ob.style.display='flex';
